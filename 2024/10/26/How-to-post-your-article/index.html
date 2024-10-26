@@ -4,18 +4,18 @@
   <meta charset="utf-8">
   
   
-  <title>Hello World windows搭建个人博客 GitHub page+hexo | Hexo</title>
+  <title>windows搭建个人博客 GitHub page+hexo | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。 安装Node.js和Git Node.js：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn Git：https:&#x2F;&#x2F;git-scm.com&#x2F;downloads  基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 node -v">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World windows搭建个人博客 GitHub page+hexo">
+<meta property="og:title" content="windows搭建个人博客 GitHub page+hexo">
 <meta property="og:url" content="http://example.com/2024/10/26/How-to-post-your-article/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。 安装Node.js和Git Node.js：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn Git：https:&#x2F;&#x2F;git-scm.com&#x2F;downloads  基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 node -v">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MGM4NGRhN2I1MTdmNTBjOTJmNGVlZjY1N2IzMTgyMTVfZGNGMWllUDd3OGU0aU1takxzbVBnTDdVeEZPaVEyMnNfVG9rZW46UFlYSmJmZVVXb3M4alR4V1hVRGNxeU5jbkVkXzE3Mjk5MTgxNDI6MTcyOTkyMTc0Ml9WNA">
 <meta property="article:published_time" content="2024-10-26T04:22:21.047Z">
-<meta property="article:modified_time" content="2024-10-26T05:01:19.267Z">
+<meta property="article:modified_time" content="2024-10-26T05:19:51.056Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MGM4NGRhN2I1MTdmNTBjOTJmNGVlZjY1N2IzMTgyMTVfZGNGMWllUDd3OGU0aU1takxzbVBnTDdVeEZPaVEyMnNfVG9rZW46UFlYSmJmZVVXb3M4alR4V1hVRGNxeU5jbkVkXzE3Mjk5MTgxNDI6MTcyOTkyMTc0Ml9WNA">
@@ -87,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Hello World windows搭建个人博客 GitHub page+hexo
+      windows搭建个人博客 GitHub page+hexo
     </h1>
   
 
@@ -139,15 +139,37 @@
 <p>然后修改hexo程序文件夹中的_config.yml文件末尾的 deploy部分(建议使用notepad++打开)，修改成如下（注意替换GitHub用户名）：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:type: gitrepository:</span> <span class="string">git@github.com:用户名/用户名.github.io.gitbranch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
 
-<p>这一步一定要在hexo的那个文件夹中进行！！</p>
+<p>这一步一定要在hexo的那个文件夹中 <strong>右键 -&gt; Git Bash Here</strong> 进行！！</p>
 <p>完成后运行 <code>hexo d</code> 将网站上传部署到 GitHub Pages。</p>
 <p><img src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MGM4NGRhN2I1MTdmNTBjOTJmNGVlZjY1N2IzMTgyMTVfZGNGMWllUDd3OGU0aU1takxzbVBnTDdVeEZPaVEyMnNfVG9rZW46UFlYSmJmZVVXb3M4alR4V1hVRGNxeU5jbkVkXzE3Mjk5MTgxNDI6MTcyOTkyMTc0Ml9WNA" alt="img"></p>
 <p>等待GitHub里的action的这个打勾就可以访问域名<code>https://用户名.github.io</code>看网站了。</p>
+<h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><p>我们的步骤基本都是在<strong>右键 -&gt; Git Bash Here</strong>中进行的</p>
+<p>创建文章的指令是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然后 source 文件夹中会出现一个 My New Post.md 文件，就可以使用vscode在该文件中撰写文章了。</p>
+<p>草稿的指令是 记得要把title替换成自己的标题。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new draft title</span><br><span class="line">输入下面这个指令就可以把上面这个草稿发布</span><br><span class="line">$ hexo publish title</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>但是我觉得没啥用。。不如在飞书或者typora写好在直接发布。</p>
+<h3 id="编写-发布md文章"><a href="#编写-发布md文章" class="headerlink" title="编写&amp;发布md文章"></a>编写&amp;发布md文章</h3><p>我这里用的是typora，这个可以直接把飞书文档复制变成md格式，非常好用，网上有破解版，但是29块钱就可以终身享用，比一个游戏还便宜，我还是选择支持一下正版。</p>
+<p>在typora中编辑完成后，就可以发布了。</p>
+<p>发布的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   # 清除缓存和已生成的静态文件</span><br><span class="line">hexo g   # 生成页面</span><br><span class="line">hexo d   # 部署发布</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;name&quot;       # 新建文章</span><br><span class="line">hexo new page &quot;name&quot;  # 新建页面</span><br><span class="line">hexo g                # 生成页面</span><br><span class="line">hexo d                # 部署</span><br><span class="line">hexo g -d             # 生成页面并部署</span><br><span class="line">hexo s                # 本地预览</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>然后hexo也支持更好主题，</p>
+<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>在 <a href="https://link.zhihu.com/?target=https://hexo.io/themes/">Themes | Hexo</a> 选择一个喜欢的主题，并参照主题的文档来安装和配置主题。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/10/26/How-to-post-your-article/" data-id="cm2pp1yyr0000rsumcs2f2blj" data-title="Hello World windows搭建个人博客 GitHub page+hexo" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/10/26/How-to-post-your-article/" data-id="cm2pppjmh00002sum2bdc92fl" data-title="windows搭建个人博客 GitHub page+hexo" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -198,7 +220,7 @@
       <ul>
         
           <li>
-            <a href="/2024/10/26/How-to-post-your-article/">Hello World windows搭建个人博客 GitHub page+hexo</a>
+            <a href="/2024/10/26/How-to-post-your-article/">windows搭建个人博客 GitHub page+hexo</a>
           </li>
         
           <li>
