@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="The Redefine Team">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/10/26/gas-learn1/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="1 平a与移动动作制作与融合1.移动和跳跃的控制与状态切换  融合各个方向的移动动作，通过速度speed和转向angel来进行移动 左下右下两个点是为了防抖，让动画更稳定。  得到动画的主体，  获取并set各项值。  简单的移动动画蓝图，实现跳跃的切换  动画快播放结束时切换状态。 2.平a 2.1 在一个montage里放平a的两个动画，然后分割片段，在调用时随机使用一个动画， 2.2 动画的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GAS学习记录第一季">
+<meta property="og:url" content="http://example.com/2024/10/26/GAS-learn1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 平a与移动动作制作与融合1.移动和跳跃的控制与状态切换  融合各个方向的移动动作，通过速度speed和转向angel来进行移动 左下右下两个点是为了防抖，让动画更稳定。  得到动画的主体，  获取并set各项值。  简单的移动动画蓝图，实现跳跃的切换  动画快播放结束时切换状态。 2.平a 2.1 在一个montage里放平a的两个动画，然后分割片段，在调用时随机使用一个动画， 2.2 动画的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWJhNTMwYjNkOTMzYmZhN2M0NjQwOWQ5Mzk5ZWZhMjJfYTduQUdleUJzYmE0RzkzVW9pMGJBS2RZak51UkY3clhfVG9rZW46UzQxTGJIS1Nlb1JnaTh4UkV5eGM1eVh1bm1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDcxZTQzMjE1ODY1YWZjZWRlYmY4NTNmMmIyNDgyZTdfVUZ2dmUzcU1rMGVueGxvMk1LaFNYYWpYdlRQZHdLRDVfVG9rZW46UFpOU2JIM25Gb1FSZHN4VGI5ZGNYVm5XbjFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MzRlMDM4YWUyMjhjZTdmM2Q5ODdjMjUzMjkyMGYwY2VfZ3pUYnlmNjQ0aVhsTkJUcUROc3NLTmQ5d2ZSWEtCOVVfVG9rZW46VW5CRmJHZTh1b21mQkh4eU5SUmMyT3BBbnVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDM0ZjM4ZWQ0YmViOWJhYTU0N2M5MzAwYTY4MWYwMjZfVVlSYVlIdjZSUXM4UlgxeWhCNlpISGlOV2w0TWRzZXpfVG9rZW46RU9JMGJ1QnhVb2Vpc2R4b3E2d2NOZGpObmJiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWViNjk4M2RiMTQxOTdmN2MyYjM5OWUxOTc2Y2I0MTdfVVJ4MEZlb0ZDWVpVWFRVclhvTTBtTklmeXdxbjFieVNfVG9rZW46UEx5ZGJCVHJKb0lsbkZ4WUM5RWNrRVRGbjhnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGYxZDJmODFkNzg4NTA3ODZiNzc0ZGMxMTg2OGJjOTRfOWFoVE5JSVBLYTZEVGwyRm1keXZmN3ZLOFVIb1lxSmNfVG9rZW46SlhaT2JVaG9lb2ZVS3Z4a256eWN0SDEzbnBnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFhZTJjNzcxYWIwNWI1YWE0ODdiYWVkYTEyMGMwYmNfNHY3dDczaVF2MWJYWWxNeld5aEdLOXZzOUg5d2dGOWFfVG9rZW46WlpKYmJZbGtZb3M4TjV4bzUzS2MxNkZJbkJmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDk5ZWQyNWZjMjlkNDZhMzRlZDM5MDZiMWRlYjZkNThfSzdDdThjRjdnZ1JLd28xc2NSMWpOT1RCVk1JSklaUzhfVG9rZW46UldVNmJWV3dUb0VnWHV4SWRteWMxdUhWbkFoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODk0M2NmODFkM2I4M2NjZmY5NmRmYzY3YjI2NjdiZmNfd0pmNVpYVlpyTFdqR3luZGV2bWVGYmpMc25JRk1Wd09fVG9rZW46SkZiSGIwbWxWb0k2azd4UGV3MWNueUNYbk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTFhNTQzZjBjZmRlMmUyZTE2Njg5Mzg2OGRkZDk1NmFfcENQVFNLdmF0RnNYUnk2R2MwR3ZqUkREZG1rV01DaDNfVG9rZW46WGs3TmJmY2hkb3dIUWl4UnNnY2NxRUR3bkdKXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGExN2FmNTY3YjIxNWNmYjE2MmRhNWM3OTczZjA5YTNfdU5XVzl5S0JBbG9vN3B1UlM1T21QaGdqY1RkVFl2TUVfVG9rZW46WEdxMWJjNXk5b25HZnp4bnVpUWN3ZGtubmRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzI0ZDI4YTNlZjUwMWQyNzg0YjhiNzQxMTlhMDlhZmVfMm16T2FKSUM1VXZqd25FWDlnYXlUejRuZFMxVkk3YlpfVG9rZW46TmRtR2Iycm1tb3FqbXN4cWQwcmNRUzRsbkNmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWYxMzdiZjRlYzFjM2IzZjUxNjIyMTgzZjgyNGZmNmZfdW9ZOFhjZlNvVGFSRnhmTmtGeGN6UlVpT2ZPNGM1Y2tfVG9rZW46S2RLc2JBUFF6b3FBRTV4SVF1WmM5TzRWbk1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTY3M2M2ZDA5ZmEwODQwMzUzYzkwZmM5NjA3NmRhNzNfYWtkY1NDbzdBRXpuRnpxTG9nbTJ5ckZFQ2JIZnJoajFfVG9rZW46U2FSRGJsY1JqbzhvYWh4S1F0QWNIUWxObmxkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzU0M2Q4MzEyYjkxNzE2Mjg5YjU4ZWY2ZmMzMjZlYTdfM0JlZVFqd0VDeW1mVlJrS0Fkek9ZVGp1dHJ2TndMajJfVG9rZW46Q3U3SWJDcFFhb1Q5Z014RmNMNGNzTThabk5kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDU3MmQzZTZlNzU0MWFkMDIyNjkyMjczZjQ3NjUxZDBfWERnbTNTTU5YRzd5SlQyTlN3dmFsd1NSZ25Ldk9UMGZfVG9rZW46V2ZmdGI5ZXhYb2Z3VTB4ZWlzYWMyT1NlblZjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWMwZGZjZWQwYWY4ZGIzM2IwNjBhOTVhMmJhMTQ4NzRfaUt2dTNvNjkwS0xGcXBTZk9SQUpKQUJGMnl6MU1zaHRfVG9rZW46T0EzdmJYd1Q2b2VzbXZ4Ymh4WmNKblYybkZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDAwMWU0OGM3MjY0ZmU0ZmExNzU4ZTdlYzg0NjdmMDFfR1pvaG54N2hMMW1iUTdZWjdNVkFnWTVMY1ZCQzB4RUlfVG9rZW46U08yVWJDcW84b2E3UnB4S1FKSmMzeXJMbmRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWQ0M2YyMDNhNDg1ZmJiMDQxNDZjOWY2NWMzODVhNDdfRk9tS1JXVGEwcWtISjM1cTd3RHlEVjRTMURuUDFBbzhfVG9rZW46VDJrM2I4Z3VDb3RNQ254S3lZSmNPNXNzbkRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxZGJjNzRlMDJkYjM4ZDQ2MThjYjA4YzZkNDFiOGFfSjB2QTJwWUo0cHVOenpsRWE1bExRdG5CM1BodHJqek9fVG9rZW46SmNqNmJsRFl5b2UzUHR4Z0NOd2Mza05nbmNlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTBlYWY5MDM0NmVjZWM4OWZiNTU0ZDVkOWJmNjY0MzFfTnJKVHkwa1QyOU9uMWRMT3pFUkZyWGdLd1ZoMmpvTk1fVG9rZW46T1B1aWJvWkR5b0lhTW14azVIR2M4Z0p3bm1kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDAxYmU4ZmRlNjNkNjQ4ZjA5Nzk4YmJlZDhkZDM4OTlfSXhTa1hhcE9mMkNITnB1ek1YVkZYTFozeEpmRkRRWnhfVG9rZW46WDg5N2J2S3Bvb1ZSM0t4VVhMUGNsdzAybktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTI4MjFlMzdiMDc3ZGRlYTY2MzQwZTdiNjYwMGMxNTRfeFpvZTFsR01VSktaMWZ4U2VYZzFxT29meWxKSjU2enVfVG9rZW46QllpdGJVQVJwb2R4SW54YTFrN2NrcGhabndiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzQ1YTEyODY2OTBkN2U5Yzg3NWFiNWY4NGFmNzY0NjJfcG5IbVJBZzd4VUdxSjU2Q1NRWTV6RzdERzBXa3JZMDJfVG9rZW46U1pkRmJleU9jb3A5Mjh4dnM2ZGN3bUpNbk9kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWYxMWMyZWFhNDgxNmViMjE3YTQwZTMyYzA1YzdmMGNfd0tlTG5lazZKSGNTWHdZNktvd0hMM2FyY05jYTZmOXZfVG9rZW46SGl5NmJaeHVsb3N5NUR4SUk0VWNvRlpRblBiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="http://example.com/">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjVlMDIxOWEyNGNhNDg4MzgyN2M5OWQyNWQ3ZTcwNGFfQXU0cXBNOVVHemZsd0xtU3VPRXJ4elNEa1VkVEtldE9fVG9rZW46UERZMmIyeHVQb0o0ck54bVN6S2NBdjIwbmZlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNlZWFhZGMwNjFkNjk2MTQwMjY2MzAwZDA5YzllOWVfcXBUUFJXSUNRVVdMa0RHWXpXRHplUWQ0OFlHVk1yNEtfVG9rZW46T005d2JMV2dHb0xMUTB4UEJONWNjR2N2bm1iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2NjNzhhMzE0ZWQxYzM5NDEwN2Q1OTRjNzQxOTExMTFfUEZadHVkMGwycWVITm9oTHZySTJZMWFTckQzQ3JsTm5fVG9rZW46V0ZlcmIzeW5sb0M1VjJ4OTdzTmNQNHMybjdiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGMxYTljN2EyMTZjNDg1OGNhZWE2ODc2YWYxNDMzMDNfZDhjaTNVQ1JhclhIZGdCU25FcXNzYmhROVBZU2JHeUxfVG9rZW46QzQ5N2JvM0Ztb3lFT3R4elR3emN3NjdYbkVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDVhMGQxMGQ1Mzk0Yzc1OGE2NzUxOThiOTU3MzUzNDlfS2ZrSGJ6VjZSWEp1ZWtBSXBvdEExVzhvdm9DSW9UNHdfVG9rZW46U3B3aWJmRllyb3pyc1l4eXVGZGN4bHdxbklmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YThmZGYxNzhiMjZkZDEzMGJiYzJkZDE4MjA4Zjk5MDJfR0VOU3V1M0h5eHVjemFFRWhYcXJDeVZydVVVSjBpbURfVG9rZW46SjZyRmJrUE94b0dlWHh4dktjU2NJejlMblJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDc4MzgxY2Y5ZDEyODZkY2YzOGIzNDkwMDJmODUwMGVfaGJZUEQ5MG16Mk9aN3NOaVc5b3VJY3VUU0xzMHhZRlBfVG9rZW46SE1vUmJBc2ptb1NqTHN4dUNZZWNjRnJ0blRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWQzM2RmZjQ5N2QwY2ExZTg1YmI4MjA3MTk3MzcyOTVfeWlCNUZrTmE3UUhOd00yMjRJSjRzNlFsa2hTZGQ4Q2xfVG9rZW46TGNaUGJySGNIbzJkUVN4NEg3WmNST3cxblNoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGNjMTJkODAwZmJkMGZiY2UxYTFhZmZkN2JiNjZhZjhfekppVkZ4WmxDOXh1QmkzTXpvMGZNT0xpVFRXU2llNlZfVG9rZW46RkgzM2JZS1c3b0o3WTF4OGtGNmNiSDdFbktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzkxMGE4ZDJhMjMyMTVjYTAzOTVjZGVjZDRmZTk5ZTNfdXE1N1NTUHhiSmNZNUV1RmhXOVZqM2dEUnV6WGRxVnBfVG9rZW46S0hremJpaTg2b1FnbVF4Tk9kRmM1UU81bk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjA5MDZjODA0ZDUyZjgzYTI3OGM2MTcyODIwM2FmMmNfVkJQcWRTdkc1QjM2Q3NkTHVBZkl1RWoxODBPbDZiUHdfVG9rZW46S1JYWWJJSnpVb2pjM1B4ZTZEZWNUWUtsbnZnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjNiZThjNDQxOGQ4ZWJmNTRhMThmZmY1NmM0MmJhNmFfdnhWYnJuUDBWY3VEUVdjcjY0WDRicnBHeVRCUTJLZmpfVG9rZW46UzdIQmJDWGRqb3NMbE14dFI2d2NuM0xtblJnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODliNzhiZjlkNGNhNDY5NGNjMjlhZjE4MzY2N2I5MjVfNjN1aWV0N2VkbnpTTlUycjhOU1piYUJ4eWoxbG02OTBfVG9rZW46VDNqdWJOSEFpb25yNDN4SUo5bWNYOUpLblNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDhjYjkwYmE5NmI2MzVjZTE2MTg5YzFkMWM1MDMwYWZfZ0RnNHlkenRscEJiVW1DTklPcFlDSnllWXdWSlNTRWtfVG9rZW46U01seWJ2dHFsb0k0bXV4UVE4UmNFamVrbmVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTEzNDdhZjgzZGVhMTNiMDA0YTYzNTI4YWIyYjJjYTdfem5wZXpka3htSXFyamZ2TGpvUWRDRzc1cWR6S1AyN3NfVG9rZW46QlNHaWJTWTZWb2tkdFJ4TUJCVGNCcFAybmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YTc3ODIyYTZkZWE2MmM0NGM0NmUwYjQzZDdlZWJhM2FfTmxVWGVQMjdSZjhOYWpONDhQS3Vlem5WVlBIdVFiVFJfVG9rZW46U1pNdWJ4QVRFb0l4U2p4STBiemNDdkF4bk9iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2E4OGZiOTM0NWQ4N2ZiOWI0MmUxZDUzOWNlOTQ3MzBfNG5uTmtyVXFVSkNXUWVXNVNyT0ZRVHVuRGRRSzRUMHVfVG9rZW46UHkwdWJQRnh1bzJtazF4RFV4SWNnemZMbmxiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjQxNGJkM2ViZDA5ZDU5OGFlZTVhMTk5M2M2YzYzZjVfa2E3blJ1OUpKcnBya0toYnJpMjI2TzRUTXB2WDBRN0JfVG9rZW46V0tIM2JYTkVDbzJ0NDl4SVg5d2N3N21lbnZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjBhMWQ1YjU1MzE2NzNiZDNkYmZkNDU2ZDU1MGM3OTJfZHB2MzRLSnp5YVNMZWM3TzFmZEQ3VlJsWEo1ZDZxcVBfVG9rZW46QlU5T2JxQW14b2F4VjR4a1VPd2NBVTA0bnpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWUyNGRhMzZiMDQyN2I3MTNkNTFkOWRlZjMwNGQ0YzBfTldMYVFCelJISkZSd1RSVURsdVJLQkFweFdUektBY09fVG9rZW46UnFsUmJjaUVib21KZWx4Y0dhTmNrU29DbkI2XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2IwNmZlNjVjMzQ2MDkwNjI5Njk2NTk5NDExODhmYzZfczRKaUhyc1FqejBCWUxEd0o3dkJNd3hVeUdFWlBGd0hfVG9rZW46WlVWQ2J1MGJwb2lvd2F4c2JDR2M0MWVRbnFnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NWEzYzE5NWIyMTllOTUxNzFjNzZmMjEwZDg1NGUzYTNfRDhHWWVpa0tMWWZRMmlVaXBwbTgzUjFsMDdkaUM5eTVfVG9rZW46UW80QWJwTzRpb1ZFdEh4T0E0b2N1cVhiblRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MGU5ZjZlNDAxYTY3OTYxMWQ2ZjczMzEwNGE0NDBkYThfaTZiNDBJRlFwbVowb0IwOFpQMFBzN0ljcnl3WnRmZ0FfVG9rZW46WEZ1MWJ6YzAyb0lwUHd4ZmU5ZGN1ZzRCbmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxNDM4NDNmZWNkMTNjNjc2NDc5YTZmZjAzYjgwY2FfNnBlcE1SdTEyQ0tQS3ZIZFJNaUh0eGpSQ0lNZmZKZEFfVG9rZW46UGwxd2J4NFlIb1Vxd3B4a1N5OWNQTzRRbmNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQxYWU3YTU1ODFiNzRhZmU3YzkwOWJkMmI5NmJhZWRfQkJDVXV4U0taaEZQM1AyVTNJUjRseGg5eHZ1M2tESmhfVG9rZW46RThzcmJCZWhxb1JBeTJ4WVhZeGNka1pWbmNjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTE1MTIwYjQ5MDQ1NjY2MTk1Y2M2NDQxY2EzYmM0MzhfNUZRcDhrZ21uak5COHpJNWlKRFl0TlprbTFrNXZsT1lfVG9rZW46VUlMeWJFSzVab3JQakd4elEwSmNlM1V6bnJMXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGEwMjUyNmI2MTY0NmRjZjdmZTQ4ZWI5MGU5MDhiZWNfZXFTTG9QbGNCd25rZUlnYlRiamJjeTJXOTNnR0xBYjZfVG9rZW46S24ybGI3cmp3b0QyMTF4bTFFV2NIUlBwbk9jXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWNlOTZhZDZhM2U4NjcxOTBlNmI4OGZiMjRmZTQ4YWZfSGFGelJlR3NGSVJOVXQyT29VQmg4RTdhVDZOMlNNdWVfVG9rZW46SlVlN2Jib3hSb3RSell4ZUk3UWNWallZbkpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGFlMjAxNjMwMzhlMjQxNTI0NzQ5ZWZiNWM0N2U1YzVfOUlQRXFsYmE2ZTRTa25kRFJGN21BYWZmbEs2VXJNSnpfVG9rZW46QmY3SWJpMkhYb1c0Mlh4QVgyRmNobTRubmJpXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDFhNmZmYmU0YjZjMzdmMTJiY2JhOTc4ZDNlYzhiN2VfVkFwYmpFRDNQUzFqaHB2YWZNdVJTNHRDNmVIVGZEWE9fVG9rZW46RldLTmJvZ3Jqb0ZQZ2F4NFQ3dmNmUlRTblVoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmY2NmYyNWY5MDg1YWNjYmNkMDgyODFjYmZlYjQ0MDFfQ1psdzR3Q0RnM2llOURPdTJsVFRJa21kQnBZTWxkbmNfVG9rZW46V0ptNWJzMmU3bzhkeUF4ZERlOWN1NEo2bnJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2QzYTNhNDgxMjkxZWYzNTA2ODc4ZGU0YzZkYmQ2ZGNfSzhDMWdlbXVOVk9TSmJxdGl4d05BSUtvSTllWmFOVDBfVG9rZW46SzNzR2I3Q0xWb0g1YjV4YW1OZmNmM29kblA1XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDQ5ZmI4NDY1MTFjZTlmM2YwZGFkNzM2ZjJhNzRhMTJfYVVuS0VYQlg1VHRNTzhRZjhDaDdpQWdpbWp6d2ExUXBfVG9rZW46UFlURmJzYzVEb3dkZkR4dWZrN2NzdjhJbjRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWZkNTI0MzMzNTQzYjhmOGUyM2ZjMTFlNjE4ZTExODJfQ3ZmNDloVXBrVHhYMjJCSzlxTkJpd2VjbDkzcUdSZDZfVG9rZW46TTZHMWJLcGNlb0JJYjV4Z3NnUmN6OERBblFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MmRkNDlmZDM5ZjYwZTk0YmQ0YmVhOGZkOTIyMDkzZWRfcE1hRmh3U212ZzdraDU3c1V6RHpkZ0ZEd3RucG1ld0hfVG9rZW46R3JKTWIxc2Zyb2tYSU14MVpJWGN5bkd2blVjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="article:published_time" content="2024-10-26T05:48:12.517Z">
+<meta property="article:modified_time" content="2024-10-26T05:49:31.236Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWJhNTMwYjNkOTMzYmZhN2M0NjQwOWQ5Mzk5ZWZhMjJfYTduQUdleUJzYmE0RzkzVW9pMGJBS2RZak51UkY3clhfVG9rZW46UzQxTGJIS1Nlb1JnaTh4UkV5eGM1eVh1bm1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            GAS学习记录第一季 | Theme Redefine
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Theme Redefine","subtitle":{"text":[],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Theme Redefine
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">GAS学习记录第一季</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">The Redefine Team</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-10-26 13:48:12</span>
+        <span class="mobile">2024-10-26 13:48:12</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-10-26 13:49:31</span>
+            <span class="mobile">2024-10-26 13:49:31</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="1-平a与移动动作制作与融合"><a href="#1-平a与移动动作制作与融合" class="headerlink" title="1 平a与移动动作制作与融合"></a>1 平a与移动动作制作与融合</h2><p>1.移动和跳跃的控制与状态切换</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWJhNTMwYjNkOTMzYmZhN2M0NjQwOWQ5Mzk5ZWZhMjJfYTduQUdleUJzYmE0RzkzVW9pMGJBS2RZak51UkY3clhfVG9rZW46UzQxTGJIS1Nlb1JnaTh4UkV5eGM1eVh1bm1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>融合各个方向的移动动作，通过速度speed和转向angel来进行移动</p>
+<p>左下右下两个点是为了防抖，让动画更稳定。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDcxZTQzMjE1ODY1YWZjZWRlYmY4NTNmMmIyNDgyZTdfVUZ2dmUzcU1rMGVueGxvMk1LaFNYYWpYdlRQZHdLRDVfVG9rZW46UFpOU2JIM25Gb1FSZHN4VGI5ZGNYVm5XbjFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>得到动画的主体，</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MzRlMDM4YWUyMjhjZTdmM2Q5ODdjMjUzMjkyMGYwY2VfZ3pUYnlmNjQ0aVhsTkJUcUROc3NLTmQ5d2ZSWEtCOVVfVG9rZW46VW5CRmJHZTh1b21mQkh4eU5SUmMyT3BBbnVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>获取并set各项值。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDM0ZjM4ZWQ0YmViOWJhYTU0N2M5MzAwYTY4MWYwMjZfVVlSYVlIdjZSUXM4UlgxeWhCNlpISGlOV2w0TWRzZXpfVG9rZW46RU9JMGJ1QnhVb2Vpc2R4b3E2d2NOZGpObmJiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>简单的移动动画蓝图，实现跳跃的切换</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWViNjk4M2RiMTQxOTdmN2MyYjM5OWUxOTc2Y2I0MTdfVVJ4MEZlb0ZDWVpVWFRVclhvTTBtTklmeXdxbjFieVNfVG9rZW46UEx5ZGJCVHJKb0lsbkZ4WUM5RWNrRVRGbjhnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>动画快播放结束时切换状态。</p>
+<p>2.平a</p>
+<p>2.1</p>
+<p>在一个montage里放平a的两个动画，然后分割片段，在调用时随机使用一个动画，</p>
+<p>2.2</p>
+<p>动画的调用，在player蓝图中建一个事件play Montage 然后在controller中调用。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGYxZDJmODFkNzg4NTA3ODZiNzc0ZGMxMTg2OGJjOTRfOWFoVE5JSVBLYTZEVGwyRm1keXZmN3ZLOFVIb1lxSmNfVG9rZW46SlhaT2JVaG9lb2ZVS3Z4a256eWN0SDEzbnBnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>2.3 解决滑冰，进行动作融合，实现边跑边a</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFhZTJjNzcxYWIwNWI1YWE0ODdiYWVkYTEyMGMwYmNfNHY3dDczaVF2MWJYWWxNeld5aEdLOXZzOUg5d2dGOWFfVG9rZW46WlpKYmJZbGtZb3M4TjV4bzUzS2MxNkZJbkJmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>涉及一个存储的概念，要把两个动作存储chache然后再进行融合。</p>
+<p>再Layered blend per bone中选择融合的节点，本文中选腰部的节点。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDk5ZWQyNWZjMjlkNDZhMzRlZDM5MDZiMWRlYjZkNThfSzdDdThjRjdnZ1JLd28xc2NSMWpOT1RCVk1JSklaUzhfVG9rZW46UldVNmJWV3dUb0VnWHV4SWRteWMxdUhWbkFoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>2.4 现在要解决只有上半身动，下半身会卡住，动画奇怪的问题</p>
+<p>解决方案：只融合一半，跳起来平a的时刻不融合，</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODk0M2NmODFkM2I4M2NjZmY5NmRmYzY3YjI2NjdiZmNfd0pmNVpYVlpyTFdqR3luZGV2bWVGYmpMc25JRk1Wd09fVG9rZW46SkZiSGIwbWxWb0k2azd4UGV3MWNueUNYbk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>添加新节点，也就是不融合的节点</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTFhNTQzZjBjZmRlMmUyZTE2Njg5Mzg2OGRkZDk1NmFfcENQVFNLdmF0RnNYUnk2R2MwR3ZqUkREZG1rV01DaDNfVG9rZW46WGs3TmJmY2hkb3dIUWl4UnNnY2NxRUR3bkdKXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>通过speed和前面节点的控制，选择动画，达到目的。</p>
+<h2 id="2-正式开始GAS-创建一个平a以及cd"><a href="#2-正式开始GAS-创建一个平a以及cd" class="headerlink" title="2 正式开始GAS 创建一个平a以及cd"></a>2 正式开始GAS 创建一个平a以及cd</h2><p>GAB先制作技能，然后在角色上调用，</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGExN2FmNTY3YjIxNWNmYjE2MmRhNWM3OTczZjA5YTNfdU5XVzl5S0JBbG9vN3B1UlM1T21QaGdqY1RkVFl2TUVfVG9rZW46WEdxMWJjNXk5b25HZnp4bnVpUWN3ZGtubmRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>要先</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzI0ZDI4YTNlZjUwMWQyNzg0YjhiNzQxMTlhMDlhZmVfMm16T2FKSUM1VXZqd25FWDlnYXlUejRuZFMxVkk3YlpfVG9rZW46TmRtR2Iycm1tb3FqbXN4cWQwcmNRUzRsbkNmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>Give ability给技能才能用，写一个active abilty函数，在其中通过tag来选择调用哪个ability。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWYxMzdiZjRlYzFjM2IzZjUxNjIyMTgzZjgyNGZmNmZfdW9ZOFhjZlNvVGFSRnhmTmtGeGN6UlVpT2ZPNGM1Y2tfVG9rZW46S2RLc2JBUFF6b3FBRTV4SVF1WmM5TzRWbk1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>碰撞检测</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTY3M2M2ZDA5ZmEwODQwMzUzYzkwZmM5NjA3NmRhNzNfYWtkY1NDbzdBRXpuRnpxTG9nbTJ5ckZFQ2JIZnJoajFfVG9rZW46U2FSRGJsY1JqbzhvYWh4S1F0QWNIUWxObmxkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>不能砍到自己和自己的同类（敌人砍敌人x）</p>
+<p>重点：碰撞体的挂载，附着在武器上</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzU0M2Q4MzEyYjkxNzE2Mjg5YjU4ZWY2ZmMzMjZlYTdfM0JlZVFqd0VDeW1mVlJrS0Fkek9ZVGp1dHJ2TndMajJfVG9rZW46Q3U3SWJDcFFhb1Q5Z014RmNMNGNzTThabk5kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h2 id="3-创建角色属性"><a href="#3-创建角色属性" class="headerlink" title="3 创建角色属性"></a>3 创建角色属性</h2><p>用UAttributeSet创建，</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;BaseAttributeSet&quot;</span>)</span><br><span class="line">FGameplayAttributeData HP;</span><br><span class="line"><span class="built_in">ATTRIBUTE_ACCESSORS</span>(UBaseAttributeSet,HP);</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)</span></span><br></pre></td></tr></table></figure></div>
+
+<p>都是一些好用的宏，有读表啥的。</p>
+<h2 id="4-造成伤害并夹值处理"><a href="#4-造成伤害并夹值处理" class="headerlink" title="4 造成伤害并夹值处理"></a>4 造成伤害并夹值处理</h2><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDU3MmQzZTZlNzU0MWFkMDIyNjkyMjczZjQ3NjUxZDBfWERnbTNTTU5YRzd5SlQyTlN3dmFsd1NSZ25Ldk9UMGZfVG9rZW46V2ZmdGI5ZXhYb2Z3VTB4ZWlzYWMyT1NlblZjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>伤害和cd一样都是GE，先创建GE，然后在碰撞后调用</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWMwZGZjZWQwYWY4ZGIzM2IwNjBhOTVhMmJhMTQ4NzRfaUt2dTNvNjkwS0xGcXBTZk9SQUpKQUJGMnl6MU1zaHRfVG9rZW46T0EzdmJYd1Q2b2VzbXZ4Ymh4WmNKblYybkZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>显示属性变化。</p>
+<h3 id="4-2-夹值处理"><a href="#4-2-夹值处理" class="headerlink" title="4.2 夹值处理"></a>4.2 夹值处理</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">UBaseAttributeSet::PostGameplayEffectExecute</span><span class="params">(<span class="type">const</span> FGameplayEffectModCallbackData&amp; Data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Super::<span class="built_in">PostGameplayEffectExecute</span>(Data);</span><br><span class="line">    <span class="keyword">if</span>(Data.EvaluatedData.Attribute==<span class="built_in">GetHPAttribute</span>())</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="built_in">SetHP</span>(FMath::<span class="built_in">Clamp</span>(<span class="built_in">GetHP</span>(),<span class="number">0.0</span>,<span class="built_in">GetMaxHP</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Data.EvaluatedData.Attribute==<span class="built_in">GetMPAttribute</span>())</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="built_in">SetMP</span>(FMath::<span class="built_in">Clamp</span>(<span class="built_in">GetMP</span>(),<span class="number">0.0</span>,<span class="built_in">GetMaxMP</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Data.EvaluatedData.Attribute==<span class="built_in">GetStrengthAttribute</span>())</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="built_in">SetStrength</span>(FMath::<span class="built_in">Clamp</span>(<span class="built_in">GetStrength</span>(),<span class="number">0.0</span>,<span class="built_in">GetMaxStrength</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个函数是GE的后处理，效果生成后对目标在进行处理。</p>
+<h2 id="5-伤害配表和敌人行为树"><a href="#5-伤害配表和敌人行为树" class="headerlink" title="5 伤害配表和敌人行为树"></a>5 伤害配表和敌人行为树</h2><h3 id="5-1-镜头处理，碰撞和延迟跟随。"><a href="#5-1-镜头处理，碰撞和延迟跟随。" class="headerlink" title="5.1 镜头处理，碰撞和延迟跟随。"></a>5.1 镜头处理，碰撞和延迟跟随。</h3><p>都是在cameraArm下更改的</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDAwMWU0OGM3MjY0ZmU0ZmExNzU4ZTdlYzg0NjdmMDFfR1pvaG54N2hMMW1iUTdZWjdNVkFnWTVMY1ZCQzB4RUlfVG9rZW46U08yVWJDcW84b2E3UnB4S1FKSmMzeXJMbmRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWQ0M2YyMDNhNDg1ZmJiMDQxNDZjOWY2NWMzODVhNDdfRk9tS1JXVGEwcWtISjM1cTd3RHlEVjRTMURuUDFBbzhfVG9rZW46VDJrM2I4Z3VDb3RNQ254S3lZSmNPNXNzbkRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="5-2-不同等级的伤害配表"><a href="#5-2-不同等级的伤害配表" class="headerlink" title="5.2 不同等级的伤害配表"></a>5.2 不同等级的伤害配表</h3><p>创建csv文件，丢进引擎中选择离散型曲线table</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxZGJjNzRlMDJkYjM4ZDQ2MThjYjA4YzZkNDFiOGFfSjB2QTJwWUo0cHVOenpsRWE1bExRdG5CM1BodHJqek9fVG9rZW46SmNqNmJsRFl5b2UzUHR4Z0NOd2Mza05nbmNlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>然后导入GE中</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTBlYWY5MDM0NmVjZWM4OWZiNTU0ZDVkOWJmNjY0MzFfTnJKVHkwa1QyOU9uMWRMT3pFUkZyWGdLd1ZoMmpvTk1fVG9rZW46T1B1aWJvWkR5b0lhTW14azVIR2M4Z0p3bm1kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>在调用时控制level即可。</p>
+<h3 id="5-3-敌人的ai行为树控制"><a href="#5-3-敌人的ai行为树控制" class="headerlink" title="5.3 敌人的ai行为树控制"></a>5.3 敌人的ai行为树控制</h3><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDAxYmU4ZmRlNjNkNjQ4ZjA5Nzk4YmJlZDhkZDM4OTlfSXhTa1hhcE9mMkNITnB1ek1YVkZYTFozeEpmRkRRWnhfVG9rZW46WDg5N2J2S3Bvb1ZSM0t4VVhMUGNsdzAybktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>创建行为树，在其中创建各个BTTask，也就是需要完成的任务。</p>
+<p>Sequence中的各项任务是从左到右依次进行的，一项任务无法进行就会继续进行。</p>
+<p>BBT_FindPlayer：</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTI4MjFlMzdiMDc3ZGRlYTY2MzQwZTdiNjYwMGMxNTRfeFpvZTFsR01VSktaMWZ4U2VYZzFxT29meWxKSjU2enVfVG9rZW46QllpdGJVQVJwb2R4SW54YTFrN2NrcGhabndiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>覆写Execute AI函数，寻找玩家是否存在，存在就将actor存入黑板中，finish success 不存在就失败，也就是继续查找。</p>
+<p>出现的问题：定义Key时不能选择所要的key，只能删除原本用不到的默认key。</p>
+<p>BBT_AttackMelee：</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzQ1YTEyODY2OTBkN2U5Yzg3NWFiNWY4NGFmNzY0NjJfcG5IbVJBZzd4VUdxSjU2Q1NRWTV6RzdERzBXa3JZMDJfVG9rZW46U1pkRmJleU9jb3A5Mjh4dnM2ZGN3bUpNbk9kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>也是覆写Execute AI函数，cast to 目标类，是为了调用目标类中的攻击函数。</p>
+<p>然后将ai行为树挂载到enemy上，再在地图中用</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWYxMWMyZWFhNDgxNmViMjE3YTQwZTMyYzA1YzdmMGNfd0tlTG5lazZKSGNTWHdZNktvd0hMM2FyY05jYTZmOXZfVG9rZW46SGl5NmJaeHVsb3N5NUR4SUk0VWNvRlpRblBiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>来划分行动范围。</p>
+<h2 id="6-生命值改变时广播"><a href="#6-生命值改变时广播" class="headerlink" title="6 生命值改变时广播"></a>6 生命值改变时广播</h2><p>C+中实现。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多波动态委托 带DYNAMIC的才能被蓝图调用 写在头文件的uclass上</span></span><br><span class="line"><span class="built_in">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</span>(FOnHealthChangeEvent,<span class="type">float</span>,NewValue);</span><br><span class="line">UAbilitySystemComponent* MyAbilitySystemComponent=<span class="keyword">this</span>-&gt;<span class="built_in">FindComponentByClass</span>&lt;UAbilitySystemComponent&gt;();</span><br><span class="line"><span class="comment">//得到自己身上的UAbilitySystemComponent。</span></span><br><span class="line"><span class="keyword">if</span>(MyAbilitySystemComponent)</span><br><span class="line">&#123;</span><br><span class="line">    MyAbilitySystemComponent-&gt;<span class="built_in">GetGameplayAttributeValueChangeDelegate</span>(UBaseAttributeSet::<span class="built_in">GetHPAttribute</span>()).<span class="built_in">AddUObject</span>(<span class="keyword">this</span>,&amp;ABaseCharacter::OnHealthAttributeChanged);</span><br><span class="line"><span class="comment">//调用官方的委托，(UBaseAttributeSet::GetHPAttribute())是限制HP变化的时候访问事件</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ABaseCharacter::OnHealthAttributeChanged</span><span class="params">(<span class="type">const</span> FOnAttributeChangeData&amp; Data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    HPChangeEvent.<span class="built_in">Broadcast</span>(Data.NewValue);</span><br><span class="line">    <span class="comment">//将值广播出去</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//FOnAttributeChangeData是个结构体，其中有一个新值和旧值，</span></span><br></pre></td></tr></table></figure></div>
+
+<p><img lazyload src="/images/loading.svg" data-src="/" alt="img"></p>
+<p>将广播挂载在character上，并且与事件绑定。</p>
+<h2 id="7-死亡处理"><a href="#7-死亡处理" class="headerlink" title="7 死亡处理"></a>7 死亡处理</h2><p>见上图，在血量变化时，检测是否调用函数，检测是否死亡。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjVlMDIxOWEyNGNhNDg4MzgyN2M5OWQyNWQ3ZTcwNGFfQXU0cXBNOVVHemZsd0xtU3VPRXJ4elNEa1VkVEtldE9fVG9rZW46UERZMmIyeHVQb0o0ck54bVN6S2NBdjIwbmZlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>通过属性值判定是否死亡，同时读取isDeath属性防止重复死亡。</p>
+<h3 id="7-1防止重复播放死亡动画"><a href="#7-1防止重复播放死亡动画" class="headerlink" title="7.1防止重复播放死亡动画"></a>7.1防止重复播放死亡动画</h3><p>montage中最后一帧循环播放，设置节点，当到该节点是destory</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNlZWFhZGMwNjFkNjk2MTQwMjY2MzAwZDA5YzllOWVfcXBUUFJXSUNRVVdMa0RHWXpXRHplUWQ0OFlHVk1yNEtfVG9rZW46T005d2JMV2dHb0xMUTB4UEJONWNjR2N2bm1iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="7-2-防止死亡后仍可以控制角色移动"><a href="#7-2-防止死亡后仍可以控制角色移动" class="headerlink" title="7.2 防止死亡后仍可以控制角色移动"></a>7.2 防止死亡后仍可以控制角色移动</h3><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2NjNzhhMzE0ZWQxYzM5NDEwN2Q1OTRjNzQxOTExMTFfUEZadHVkMGwycWVITm9oTHZySTJZMWFTckQzQ3JsTm5fVG9rZW46V0ZlcmIzeW5sb0M1VjJ4OTdzTmNQNHMybjdiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>调用父类的HPChange Event来判断事件</p>
+<h3 id="7-3UMG敌人血条实现"><a href="#7-3UMG敌人血条实现" class="headerlink" title="7.3UMG敌人血条实现"></a>7.3UMG敌人血条实现</h3><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGMxYTljN2EyMTZjNDg1OGNhZWE2ODc2YWYxNDMzMDNfZDhjaTNVQ1JhclhIZGdCU25FcXNzYmhROVBZU2JHeUxfVG9rZW46QzQ5N2JvM0Ztb3lFT3R4elR3emN3NjdYbkVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>enemy类调用父类event，生命值改变时set血条显示百分比；取新值、取ability system中的MaxHP的值相除的百分比，拿取HPBar的实例，get其中的User Widget Object ，再将其cast成我们写的enemybar，调用其中设置血量的函数。</p>
+<h2 id="8-ui主界面的制作-制作一个buffer"><a href="#8-ui主界面的制作-制作一个buffer" class="headerlink" title="8 ui主界面的制作&amp;制作一个buffer"></a>8 ui主界面的制作&amp;制作一个buffer</h2><h3 id="8-1创建血量材质球UI"><a href="#8-1创建血量材质球UI" class="headerlink" title="8.1创建血量材质球UI"></a>8.1创建血量材质球UI</h3><p>材质球可以改变颜色和百分比显示， 写函数设定颜色和百分比。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDVhMGQxMGQ1Mzk0Yzc1OGE2NzUxOThiOTU3MzUzNDlfS2ZrSGJ6VjZSWEp1ZWtBSXBvdEExVzhvdm9DSW9UNHdfVG9rZW46U3B3aWJmRllyb3pyc1l4eXVGZGN4bHdxbklmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="8-2-创建MainUI"><a href="#8-2-创建MainUI" class="headerlink" title="8.2 创建MainUI"></a>8.2 创建MainUI</h3><p>把Bar拖入即可。</p>
+<p>设置颜色</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YThmZGYxNzhiMjZkZDEzMGJiYzJkZDE4MjA4Zjk5MDJfR0VOU3V1M0h5eHVjemFFRWhYcXJDeVZydVVVSjBpbURfVG9rZW46SjZyRmJrUE94b0dlWHh4dktjU2NJejlMblJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>Sequence分支执行。这是构造函数，在begin前执行。</p>
+<p>在controller类中，在begin下创建UI,再将它set成一个变量，加入到主屏幕（viewport）中。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDc4MzgxY2Y5ZDEyODZkY2YzOGIzNDkwMDJmODUwMGVfaGJZUEQ5MG16Mk9aN3NOaVc5b3VJY3VUU0xzMHhZRlBfVG9rZW46SE1vUmJBc2ptb1NqTHN4dUNZZWNjRnJ0blRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWQzM2RmZjQ5N2QwY2ExZTg1YmI4MjA3MTk3MzcyOTVfeWlCNUZrTmE3UUhOd00yMjRJSjRzNlFsa2hTZGQ4Q2xfVG9rZW46TGNaUGJySGNIbzJkUVN4NEg3WmNST3cxblNoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="8-3-同步角色属性到ui上"><a href="#8-3-同步角色属性到ui上" class="headerlink" title="8.3 同步角色属性到ui上"></a>8.3 同步角色属性到ui上</h3><p>获取正确的Bar，调用其中的函数。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGNjMTJkODAwZmJkMGZiY2UxYTFhZmZkN2JiNjZhZjhfekppVkZ4WmxDOXh1QmkzTXpvMGZNT0xpVFRXU2llNlZfVG9rZW46RkgzM2JZS1c3b0o3WTF4OGtGNmNiSDdFbktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="8-4-制作buffer-自动回复"><a href="#8-4-制作buffer-自动回复" class="headerlink" title="8.4 制作buffer 自动回复"></a>8.4 制作buffer 自动回复</h3><p>继承BaseAbility，类似于平aMelee，也就是一种技能，下面是GE的配置，主要是Duration是永久。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzkxMGE4ZDJhMjMyMTVjYTAzOTVjZGVjZDRmZTk5ZTNfdXE1N1NTUHhiSmNZNUV1RmhXOVZqM2dEUnV6WGRxVnBfVG9rZW46S0hremJpaTg2b1FnbVF4Tk9kRmM1UU81bk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjA5MDZjODA0ZDUyZjgzYTI3OGM2MTcyODIwM2FmMmNfVkJQcWRTdkc1QjM2Q3NkTHVBZkl1RWoxODBPbDZiUHdfVG9rZW46S1JYWWJJSnpVb2pjM1B4ZTZEZWNUWUtsbnZnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>然后player中调用give即可。</p>
+<h2 id="9-构建技能信息结构体"><a href="#9-构建技能信息结构体" class="headerlink" title="9 构建技能信息结构体"></a>9 构建技能信息结构体</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.h</span></span><br><span class="line"><span class="built_in">UENUM</span>(BlueprintType)</span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">ECostType</span>:uint8</span><br><span class="line">&#123;</span><br><span class="line">    HP,</span><br><span class="line">    MP,</span><br><span class="line">    Strength</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">USTRUCT</span>(BlueprintType)</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">FGameplayAbilityInfo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">GENERATED_BODY</span>()</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    <span class="type">float</span> CD;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    ECostType CostType;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    <span class="type">float</span> CostValue;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    UMaterialInstance *IconMaterial;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    TSubclassOf&lt;UBaseGameplayAbility&gt; AbilityClass;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">FGameplayAbilityInfo</span>();</span><br><span class="line">    <span class="built_in">FGameplayAbilityInfo</span>(<span class="type">float</span> CD,ECostType CostType,<span class="type">float</span> CostValue,UMaterialInstance *IconMaterial,  TSubclassOf&lt;UBaseGameplayAbility&gt; AbilityClass);</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>创建结构体和CostType枚举类型，在技能信息结构体下写两个构造函数，一个是空构造一个填入技能信息，空构造个人感觉是为了防止意外发生。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.cpp 填写构造函数，</span></span><br><span class="line">FGameplayAbilityInfo::<span class="built_in">FGameplayAbilityInfo</span>():</span><br><span class="line">    <span class="built_in">CD</span>(<span class="number">0</span>),</span><br><span class="line">    <span class="built_in">CostValue</span>(<span class="number">0</span>),</span><br><span class="line">    <span class="built_in">CostType</span>(ECostType::HP),</span><br><span class="line">    <span class="built_in">IconMaterial</span>(<span class="literal">nullptr</span>),</span><br><span class="line">    <span class="built_in">AbilityClass</span>(<span class="literal">nullptr</span>)</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FGameplayAbilityInfo::<span class="built_in">FGameplayAbilityInfo</span>(<span class="type">float</span> CD, ECostType CostType, <span class="type">float</span> CostValue,</span><br><span class="line">    UMaterialInstance* IconMaterial, TSubclassOf&lt;UBaseGameplayAbility&gt; AbilityClass):</span><br><span class="line">    <span class="built_in">CD</span>(CD),</span><br><span class="line">    <span class="built_in">CostValue</span>(CostValue),</span><br><span class="line">    <span class="built_in">CostType</span>(ECostType::HP),</span><br><span class="line">    <span class="built_in">IconMaterial</span>(IconMaterial),</span><br><span class="line">    <span class="built_in">AbilityClass</span>(AbilityClass)</span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">FGameplayAbilityInfo <span class="title">UBaseGameplayAbility::GetAbilityInfo</span><span class="params">(<span class="type">int</span> level)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UGameplayEffect* CDEffect=<span class="built_in">GetCooldownGameplayEffect</span>();</span><br><span class="line">    UGameplayEffect* CostEffect=<span class="built_in">GetCostGameplayEffect</span>();</span><br><span class="line">    <span class="type">float</span> CD=<span class="number">0</span>;</span><br><span class="line">    <span class="type">float</span> CostValue=<span class="number">0</span>;</span><br><span class="line">    ECostType CostType=ECostType::MP;</span><br><span class="line">    <span class="keyword">if</span>(CDEffect&amp;&amp;CostEffect)</span><br><span class="line">    &#123;</span><br><span class="line">       CDEffect-&gt;DurationMagnitude.<span class="built_in">GetStaticMagnitudeIfPossible</span>(level,CD);</span><br><span class="line">       <span class="keyword">if</span>(CostEffect-&gt;Modifiers.<span class="built_in">Num</span>()&gt;<span class="number">0</span>)</span><br><span class="line">       &#123;</span><br><span class="line">          <span class="comment">//获取花费的是哪个类型</span></span><br><span class="line">          FGameplayModifierInfo CostEffectModifierInfo =CostEffect-&gt;Modifiers[<span class="number">0</span>];</span><br><span class="line">          CostEffectModifierInfo.ModifierMagnitude.<span class="built_in">GetStaticMagnitudeIfPossible</span>(level,CostValue);</span><br><span class="line">          FString CostTypeName=CostEffectModifierInfo.Attribute.AttributeName;</span><br><span class="line">          <span class="keyword">if</span>(CostTypeName==<span class="string">&quot;HP&quot;</span>)</span><br><span class="line">          &#123;</span><br><span class="line">             CostType =ECostType::HP;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span>(CostTypeName==<span class="string">&quot;MP&quot;</span>)</span><br><span class="line">          &#123;</span><br><span class="line">             CostType =ECostType::MP;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span>(CostTypeName==<span class="string">&quot;Strength&quot;</span>)</span><br><span class="line">          &#123;</span><br><span class="line">             CostType =ECostType::Strength;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> <span class="built_in">FGameplayAbilityInfo</span>(CD,CostType,CostValue,IconMaterial,<span class="built_in">GetClass</span>());</span><br><span class="line">          </span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">FGameplayAbilityInfo</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>写调用函数，引用基类的函数来给结构体赋值。</p>
+<p>在角色身上获取技能组件：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">FGameplayAbilityInfo <span class="title">ABaseCharacter::GameplayAbilityInfo</span><span class="params">(TSubclassOf&lt;UBaseGameplayAbility&gt; AbilityClass, <span class="type">int</span> level)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//获取角色组件</span></span><br><span class="line">    UAbilitySystemComponent* MyAbilitySystemComponent =<span class="keyword">this</span>-&gt;<span class="built_in">FindComponentByClass</span>&lt;UAbilitySystemComponent&gt;();</span><br><span class="line">    <span class="comment">//获取技能组</span></span><br><span class="line">    UBaseGameplayAbility* AbilityIncetance = AbilityClass-&gt;<span class="built_in">GetDefaultObject</span>&lt;UBaseGameplayAbility&gt;();</span><br><span class="line">    <span class="keyword">if</span>(MyAbilitySystemComponent&amp;&amp;AbilityIncetance)</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="keyword">return</span>  AbilityIncetance-&gt;<span class="built_in">GetAbilityInfo</span>(level);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">FGameplayAbilityInfo</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="9-1-技能信息UI获取"><a href="#9-1-技能信息UI获取" class="headerlink" title="9.1 技能信息UI获取"></a>9.1 技能信息UI获取</h3><p>主要是几个UI蓝图函数的书写</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjNiZThjNDQxOGQ4ZWJmNTRhMThmZmY1NmM0MmJhNmFfdnhWYnJuUDBWY3VEUVdjcjY0WDRicnBHeVRCUTJLZmpfVG9rZW46UzdIQmJDWGRqb3NMbE14dFI2d2NuM0xtblJnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODliNzhiZjlkNGNhNDY5NGNjMjlhZjE4MzY2N2I5MjVfNjN1aWV0N2VkbnpTTlUycjhOU1piYUJ4eWoxbG02OTBfVG9rZW46VDNqdWJOSEFpb25yNDN4SUo5bWNYOUpLblNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>CD显示计时器。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDhjYjkwYmE5NmI2MzVjZTE2MTg5YzFkMWM1MDMwYWZfZ0RnNHlkenRscEJiVW1DTklPcFlDSnllWXdWSlNTRWtfVG9rZW46U01seWJ2dHFsb0k0bXV4UVE4UmNFamVrbmVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h2 id="10-公共库函数的书写及技能初始化"><a href="#10-公共库函数的书写及技能初始化" class="headerlink" title="10 公共库函数的书写及技能初始化"></a>10 公共库函数的书写及技能初始化</h2><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTEzNDdhZjgzZGVhMTNiMDA0YTYzNTI4YWIyYjJjYTdfem5wZXpka3htSXFyamZ2TGpvUWRDRzc1cWR6S1AyN3NfVG9rZW46QlNHaWJTWTZWb2tkdFJ4TUJCVGNCcFAybmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YTc3ODIyYTZkZWE2MmM0NGM0NmUwYjQzZDdlZWJhM2FfTmxVWGVQMjdSZjhOYWpONDhQS3Vlem5WVlBIdVFiVFJfVG9rZW46U1pNdWJ4QVRFb0l4U2p4STBiemNDdkF4bk9iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>将技能组成Array方便统一</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2E4OGZiOTM0NWQ4N2ZiOWI0MmUxZDUzOWNlOTQ3MzBfNG5uTmtyVXFVSkNXUWVXNVNyT0ZRVHVuRGRRSzRUMHVfVG9rZW46UHkwdWJQRnh1bzJtazF4RFV4SWNnemZMbmxiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>在角色类中初始化UI,遍历Array，主要是角色类方便统一。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjQxNGJkM2ViZDA5ZDU5OGFlZTVhMTk5M2M2YzYzZjVfa2E3blJ1OUpKcnBya0toYnJpMjI2TzRUTXB2WDBRN0JfVG9rZW46V0tIM2JYTkVDbzJ0NDl4SVg5d2N3N21lbnZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h2 id="11-编写回血技能"><a href="#11-编写回血技能" class="headerlink" title="11 编写回血技能"></a>11 编写回血技能</h2><p>最简单的技能。</p>
+<p>编写技能的基础流程，</p>
+<ol>
+<li>创建GAB。</li>
+<li>填写技能本身的属性GE Cost\CD\</li>
+<li>Player获取技能Give Ability 并同步更新UI，在GAB中写技能的激活函数。</li>
+<li>PlayerController中选择按键调用技能Active Ability</li>
+</ol>
+<p>特效可以放在Cost里面也可以是在激活函数的Play Montage中的MA中。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjBhMWQ1YjU1MzE2NzNiZDNkYmZkNDU2ZDU1MGM3OTJfZHB2MzRLSnp5YVNMZWM3TzFmZEQ3VlJsWEo1ZDZxcVBfVG9rZW46QlU5T2JxQW14b2F4VjR4a1VPd2NBVTA0bnpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>构造函数如上，</p>
+<h2 id="补充-CD的显示"><a href="#补充-CD的显示" class="headerlink" title="补充 CD的显示"></a>补充 CD的显示</h2><p>这个是写在GAB基类BaseGameAbility的，主要意思就是对应UI中的技能与释放的技能，然后开始cd。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWUyNGRhMzZiMDQyN2I3MTNkNTFkOWRlZjMwNGQ0YzBfTldMYVFCelJISkZSd1RSVURsdVJLQkFweFdUektBY09fVG9rZW46UnFsUmJjaUVib21KZWx4Y0dhTmNrU29DbkI2XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>设置 bool变量，然后开启cd实例数值的显示。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2IwNmZlNjVjMzQ2MDkwNjI5Njk2NTk5NDExODhmYzZfczRKaUhyc1FqejBCWUxEd0o3dkJNd3hVeUdFWlBGd0hfVG9rZW46WlVWQ2J1MGJwb2lvd2F4c2JDR2M0MWVRbnFnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h2 id="12-编写冲刺技能"><a href="#12-编写冲刺技能" class="headerlink" title="12 编写冲刺技能"></a>12 编写冲刺技能</h2><p>主角的冲刺位移。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NWEzYzE5NWIyMTllOTUxNzFjNzZmMjEwZDg1NGUzYTNfRDhHWWVpa0tMWWZRMmlVaXBwbTgzUjFsMDdkaUM5eTVfVG9rZW46UW80QWJwTzRpb1ZFdEh4T0E0b2N1cVhiblRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>大致步骤见公式，主要的特别点是</p>
+<ol>
+<li>冲刺时要对敌人进行击飞、眩晕和造成伤害。</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MGU5ZjZlNDAxYTY3OTYxMWQ2ZjczMzEwNGE0NDBkYThfaTZiNDBJRlFwbVowb0IwOFpQMFBzN0ljcnl3WnRmZ0FfVG9rZW46WEZ1MWJ6YzAyb0lwUHd4ZmU5ZGN1ZzRCbmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>眩晕就是stop Controller过一会再给回去。</p>
+<p>击退：</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxNDM4NDNmZWNkMTNjNjc2NDc5YTZmZjAzYjgwY2FfNnBlcE1SdTEyQ0tQS3ZIZFJNaUh0eGpSQ0lNZmZKZEFfVG9rZW46UGwxd2J4NFlIb1Vxd3B4a1N5OWNQTzRRbmNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>主要就是播放montage，然后0摩擦，给Impulse，然后恢复摩擦，主要点是获取主角位置来设置力的方向。</p>
+<ol>
+<li>冲刺时要将主角和受击敌人的摩擦力写为零。</li>
+</ol>
+<p>也很简单，就是更改Character Movement中的Ground Friction。不过要在游戏开始时记录原有摩擦力，用来还原摩擦力。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQxYWU3YTU1ODFiNzRhZmU3YzkwOWJkMmI5NmJhZWRfQkJDVXV4U0taaEZQM1AyVTNJUjRseGg5eHZ1M2tESmhfVG9rZW46RThzcmJCZWhxb1JBeTJ4WVhZeGNka1pWbmNjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<ol>
+<li>在冲刺技能释放过程中禁止使用其他技能打断。</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTE1MTIwYjQ5MDQ1NjY2MTk1Y2M2NDQxY2EzYmM0MzhfNUZRcDhrZ21uak5COHpJNWlKRFl0TlprbTFrNXZsT1lfVG9rZW46VUlMeWJFSzVab3JQakd4elEwSmNlM1V6bnJMXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>Activation Owned Tags是在技能释放过程中挂起，然后我们在其他技能中将active tag填写在Activation  Blocked Tags就可以阻止其他技能释放了。</p>
+<h2 id="13-编写激光技能"><a href="#13-编写激光技能" class="headerlink" title="13 编写激光技能"></a>13 编写激光技能</h2><p>特殊点：</p>
+<ol>
+<li>射线从人物身前开始，在射到第一个物体结束。</li>
+<li>持续性技能，各个技能之间的打断关系，终止条件的判断。</li>
+<li>射线生成。</li>
+<li>对敌人造成伤害。</li>
+</ol>
+<h3 id="13-1-解决1"><a href="#13-1-解决1" class="headerlink" title="13.1 解决1"></a>13.1 解决1</h3><p>射线从人物身前开始，在射到第一个物体结束。</p>
+<p>神奇解决办法：用Springarm 也就是相机杆子，他会在终点截止（打开 Collision Test），设置一个point在Springarm 子类中，他会自动附在终端。然后就编写动画将激光尾端终止在point处。</p>
+<p>在Event蓝图里获取信息。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGEwMjUyNmI2MTY0NmRjZjdmZTQ4ZWI5MGU5MDhiZWNfZXFTTG9QbGNCd25rZUlnYlRiamJjeTJXOTNnR0xBYjZfVG9rZW46S24ybGI3cmp3b0QyMTF4bTFFV2NIUlBwbk9jXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>在动画蓝图中更改end骨骼的位置。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWNlOTZhZDZhM2U4NjcxOTBlNmI4OGZiMjRmZTQ4YWZfSGFGelJlR3NGSVJOVXQyT29VQmg4RTdhVDZOMlNNdWVfVG9rZW46SlVlN2Jib3hSb3RSell4ZUk3UWNWallZbkpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>主要是Transform bone的设置。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGFlMjAxNjMwMzhlMjQxNTI0NzQ5ZWZiNWM0N2U1YzVfOUlQRXFsYmE2ZTRTa25kRFJGN21BYWZmbEs2VXJNSnpfVG9rZW46QmY3SWJpMkhYb1c0Mlh4QVgyRmNobTRubmJpXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>然后把动画挂载在actor上即可。</p>
+<h3 id="13-2-解决2"><a href="#13-2-解决2" class="headerlink" title="13.2 解决2"></a>13.2 解决2</h3><p>持续性技能，各个技能之间的打断关系，终止条件的判断。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDFhNmZmYmU0YjZjMzdmMTJiY2JhOTc4ZDNlYzhiN2VfVkFwYmpFRDNQUzFqaHB2YWZNdVJTNHRDNmVIVGZEWE9fVG9rZW46RldLTmJvZ3Jqb0ZQZ2F4NFQ3dmNmUlRTblVoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>在基类中更改，每个技能之间可以取消其他技能，activation Blocked Tags的优先级比较高，会阻止其他打断。</p>
+<p>启用关闭条件是 按第一下启动，按第二下关闭，就需要代理 去关闭（？），重点是代理事件，不用tick里面去查看</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmY2NmYyNWY5MDg1YWNjYmNkMDgyODFjYmZlYjQ0MDFfQ1psdzR3Q0RnM2llOURPdTJsVFRJa21kQnBZTWxkbmNfVG9rZW46V0ptNWJzMmU3bzhkeUF4ZERlOWN1NEo2bnJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>二次点击时call event，在GAB中start处绑定事件。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2QzYTNhNDgxMjkxZWYzNTA2ODc4ZGU0YzZkYmQ2ZGNfSzhDMWdlbXVOVk9TSmJxdGl4d05BSUtvSTllWmFOVDBfVG9rZW46SzNzR2I3Q0xWb0g1YjV4YW1OZmNmM29kblA1XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="13-3-解决3"><a href="#13-3-解决3" class="headerlink" title="13.3 解决3"></a>13.3 解决3</h3><p>射线生成。</p>
+<p>生成在Player的Laser Point处，然后attach在该component。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDQ5ZmI4NDY1MTFjZTlmM2YwZGFkNzM2ZjJhNzRhMTJfYVVuS0VYQlg1VHRNTzhRZjhDaDdpQWdpbWp6d2ExUXBfVG9rZW46UFlURmJzYzVEb3dkZkR4dWZrN2NzdjhJbjRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="13-4-解决4"><a href="#13-4-解决4" class="headerlink" title="13.4 解决4"></a>13.4 解决4</h3><p>对敌人造成伤害。</p>
+<p>通过碰撞体碰撞体获取敌人实例，放入array中，overlap end是移除。</p>
+<p>重点是如何传到GAB中：</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWZkNTI0MzMzNTQzYjhmOGUyM2ZjMTFlNjE4ZTExODJfQ3ZmNDloVXBrVHhYMjJCSzlxTkJpd2VjbDkzcUdSZDZfVG9rZW46TTZHMWJLcGNlb0JJYjV4Z3NnUmN6OERBblFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p>Set Timer by Event 的作用是每隔一段时间调用一次事件，</p>
+<p>在本次使用中，也就是每次发出一个data,通过tag标签传给GAB，其中data包装的就是all enemy的数组变量。</p>
+<p>然后到了GAB中，我们先等待接收到event tag，然后拆解data，就可以进行一系列操作了。</p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MmRkNDlmZDM5ZjYwZTk0YmQ0YmVhOGZkOTIyMDkzZWRfcE1hRmh3U212ZzdraDU3c1V6RHpkZ0ZEd3RucG1ld0hfVG9rZW46R3JKTWIxc2Zyb2tYSU14MVpJWGN5bkd2blVjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h2 id="14-编写天崩地裂技能"><a href="#14-编写天崩地裂技能" class="headerlink" title="14 编写天崩地裂技能"></a>14 <strong>编写天崩地裂技能</strong></h2><h3 id="14-1-编写选取目标函数c"><a href="#14-1-编写选取目标函数c" class="headerlink" title="14.1 编写选取目标函数c++"></a>14.1 编写选取目标函数c++</h3><p>创建c++函数，基类为<strong>GameplayAbilityTargetActor。</strong></p>
+<p>覆写以下函数：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">StartTargeting</span><span class="params">(UGameplayAbility* Ability)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">ConfirmTargetingAndContinue</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UFUNCTION</span>(BlueprintCallable,Category=<span class="string">&quot;GroundSelect&quot;</span>)</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">GetPlayerLookAtPoint</span><span class="params">(FVector&amp; Out_LookPoint)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite ,meta=(ExposeOnSpawn=<span class="literal">true</span>),Category=<span class="string">&quot;GroundSelect&quot;</span>)</span><br><span class="line">    <span class="type">float</span> SelectRadius;<span class="comment">//上面的这个meta的作用是，在spawn的时候就赋予初值</span></span><br></pre></td></tr></table></figure></div>
+
+<p>StartTargeting：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AGroundSelectTargetActor::StartTargeting</span><span class="params">(UGameplayAbility* Ability)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Super::<span class="built_in">StartTargeting</span>(Ability);</span><br><span class="line">    PrimaryPC=<span class="built_in">Cast</span>&lt;APlayerController&gt;(Ability-&gt;<span class="built_in">GetOwningActorFromActorInfo</span>()-&gt;<span class="built_in">GetInstigatorController</span>());<span class="comment">//get ability的所有者</span></span><br><span class="line">    <span class="comment">//获取PlayerController</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>GetPlayerLookAtPoint：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">AGroundSelectTargetActor::GetPlayerLookAtPoint</span><span class="params">(FVector&amp; Out_LookPoint)</span><span class="comment">//为什么不是直接返回一个LookPoint</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    FVector ViewLoc;</span><br><span class="line">    FRotator ViewRot;</span><br><span class="line">    PrimaryPC-&gt;<span class="built_in">GetPlayerViewPoint</span>(ViewLoc,ViewRot);<span class="comment">//获取玩家的视点位置</span></span><br><span class="line">    FHitResult HitResult;</span><br><span class="line">    FCollisionQueryParams QueryParmas;<span class="comment">//用于定义碰撞查询的参数</span></span><br><span class="line">    QueryParmas.bTraceComplex=<span class="literal">true</span>;<span class="comment">//复杂检测，检测细小物体，会比较耗性能</span></span><br><span class="line">    APawn* SelfPawn = PrimaryPC-&gt;<span class="built_in">GetPawn</span>();</span><br><span class="line">    <span class="keyword">if</span> (SelfPawn)</span><br><span class="line">    &#123;</span><br><span class="line">       QueryParmas.<span class="built_in">AddIgnoredActor</span>(SelfPawn);<span class="comment">//忽略自身</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">bool</span> TraceResult=<span class="built_in">GetWorld</span>()-&gt;<span class="built_in">LineTraceSingleByChannel</span>(<span class="comment">//做出检测行为</span></span><br><span class="line">       HitResult,</span><br><span class="line">       ViewLoc,<span class="comment">//start</span></span><br><span class="line">       ViewLoc+ViewRot.<span class="built_in">Vector</span>()*<span class="number">5000.0f</span>,<span class="comment">//算出end</span></span><br><span class="line">       ECC_Visibility,<span class="comment">//视线检测，ecc是ECollisionChannel的缩写</span></span><br><span class="line">       QueryParmas);</span><br><span class="line">    <span class="keyword">if</span>(TraceResult)</span><br><span class="line">    &#123;</span><br><span class="line">       Out_LookPoint = HitResult.ImpactPoint;<span class="comment">//因为引入的变量是引用变量，可以在函数中改值然后传出去。</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>ConfirmTargetingAndContinue：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AGroundSelectTargetActor::ConfirmTargetingAndContinue</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Super::<span class="built_in">ConfirmTargetingAndContinue</span>();</span><br><span class="line">    FVector LookPoint;</span><br><span class="line">    <span class="built_in">GetPlayerLookAtPoint</span>(LookPoint);</span><br><span class="line">    TArray&lt;FOverlapResult&gt; OverlapResult;<span class="comment">//存结果</span></span><br><span class="line">    TArray&lt;TWeakObjectPtr&lt;AActor&gt;&gt; OverlapActors;<span class="comment">//存碰撞物体</span></span><br><span class="line"></span><br><span class="line">    FCollisionQueryParams QueryParmas;</span><br><span class="line">    QueryParmas.bTraceComplex=<span class="literal">false</span>;</span><br><span class="line">    QueryParmas.bReturnPhysicalMaterial =<span class="literal">false</span>;<span class="comment">//用途：比如说打枪游戏，打到头还是身体、走路是在地面还是水坑，就是通过物理材质判断</span></span><br><span class="line">    APawn* SelfPawn = PrimaryPC-&gt;<span class="built_in">GetPawn</span>();</span><br><span class="line">    <span class="keyword">if</span> (SelfPawn)</span><br><span class="line">    &#123;</span><br><span class="line">       QueryParmas.<span class="built_in">AddIgnoredActor</span>(SelfPawn);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">bool</span> QueryResult = <span class="built_in">GetWorld</span>()-&gt;<span class="built_in">OverlapMultiByObjectType</span>(</span><br><span class="line">       OverlapResult,</span><br><span class="line">       LookPoint,</span><br><span class="line">       FQuat::Identity,</span><br><span class="line">       <span class="built_in">FCollisionObjectQueryParams</span>(ECollisionChannel::ECC_Pawn),</span><br><span class="line">       FCollisionShape::<span class="built_in">MakeSphere</span>(SelectRadius),<span class="comment">//设置一个球形检测</span></span><br><span class="line">       QueryParmas);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(QueryResult)<span class="comment">//和蓝图类似，物体不在array中，将碰撞到的物体加入array</span></span><br><span class="line">    &#123;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;OverlapResult.<span class="built_in">Num</span>();i++)</span><br><span class="line">       &#123;</span><br><span class="line">          APawn* Enemy =<span class="built_in">Cast</span>&lt;APawn&gt;(OverlapResult[i].<span class="built_in">GetActor</span>());</span><br><span class="line">          <span class="keyword">if</span>(Enemy&amp;&amp; !OverlapActors.<span class="built_in">Contains</span>(Enemy))</span><br><span class="line">          &#123;</span><br><span class="line">             OverlapActors.<span class="built_in">Add</span>(Enemy);</span><br><span class="line">          &#125;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    FGameplayAbilityTargetDataHandle TargetDataHandle;<span class="comment">//GAS中的data包</span></span><br><span class="line">    FGameplayAbilityTargetData_LocationInfo* CenterLoc=<span class="keyword">new</span> <span class="built_in">FGameplayAbilityTargetData_LocationInfo</span>();<span class="keyword">new</span>一个，传出的是LocationInfo</span><br><span class="line">    CenterLoc-&gt;TargetLocation.LiteralTransform = <span class="built_in">FTransform</span>(LookPoint);</span><br><span class="line">    CenterLoc-&gt;TargetLocation.LocationType=EGameplayAbilityTargetingLocationType::LiteralTransform;</span><br><span class="line">    <span class="comment">//LiteralTransform 表示目标位置是由一个明确的变换（位置、旋转和缩放）定义的</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//0号负载 传输看向的地方</span></span><br><span class="line">    TargetDataHandle.<span class="built_in">Add</span>(CenterLoc);</span><br><span class="line">    <span class="comment">//传输目标区域范围内的actor</span></span><br><span class="line">    <span class="keyword">if</span>(OverlapActors.<span class="built_in">Num</span>()&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">       FGameplayAbilityTargetData_ActorArray* ActorArray =<span class="keyword">new</span> <span class="built_in">FGameplayAbilityTargetData_ActorArray</span>();</span><br><span class="line">       ActorArray-&gt;<span class="built_in">SetActors</span>(OverlapActors);</span><br><span class="line">       <span class="comment">//1号负载</span></span><br><span class="line">       TargetDataHandle.<span class="built_in">Add</span>(ActorArray);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> GAS学习记录第一季</li>
+        <li><strong>Author:</strong> The Redefine Team</li>
+        <li><strong>Created at
+                :</strong> 2024-10-26 13:48:12</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-10-26 13:49:31
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/10/26/GAS-learn1/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/10/26/GAS-learn2/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">GAS学习记录第一季</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/10/26/How-to-post-your-article/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">windows搭建个人博客 GitHub page+hexo</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">GAS学习记录第一季</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%B9%B3a%E4%B8%8E%E7%A7%BB%E5%8A%A8%E5%8A%A8%E4%BD%9C%E5%88%B6%E4%BD%9C%E4%B8%8E%E8%9E%8D%E5%90%88"><span class="nav-text">1 平a与移动动作制作与融合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%AD%A3%E5%BC%8F%E5%BC%80%E5%A7%8BGAS-%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B9%B3a%E4%BB%A5%E5%8F%8Acd"><span class="nav-text">2 正式开始GAS 创建一个平a以及cd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%88%9B%E5%BB%BA%E8%A7%92%E8%89%B2%E5%B1%9E%E6%80%A7"><span class="nav-text">3 创建角色属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-%E9%80%A0%E6%88%90%E4%BC%A4%E5%AE%B3%E5%B9%B6%E5%A4%B9%E5%80%BC%E5%A4%84%E7%90%86"><span class="nav-text">4 造成伤害并夹值处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-%E5%A4%B9%E5%80%BC%E5%A4%84%E7%90%86"><span class="nav-text">4.2 夹值处理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E4%BC%A4%E5%AE%B3%E9%85%8D%E8%A1%A8%E5%92%8C%E6%95%8C%E4%BA%BA%E8%A1%8C%E4%B8%BA%E6%A0%91"><span class="nav-text">5 伤害配表和敌人行为树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-%E9%95%9C%E5%A4%B4%E5%A4%84%E7%90%86%EF%BC%8C%E7%A2%B0%E6%92%9E%E5%92%8C%E5%BB%B6%E8%BF%9F%E8%B7%9F%E9%9A%8F%E3%80%82"><span class="nav-text">5.1 镜头处理，碰撞和延迟跟随。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-%E4%B8%8D%E5%90%8C%E7%AD%89%E7%BA%A7%E7%9A%84%E4%BC%A4%E5%AE%B3%E9%85%8D%E8%A1%A8"><span class="nav-text">5.2 不同等级的伤害配表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-%E6%95%8C%E4%BA%BA%E7%9A%84ai%E8%A1%8C%E4%B8%BA%E6%A0%91%E6%8E%A7%E5%88%B6"><span class="nav-text">5.3 敌人的ai行为树控制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E7%94%9F%E5%91%BD%E5%80%BC%E6%94%B9%E5%8F%98%E6%97%B6%E5%B9%BF%E6%92%AD"><span class="nav-text">6 生命值改变时广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%AD%BB%E4%BA%A1%E5%A4%84%E7%90%86"><span class="nav-text">7 死亡处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1%E9%98%B2%E6%AD%A2%E9%87%8D%E5%A4%8D%E6%92%AD%E6%94%BE%E6%AD%BB%E4%BA%A1%E5%8A%A8%E7%94%BB"><span class="nav-text">7.1防止重复播放死亡动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-%E9%98%B2%E6%AD%A2%E6%AD%BB%E4%BA%A1%E5%90%8E%E4%BB%8D%E5%8F%AF%E4%BB%A5%E6%8E%A7%E5%88%B6%E8%A7%92%E8%89%B2%E7%A7%BB%E5%8A%A8"><span class="nav-text">7.2 防止死亡后仍可以控制角色移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3UMG%E6%95%8C%E4%BA%BA%E8%A1%80%E6%9D%A1%E5%AE%9E%E7%8E%B0"><span class="nav-text">7.3UMG敌人血条实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-ui%E4%B8%BB%E7%95%8C%E9%9D%A2%E7%9A%84%E5%88%B6%E4%BD%9C-%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AAbuffer"><span class="nav-text">8 ui主界面的制作&amp;制作一个buffer</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#8-1%E5%88%9B%E5%BB%BA%E8%A1%80%E9%87%8F%E6%9D%90%E8%B4%A8%E7%90%83UI"><span class="nav-text">8.1创建血量材质球UI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-2-%E5%88%9B%E5%BB%BAMainUI"><span class="nav-text">8.2 创建MainUI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-3-%E5%90%8C%E6%AD%A5%E8%A7%92%E8%89%B2%E5%B1%9E%E6%80%A7%E5%88%B0ui%E4%B8%8A"><span class="nav-text">8.3 同步角色属性到ui上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-4-%E5%88%B6%E4%BD%9Cbuffer-%E8%87%AA%E5%8A%A8%E5%9B%9E%E5%A4%8D"><span class="nav-text">8.4 制作buffer 自动回复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%9E%84%E5%BB%BA%E6%8A%80%E8%83%BD%E4%BF%A1%E6%81%AF%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-text">9 构建技能信息结构体</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9-1-%E6%8A%80%E8%83%BD%E4%BF%A1%E6%81%AFUI%E8%8E%B7%E5%8F%96"><span class="nav-text">9.1 技能信息UI获取</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E5%85%AC%E5%85%B1%E5%BA%93%E5%87%BD%E6%95%B0%E7%9A%84%E4%B9%A6%E5%86%99%E5%8F%8A%E6%8A%80%E8%83%BD%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">10 公共库函数的书写及技能初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E7%BC%96%E5%86%99%E5%9B%9E%E8%A1%80%E6%8A%80%E8%83%BD"><span class="nav-text">11 编写回血技能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E5%85%85-CD%E7%9A%84%E6%98%BE%E7%A4%BA"><span class="nav-text">补充 CD的显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%E7%BC%96%E5%86%99%E5%86%B2%E5%88%BA%E6%8A%80%E8%83%BD"><span class="nav-text">12 编写冲刺技能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E7%BC%96%E5%86%99%E6%BF%80%E5%85%89%E6%8A%80%E8%83%BD"><span class="nav-text">13 编写激光技能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-1-%E8%A7%A3%E5%86%B31"><span class="nav-text">13.1 解决1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-%E8%A7%A3%E5%86%B32"><span class="nav-text">13.2 解决2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-%E8%A7%A3%E5%86%B33"><span class="nav-text">13.3 解决3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-4-%E8%A7%A3%E5%86%B34"><span class="nav-text">13.4 解决4</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E7%BC%96%E5%86%99%E5%A4%A9%E5%B4%A9%E5%9C%B0%E8%A3%82%E6%8A%80%E8%83%BD"><span class="nav-text">14 编写天崩地裂技能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#14-1-%E7%BC%96%E5%86%99%E9%80%89%E5%8F%96%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0c"><span class="nav-text">14.1 编写选取目标函数c++</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">The Redefine Team</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        4 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
