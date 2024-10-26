@@ -299,7 +299,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -340,7 +340,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -367,29 +367,28 @@
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2024/10/26/How-to-post-your-article/">
-                            windows搭建个人博客 GitHub page+hexo
+                        <a href="/2024/10/11/Disassemble-the-Joker-Card-effect/">
+                            小丑牌丝滑效果代码拆解
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。
-安装Node.js和Git
-Node.js：https://nodejs.org/zh-cn 
-Git：https://git-scm.com/downloads 
-
-基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 no...
+                            做了挺多状态的开关的bool变量，有些暂时还没看出有啥用，但是做了的话代码会干净很多，预防bug的产生。
+丝滑的很多实现都是通过在update里调用lerp、DOTween库来实现的，
+1 简单的拖动和悬浮在纸牌上的检测。鼠标在纸牌上面的检测，基本上是用unity自带的接口完成的。
+1.1拖动的实现：
+调用darg函数，来获取抓住图片的信息，主要是 鼠标位置、偏移量，然后修改一些设置防止误触...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Oct 26 2024 12:22:21 GMT+0800">
+            <span class="home-article-date" data-date="Fri Oct 11 2024 00:00:00 GMT+0800">
                 
-                    2024-10-26
+                    2024-10-11
                 
             </span>
         </span>
@@ -397,7 +396,7 @@ Git：https://git-scm.com/downloads
         
     </div>
 
-    <a href="/2024/10/26/How-to-post-your-article/">Read more<span class="seo-reader-text">windows搭建个人博客 GitHub page+hexo</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/10/11/Disassemble-the-Joker-Card-effect/">Read more<span class="seo-reader-text">小丑牌丝滑效果代码拆解</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -412,24 +411,33 @@ Git：https://git-scm.com/downloads
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2024/10/26/hello-world/">
-                            Hello World
+                        <a href="/2024/10/01/Extend-Editor/">
+                            编辑器拓展
                         </a>
                     </h3>
 
                     <div class="home-article-content markdown-body">
                         
                             
-                            Welcome to Hexo ! This is your very first post. Check documentation  for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting  or you can ask me on GitHub ...
+                            工具主要是两种行为，对assets和对actors
+bug记录
+在编译的时候报warming
+RebindPackages not possible (no packages specified)
+解决方法：重新构建vs工程。。。。删除空白代码文件。
+1 建立插件插件名就是代码中需要引用的模块名，
+
+然后进入到插件的c++部分进行属性的修改，
+
+2 创建三个自定义编辑器功能创建AssetAc...
                         
                     </div>
 
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Sat Oct 26 2024 00:36:37 GMT+0800">
+            <span class="home-article-date" data-date="Tue Oct 01 2024 00:00:00 GMT+0800">
                 
-                    2024-10-26
+                    2024-10-01
                 
             </span>
         </span>
@@ -437,7 +445,7 @@ Git：https://git-scm.com/downloads
         
     </div>
 
-    <a href="/2024/10/26/hello-world/">Read more<span class="seo-reader-text">Hello World</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/10/01/Extend-Editor/">Read more<span class="seo-reader-text">编辑器拓展</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -452,7 +460,7 @@ Git：https://git-scm.com/downloads
                 
                 <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
                     <h3 class="home-article-title">
-                        <a href="/2024/08/29/GAS-learn2/">
+                        <a href="/2024/09/12/GAS-learn2/">
                             GAS学习记录第二季
                         </a>
                     </h3>
@@ -475,9 +483,9 @@ Git：https://git-scm.com/downloads
                     <div class="home-article-meta-info-container">
     <div class="home-article-meta-info">
         <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Aug 29 2024 00:00:00 GMT+0800">
+            <span class="home-article-date" data-date="Thu Sep 12 2024 00:00:00 GMT+0800">
                 
-                    2024-08-29
+                    2024-09-12
                 
             </span>
         </span>
@@ -485,7 +493,7 @@ Git：https://git-scm.com/downloads
         
     </div>
 
-    <a href="/2024/08/29/GAS-learn2/">Read more<span class="seo-reader-text">GAS学习记录第二季</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+    <a href="/2024/09/12/GAS-learn2/">Read more<span class="seo-reader-text">GAS学习记录第二季</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
                 </div>
@@ -547,6 +555,51 @@ Git：https://git-scm.com/downloads
                 </div>
             </li>
         
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/03/21/How-to-post-your-article/">
+                            windows搭建个人博客 GitHub page+hexo
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。
+安装Node.js和Git
+Node.js：https://nodejs.org/zh-cn 
+Git：https://git-scm.com/downloads 
+
+基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 no...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 21 2024 00:00:00 GMT+0800">
+                
+                    2024-03-21
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2024/03/21/How-to-post-your-article/">Read more<span class="seo-reader-text">windows搭建个人博客 GitHub page+hexo</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
     </ul>
 
     <div class="home-paginator px-7 py-5">
@@ -581,7 +634,7 @@ Git：https://git-scm.com/downloads
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        4 posts in total
+                        5 posts in total
                     </span>
                     
                 </p>

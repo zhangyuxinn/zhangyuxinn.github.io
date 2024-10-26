@@ -25,72 +25,72 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="1 平a与移动动作制作与融合1.移动和跳跃的控制与状态切换  融合各个方向的移动动作，通过速度speed和转向angel来进行移动 左下右下两个点是为了防抖，让动画更稳定。  得到动画的主体，  获取并set各项值。  简单的移动动画蓝图，实现跳跃的切换  动画快播放结束时切换状态。 2.平a 2.1 在一个montage里放平a的两个动画，然后分割片段，在调用时随机使用一个动画， 2.2 动画的">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWJhNTMwYjNkOTMzYmZhN2M0NjQwOWQ5Mzk5ZWZhMjJfYTduQUdleUJzYmE0RzkzVW9pMGJBS2RZak51UkY3clhfVG9rZW46UzQxTGJIS1Nlb1JnaTh4UkV5eGM1eVh1bm1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDcxZTQzMjE1ODY1YWZjZWRlYmY4NTNmMmIyNDgyZTdfVUZ2dmUzcU1rMGVueGxvMk1LaFNYYWpYdlRQZHdLRDVfVG9rZW46UFpOU2JIM25Gb1FSZHN4VGI5ZGNYVm5XbjFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MzRlMDM4YWUyMjhjZTdmM2Q5ODdjMjUzMjkyMGYwY2VfZ3pUYnlmNjQ0aVhsTkJUcUROc3NLTmQ5d2ZSWEtCOVVfVG9rZW46VW5CRmJHZTh1b21mQkh4eU5SUmMyT3BBbnVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDM0ZjM4ZWQ0YmViOWJhYTU0N2M5MzAwYTY4MWYwMjZfVVlSYVlIdjZSUXM4UlgxeWhCNlpISGlOV2w0TWRzZXpfVG9rZW46RU9JMGJ1QnhVb2Vpc2R4b3E2d2NOZGpObmJiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWViNjk4M2RiMTQxOTdmN2MyYjM5OWUxOTc2Y2I0MTdfVVJ4MEZlb0ZDWVpVWFRVclhvTTBtTklmeXdxbjFieVNfVG9rZW46UEx5ZGJCVHJKb0lsbkZ4WUM5RWNrRVRGbjhnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGYxZDJmODFkNzg4NTA3ODZiNzc0ZGMxMTg2OGJjOTRfOWFoVE5JSVBLYTZEVGwyRm1keXZmN3ZLOFVIb1lxSmNfVG9rZW46SlhaT2JVaG9lb2ZVS3Z4a256eWN0SDEzbnBnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFhZTJjNzcxYWIwNWI1YWE0ODdiYWVkYTEyMGMwYmNfNHY3dDczaVF2MWJYWWxNeld5aEdLOXZzOUg5d2dGOWFfVG9rZW46WlpKYmJZbGtZb3M4TjV4bzUzS2MxNkZJbkJmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDk5ZWQyNWZjMjlkNDZhMzRlZDM5MDZiMWRlYjZkNThfSzdDdThjRjdnZ1JLd28xc2NSMWpOT1RCVk1JSklaUzhfVG9rZW46UldVNmJWV3dUb0VnWHV4SWRteWMxdUhWbkFoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODk0M2NmODFkM2I4M2NjZmY5NmRmYzY3YjI2NjdiZmNfd0pmNVpYVlpyTFdqR3luZGV2bWVGYmpMc25JRk1Wd09fVG9rZW46SkZiSGIwbWxWb0k2azd4UGV3MWNueUNYbk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTFhNTQzZjBjZmRlMmUyZTE2Njg5Mzg2OGRkZDk1NmFfcENQVFNLdmF0RnNYUnk2R2MwR3ZqUkREZG1rV01DaDNfVG9rZW46WGs3TmJmY2hkb3dIUWl4UnNnY2NxRUR3bkdKXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGExN2FmNTY3YjIxNWNmYjE2MmRhNWM3OTczZjA5YTNfdU5XVzl5S0JBbG9vN3B1UlM1T21QaGdqY1RkVFl2TUVfVG9rZW46WEdxMWJjNXk5b25HZnp4bnVpUWN3ZGtubmRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzI0ZDI4YTNlZjUwMWQyNzg0YjhiNzQxMTlhMDlhZmVfMm16T2FKSUM1VXZqd25FWDlnYXlUejRuZFMxVkk3YlpfVG9rZW46TmRtR2Iycm1tb3FqbXN4cWQwcmNRUzRsbkNmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWYxMzdiZjRlYzFjM2IzZjUxNjIyMTgzZjgyNGZmNmZfdW9ZOFhjZlNvVGFSRnhmTmtGeGN6UlVpT2ZPNGM1Y2tfVG9rZW46S2RLc2JBUFF6b3FBRTV4SVF1WmM5TzRWbk1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTY3M2M2ZDA5ZmEwODQwMzUzYzkwZmM5NjA3NmRhNzNfYWtkY1NDbzdBRXpuRnpxTG9nbTJ5ckZFQ2JIZnJoajFfVG9rZW46U2FSRGJsY1JqbzhvYWh4S1F0QWNIUWxObmxkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzU0M2Q4MzEyYjkxNzE2Mjg5YjU4ZWY2ZmMzMjZlYTdfM0JlZVFqd0VDeW1mVlJrS0Fkek9ZVGp1dHJ2TndMajJfVG9rZW46Q3U3SWJDcFFhb1Q5Z014RmNMNGNzTThabk5kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDU3MmQzZTZlNzU0MWFkMDIyNjkyMjczZjQ3NjUxZDBfWERnbTNTTU5YRzd5SlQyTlN3dmFsd1NSZ25Ldk9UMGZfVG9rZW46V2ZmdGI5ZXhYb2Z3VTB4ZWlzYWMyT1NlblZjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWMwZGZjZWQwYWY4ZGIzM2IwNjBhOTVhMmJhMTQ4NzRfaUt2dTNvNjkwS0xGcXBTZk9SQUpKQUJGMnl6MU1zaHRfVG9rZW46T0EzdmJYd1Q2b2VzbXZ4Ymh4WmNKblYybkZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDAwMWU0OGM3MjY0ZmU0ZmExNzU4ZTdlYzg0NjdmMDFfR1pvaG54N2hMMW1iUTdZWjdNVkFnWTVMY1ZCQzB4RUlfVG9rZW46U08yVWJDcW84b2E3UnB4S1FKSmMzeXJMbmRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWQ0M2YyMDNhNDg1ZmJiMDQxNDZjOWY2NWMzODVhNDdfRk9tS1JXVGEwcWtISjM1cTd3RHlEVjRTMURuUDFBbzhfVG9rZW46VDJrM2I4Z3VDb3RNQ254S3lZSmNPNXNzbkRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxZGJjNzRlMDJkYjM4ZDQ2MThjYjA4YzZkNDFiOGFfSjB2QTJwWUo0cHVOenpsRWE1bExRdG5CM1BodHJqek9fVG9rZW46SmNqNmJsRFl5b2UzUHR4Z0NOd2Mza05nbmNlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTBlYWY5MDM0NmVjZWM4OWZiNTU0ZDVkOWJmNjY0MzFfTnJKVHkwa1QyOU9uMWRMT3pFUkZyWGdLd1ZoMmpvTk1fVG9rZW46T1B1aWJvWkR5b0lhTW14azVIR2M4Z0p3bm1kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDAxYmU4ZmRlNjNkNjQ4ZjA5Nzk4YmJlZDhkZDM4OTlfSXhTa1hhcE9mMkNITnB1ek1YVkZYTFozeEpmRkRRWnhfVG9rZW46WDg5N2J2S3Bvb1ZSM0t4VVhMUGNsdzAybktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTI4MjFlMzdiMDc3ZGRlYTY2MzQwZTdiNjYwMGMxNTRfeFpvZTFsR01VSktaMWZ4U2VYZzFxT29meWxKSjU2enVfVG9rZW46QllpdGJVQVJwb2R4SW54YTFrN2NrcGhabndiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzQ1YTEyODY2OTBkN2U5Yzg3NWFiNWY4NGFmNzY0NjJfcG5IbVJBZzd4VUdxSjU2Q1NRWTV6RzdERzBXa3JZMDJfVG9rZW46U1pkRmJleU9jb3A5Mjh4dnM2ZGN3bUpNbk9kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWYxMWMyZWFhNDgxNmViMjE3YTQwZTMyYzA1YzdmMGNfd0tlTG5lazZKSGNTWHdZNktvd0hMM2FyY05jYTZmOXZfVG9rZW46SGl5NmJaeHVsb3N5NUR4SUk0VWNvRlpRblBiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
 <meta property="og:image" content="http://example.com/">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjVlMDIxOWEyNGNhNDg4MzgyN2M5OWQyNWQ3ZTcwNGFfQXU0cXBNOVVHemZsd0xtU3VPRXJ4elNEa1VkVEtldE9fVG9rZW46UERZMmIyeHVQb0o0ck54bVN6S2NBdjIwbmZlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNlZWFhZGMwNjFkNjk2MTQwMjY2MzAwZDA5YzllOWVfcXBUUFJXSUNRVVdMa0RHWXpXRHplUWQ0OFlHVk1yNEtfVG9rZW46T005d2JMV2dHb0xMUTB4UEJONWNjR2N2bm1iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2NjNzhhMzE0ZWQxYzM5NDEwN2Q1OTRjNzQxOTExMTFfUEZadHVkMGwycWVITm9oTHZySTJZMWFTckQzQ3JsTm5fVG9rZW46V0ZlcmIzeW5sb0M1VjJ4OTdzTmNQNHMybjdiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGMxYTljN2EyMTZjNDg1OGNhZWE2ODc2YWYxNDMzMDNfZDhjaTNVQ1JhclhIZGdCU25FcXNzYmhROVBZU2JHeUxfVG9rZW46QzQ5N2JvM0Ztb3lFT3R4elR3emN3NjdYbkVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDVhMGQxMGQ1Mzk0Yzc1OGE2NzUxOThiOTU3MzUzNDlfS2ZrSGJ6VjZSWEp1ZWtBSXBvdEExVzhvdm9DSW9UNHdfVG9rZW46U3B3aWJmRllyb3pyc1l4eXVGZGN4bHdxbklmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YThmZGYxNzhiMjZkZDEzMGJiYzJkZDE4MjA4Zjk5MDJfR0VOU3V1M0h5eHVjemFFRWhYcXJDeVZydVVVSjBpbURfVG9rZW46SjZyRmJrUE94b0dlWHh4dktjU2NJejlMblJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDc4MzgxY2Y5ZDEyODZkY2YzOGIzNDkwMDJmODUwMGVfaGJZUEQ5MG16Mk9aN3NOaVc5b3VJY3VUU0xzMHhZRlBfVG9rZW46SE1vUmJBc2ptb1NqTHN4dUNZZWNjRnJ0blRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWQzM2RmZjQ5N2QwY2ExZTg1YmI4MjA3MTk3MzcyOTVfeWlCNUZrTmE3UUhOd00yMjRJSjRzNlFsa2hTZGQ4Q2xfVG9rZW46TGNaUGJySGNIbzJkUVN4NEg3WmNST3cxblNoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGNjMTJkODAwZmJkMGZiY2UxYTFhZmZkN2JiNjZhZjhfekppVkZ4WmxDOXh1QmkzTXpvMGZNT0xpVFRXU2llNlZfVG9rZW46RkgzM2JZS1c3b0o3WTF4OGtGNmNiSDdFbktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzkxMGE4ZDJhMjMyMTVjYTAzOTVjZGVjZDRmZTk5ZTNfdXE1N1NTUHhiSmNZNUV1RmhXOVZqM2dEUnV6WGRxVnBfVG9rZW46S0hremJpaTg2b1FnbVF4Tk9kRmM1UU81bk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjA5MDZjODA0ZDUyZjgzYTI3OGM2MTcyODIwM2FmMmNfVkJQcWRTdkc1QjM2Q3NkTHVBZkl1RWoxODBPbDZiUHdfVG9rZW46S1JYWWJJSnpVb2pjM1B4ZTZEZWNUWUtsbnZnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjNiZThjNDQxOGQ4ZWJmNTRhMThmZmY1NmM0MmJhNmFfdnhWYnJuUDBWY3VEUVdjcjY0WDRicnBHeVRCUTJLZmpfVG9rZW46UzdIQmJDWGRqb3NMbE14dFI2d2NuM0xtblJnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODliNzhiZjlkNGNhNDY5NGNjMjlhZjE4MzY2N2I5MjVfNjN1aWV0N2VkbnpTTlUycjhOU1piYUJ4eWoxbG02OTBfVG9rZW46VDNqdWJOSEFpb25yNDN4SUo5bWNYOUpLblNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDhjYjkwYmE5NmI2MzVjZTE2MTg5YzFkMWM1MDMwYWZfZ0RnNHlkenRscEJiVW1DTklPcFlDSnllWXdWSlNTRWtfVG9rZW46U01seWJ2dHFsb0k0bXV4UVE4UmNFamVrbmVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTEzNDdhZjgzZGVhMTNiMDA0YTYzNTI4YWIyYjJjYTdfem5wZXpka3htSXFyamZ2TGpvUWRDRzc1cWR6S1AyN3NfVG9rZW46QlNHaWJTWTZWb2tkdFJ4TUJCVGNCcFAybmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YTc3ODIyYTZkZWE2MmM0NGM0NmUwYjQzZDdlZWJhM2FfTmxVWGVQMjdSZjhOYWpONDhQS3Vlem5WVlBIdVFiVFJfVG9rZW46U1pNdWJ4QVRFb0l4U2p4STBiemNDdkF4bk9iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2E4OGZiOTM0NWQ4N2ZiOWI0MmUxZDUzOWNlOTQ3MzBfNG5uTmtyVXFVSkNXUWVXNVNyT0ZRVHVuRGRRSzRUMHVfVG9rZW46UHkwdWJQRnh1bzJtazF4RFV4SWNnemZMbmxiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjQxNGJkM2ViZDA5ZDU5OGFlZTVhMTk5M2M2YzYzZjVfa2E3blJ1OUpKcnBya0toYnJpMjI2TzRUTXB2WDBRN0JfVG9rZW46V0tIM2JYTkVDbzJ0NDl4SVg5d2N3N21lbnZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjBhMWQ1YjU1MzE2NzNiZDNkYmZkNDU2ZDU1MGM3OTJfZHB2MzRLSnp5YVNMZWM3TzFmZEQ3VlJsWEo1ZDZxcVBfVG9rZW46QlU5T2JxQW14b2F4VjR4a1VPd2NBVTA0bnpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWUyNGRhMzZiMDQyN2I3MTNkNTFkOWRlZjMwNGQ0YzBfTldMYVFCelJISkZSd1RSVURsdVJLQkFweFdUektBY09fVG9rZW46UnFsUmJjaUVib21KZWx4Y0dhTmNrU29DbkI2XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2IwNmZlNjVjMzQ2MDkwNjI5Njk2NTk5NDExODhmYzZfczRKaUhyc1FqejBCWUxEd0o3dkJNd3hVeUdFWlBGd0hfVG9rZW46WlVWQ2J1MGJwb2lvd2F4c2JDR2M0MWVRbnFnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NWEzYzE5NWIyMTllOTUxNzFjNzZmMjEwZDg1NGUzYTNfRDhHWWVpa0tMWWZRMmlVaXBwbTgzUjFsMDdkaUM5eTVfVG9rZW46UW80QWJwTzRpb1ZFdEh4T0E0b2N1cVhiblRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MGU5ZjZlNDAxYTY3OTYxMWQ2ZjczMzEwNGE0NDBkYThfaTZiNDBJRlFwbVowb0IwOFpQMFBzN0ljcnl3WnRmZ0FfVG9rZW46WEZ1MWJ6YzAyb0lwUHd4ZmU5ZGN1ZzRCbmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxNDM4NDNmZWNkMTNjNjc2NDc5YTZmZjAzYjgwY2FfNnBlcE1SdTEyQ0tQS3ZIZFJNaUh0eGpSQ0lNZmZKZEFfVG9rZW46UGwxd2J4NFlIb1Vxd3B4a1N5OWNQTzRRbmNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQxYWU3YTU1ODFiNzRhZmU3YzkwOWJkMmI5NmJhZWRfQkJDVXV4U0taaEZQM1AyVTNJUjRseGg5eHZ1M2tESmhfVG9rZW46RThzcmJCZWhxb1JBeTJ4WVhZeGNka1pWbmNjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTE1MTIwYjQ5MDQ1NjY2MTk1Y2M2NDQxY2EzYmM0MzhfNUZRcDhrZ21uak5COHpJNWlKRFl0TlprbTFrNXZsT1lfVG9rZW46VUlMeWJFSzVab3JQakd4elEwSmNlM1V6bnJMXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGEwMjUyNmI2MTY0NmRjZjdmZTQ4ZWI5MGU5MDhiZWNfZXFTTG9QbGNCd25rZUlnYlRiamJjeTJXOTNnR0xBYjZfVG9rZW46S24ybGI3cmp3b0QyMTF4bTFFV2NIUlBwbk9jXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWNlOTZhZDZhM2U4NjcxOTBlNmI4OGZiMjRmZTQ4YWZfSGFGelJlR3NGSVJOVXQyT29VQmg4RTdhVDZOMlNNdWVfVG9rZW46SlVlN2Jib3hSb3RSell4ZUk3UWNWallZbkpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGFlMjAxNjMwMzhlMjQxNTI0NzQ5ZWZiNWM0N2U1YzVfOUlQRXFsYmE2ZTRTa25kRFJGN21BYWZmbEs2VXJNSnpfVG9rZW46QmY3SWJpMkhYb1c0Mlh4QVgyRmNobTRubmJpXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDFhNmZmYmU0YjZjMzdmMTJiY2JhOTc4ZDNlYzhiN2VfVkFwYmpFRDNQUzFqaHB2YWZNdVJTNHRDNmVIVGZEWE9fVG9rZW46RldLTmJvZ3Jqb0ZQZ2F4NFQ3dmNmUlRTblVoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmY2NmYyNWY5MDg1YWNjYmNkMDgyODFjYmZlYjQ0MDFfQ1psdzR3Q0RnM2llOURPdTJsVFRJa21kQnBZTWxkbmNfVG9rZW46V0ptNWJzMmU3bzhkeUF4ZERlOWN1NEo2bnJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2QzYTNhNDgxMjkxZWYzNTA2ODc4ZGU0YzZkYmQ2ZGNfSzhDMWdlbXVOVk9TSmJxdGl4d05BSUtvSTllWmFOVDBfVG9rZW46SzNzR2I3Q0xWb0g1YjV4YW1OZmNmM29kblA1XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDQ5ZmI4NDY1MTFjZTlmM2YwZGFkNzM2ZjJhNzRhMTJfYVVuS0VYQlg1VHRNTzhRZjhDaDdpQWdpbWp6d2ExUXBfVG9rZW46UFlURmJzYzVEb3dkZkR4dWZrN2NzdjhJbjRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWZkNTI0MzMzNTQzYjhmOGUyM2ZjMTFlNjE4ZTExODJfQ3ZmNDloVXBrVHhYMjJCSzlxTkJpd2VjbDkzcUdSZDZfVG9rZW46TTZHMWJLcGNlb0JJYjV4Z3NnUmN6OERBblFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
-<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MmRkNDlmZDM5ZjYwZTk0YmQ0YmVhOGZkOTIyMDkzZWRfcE1hRmh3U212ZzdraDU3c1V6RHpkZ0ZEd3RucG1ld0hfVG9rZW46R3JKTWIxc2Zyb2tYSU14MVpJWGN5bkd2blVjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTQ2NDM0ODg3MTdhZmRlZTAyNmMzNzYyZWZhZDAwMTJfT3cyT0N3NVZydVRZaUpidlJsYnluWllmSENyQlpZTUZfVG9rZW46SjZyRmJrUE94b0dlWHh4dktjU2NJejlMblJkXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWY3MzBiYTdiNmE1NWY4OWY0YjM4N2JiNDhkYTZiYjVfbUNKV3VGWFdoeDlKNDc1VzFEckhLMzliZjBvVlJmV2hfVG9rZW46VDNqdWJOSEFpb25yNDN4SUo5bWNYOUpLblNkXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTMyOGFmNTY2YjU5ZjhiODM0MzU4ODVkMDQ1ZjA0ZWFfclBrQVlmaXRFVjBiZ3JBR1hUdEhYOXFCUGxyM3Rnam9fVG9rZW46U01seWJ2dHFsb0k0bXV4UVE4UmNFamVrbmVmXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmQ0OWFkZWIwY2E0YjI2NGNiMjM4M2UwMTNjZTk1MzRfeG03eE9yN0JhVG56aHU3WG1SYXpzYVdVTFdBeGlOQzBfVG9rZW46U1pNdWJ4QVRFb0l4U2p4STBiemNDdkF4bk9iXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NmNlNDg4Y2JhMDk1NDBkMDZlZWNkMzFmNmFlMzJlZTVfU0FaNGVpNTJ6MUhqZ1hPazdIN01XNE15aFliMDBoUWhfVG9rZW46UnFsUmJjaUVib21KZWx4Y0dhTmNrU29DbkI2XzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YTJhODgwY2Q1NjdiNGExZTgwMjg2OThmMzRmNzczNDFfbFFTNlowQUNMWEZldERsY1JOR211eTkxRURiMExQakNfVG9rZW46VUlMeWJFSzVab3JQakd4elEwSmNlM1V6bnJMXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWI2MWFlNDVhN2Y1M2QyMzkwYTQ1NzNlMzA1ZTkwNmJfYm5UTGgyUjY2VnU2UEQxazlCZk5xZjF0SXYyY08yN0FfVG9rZW46RldLTmJvZ3Jqb0ZQZ2F4NFQ3dmNmUlRTblVoXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODM4NDA3MTJlZTA2YTFhMmE3YjE5NWE3YWIxM2I4YzRfZzVYYUNlU041TnV5WEZPYU9xVHVHcnRaMTJtOTZhbHlfVG9rZW46UFlURmJzYzVEb3dkZkR4dWZrN2NzdjhJbjRjXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTdmMDVmOTk5YTZiNjZhY2Y5ZWVkMzYzYzNlNjQ3NmFfRkx5bGRhZk05NmRrelR0bU5vWmk1Umk4aDE2ekNlYjBfVG9rZW46TTZHMWJLcGNlb0JJYjV4Z3NnUmN6OERBblFiXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA">
+<meta property="og:image" content="http://example.com/asynccode">
 <meta property="article:published_time" content="2024-08-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-26T06:58:55.823Z">
+<meta property="article:modified_time" content="2024-10-26T07:13:46.722Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWJhNTMwYjNkOTMzYmZhN2M0NjQwOWQ5Mzk5ZWZhMjJfYTduQUdleUJzYmE0RzkzVW9pMGJBS2RZak51UkY3clhfVG9rZW46UzQxTGJIS1Nlb1JnaTh4UkV5eGM1eVh1bm1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA">
+<meta name="twitter:image" content="http://example.com/asynccode">
     
     
     <!--- Icon Part-->
@@ -308,7 +308,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">4</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -362,8 +362,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-10-26 14:58:55</span>
-            <span class="mobile">2024-10-26 14:58:55</span>
+            <span class="desktop">2024-10-26 15:13:46</span>
+            <span class="mobile">2024-10-26 15:13:46</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -391,76 +391,76 @@
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
             <h2 id="1-平a与移动动作制作与融合"><a href="#1-平a与移动动作制作与融合" class="headerlink" title="1 平a与移动动作制作与融合"></a>1 平a与移动动作制作与融合</h2><p>1.移动和跳跃的控制与状态切换</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWJhNTMwYjNkOTMzYmZhN2M0NjQwOWQ5Mzk5ZWZhMjJfYTduQUdleUJzYmE0RzkzVW9pMGJBS2RZak51UkY3clhfVG9rZW46UzQxTGJIS1Nlb1JnaTh4UkV5eGM1eVh1bm1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>融合各个方向的移动动作，通过速度speed和转向angel来进行移动</p>
 <p>左下右下两个点是为了防抖，让动画更稳定。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDcxZTQzMjE1ODY1YWZjZWRlYmY4NTNmMmIyNDgyZTdfVUZ2dmUzcU1rMGVueGxvMk1LaFNYYWpYdlRQZHdLRDVfVG9rZW46UFpOU2JIM25Gb1FSZHN4VGI5ZGNYVm5XbjFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>得到动画的主体，</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MzRlMDM4YWUyMjhjZTdmM2Q5ODdjMjUzMjkyMGYwY2VfZ3pUYnlmNjQ0aVhsTkJUcUROc3NLTmQ5d2ZSWEtCOVVfVG9rZW46VW5CRmJHZTh1b21mQkh4eU5SUmMyT3BBbnVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>获取并set各项值。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDM0ZjM4ZWQ0YmViOWJhYTU0N2M5MzAwYTY4MWYwMjZfVVlSYVlIdjZSUXM4UlgxeWhCNlpISGlOV2w0TWRzZXpfVG9rZW46RU9JMGJ1QnhVb2Vpc2R4b3E2d2NOZGpObmJiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>简单的移动动画蓝图，实现跳跃的切换</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWViNjk4M2RiMTQxOTdmN2MyYjM5OWUxOTc2Y2I0MTdfVVJ4MEZlb0ZDWVpVWFRVclhvTTBtTklmeXdxbjFieVNfVG9rZW46UEx5ZGJCVHJKb0lsbkZ4WUM5RWNrRVRGbjhnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>动画快播放结束时切换状态。</p>
 <p>2.平a</p>
 <p>2.1</p>
 <p>在一个montage里放平a的两个动画，然后分割片段，在调用时随机使用一个动画，</p>
 <p>2.2</p>
 <p>动画的调用，在player蓝图中建一个事件play Montage 然后在controller中调用。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGYxZDJmODFkNzg4NTA3ODZiNzc0ZGMxMTg2OGJjOTRfOWFoVE5JSVBLYTZEVGwyRm1keXZmN3ZLOFVIb1lxSmNfVG9rZW46SlhaT2JVaG9lb2ZVS3Z4a256eWN0SDEzbnBnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>2.3 解决滑冰，进行动作融合，实现边跑边a</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjFhZTJjNzcxYWIwNWI1YWE0ODdiYWVkYTEyMGMwYmNfNHY3dDczaVF2MWJYWWxNeld5aEdLOXZzOUg5d2dGOWFfVG9rZW46WlpKYmJZbGtZb3M4TjV4bzUzS2MxNkZJbkJmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>涉及一个存储的概念，要把两个动作存储chache然后再进行融合。</p>
 <p>再Layered blend per bone中选择融合的节点，本文中选腰部的节点。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDk5ZWQyNWZjMjlkNDZhMzRlZDM5MDZiMWRlYjZkNThfSzdDdThjRjdnZ1JLd28xc2NSMWpOT1RCVk1JSklaUzhfVG9rZW46UldVNmJWV3dUb0VnWHV4SWRteWMxdUhWbkFoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>2.4 现在要解决只有上半身动，下半身会卡住，动画奇怪的问题</p>
 <p>解决方案：只融合一半，跳起来平a的时刻不融合，</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODk0M2NmODFkM2I4M2NjZmY5NmRmYzY3YjI2NjdiZmNfd0pmNVpYVlpyTFdqR3luZGV2bWVGYmpMc25JRk1Wd09fVG9rZW46SkZiSGIwbWxWb0k2azd4UGV3MWNueUNYbk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>添加新节点，也就是不融合的节点</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTFhNTQzZjBjZmRlMmUyZTE2Njg5Mzg2OGRkZDk1NmFfcENQVFNLdmF0RnNYUnk2R2MwR3ZqUkREZG1rV01DaDNfVG9rZW46WGs3TmJmY2hkb3dIUWl4UnNnY2NxRUR3bkdKXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>通过speed和前面节点的控制，选择动画，达到目的。</p>
 <h2 id="2-正式开始GAS-创建一个平a以及cd"><a href="#2-正式开始GAS-创建一个平a以及cd" class="headerlink" title="2 正式开始GAS 创建一个平a以及cd"></a>2 正式开始GAS 创建一个平a以及cd</h2><p>GAB先制作技能，然后在角色上调用，</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGExN2FmNTY3YjIxNWNmYjE2MmRhNWM3OTczZjA5YTNfdU5XVzl5S0JBbG9vN3B1UlM1T21QaGdqY1RkVFl2TUVfVG9rZW46WEdxMWJjNXk5b25HZnp4bnVpUWN3ZGtubmRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>要先</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzI0ZDI4YTNlZjUwMWQyNzg0YjhiNzQxMTlhMDlhZmVfMm16T2FKSUM1VXZqd25FWDlnYXlUejRuZFMxVkk3YlpfVG9rZW46TmRtR2Iycm1tb3FqbXN4cWQwcmNRUzRsbkNmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>Give ability给技能才能用，写一个active abilty函数，在其中通过tag来选择调用哪个ability。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWYxMzdiZjRlYzFjM2IzZjUxNjIyMTgzZjgyNGZmNmZfdW9ZOFhjZlNvVGFSRnhmTmtGeGN6UlVpT2ZPNGM1Y2tfVG9rZW46S2RLc2JBUFF6b3FBRTV4SVF1WmM5TzRWbk1oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>碰撞检测</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTY3M2M2ZDA5ZmEwODQwMzUzYzkwZmM5NjA3NmRhNzNfYWtkY1NDbzdBRXpuRnpxTG9nbTJ5ckZFQ2JIZnJoajFfVG9rZW46U2FSRGJsY1JqbzhvYWh4S1F0QWNIUWxObmxkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>不能砍到自己和自己的同类（敌人砍敌人x）</p>
 <p>重点：碰撞体的挂载，附着在武器上</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzU0M2Q4MzEyYjkxNzE2Mjg5YjU4ZWY2ZmMzMjZlYTdfM0JlZVFqd0VDeW1mVlJrS0Fkek9ZVGp1dHJ2TndMajJfVG9rZW46Q3U3SWJDcFFhb1Q5Z014RmNMNGNzTThabk5kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h2 id="3-创建角色属性"><a href="#3-创建角色属性" class="headerlink" title="3 创建角色属性"></a>3 创建角色属性</h2><p>用UAttributeSet创建，</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;BaseAttributeSet&quot;</span>)</span><br><span class="line">FGameplayAttributeData HP;</span><br><span class="line"><span class="built_in">ATTRIBUTE_ACCESSORS</span>(UBaseAttributeSet,HP);</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ATTRIBUTE_ACCESSORS(ClassName, PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_PROPERTY_GETTER(ClassName, PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \</span></span><br><span class="line"><span class="meta">    GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)</span></span><br></pre></td></tr></table></figure></div>
 
 <p>都是一些好用的宏，有读表啥的。</p>
-<h2 id="4-造成伤害并夹值处理"><a href="#4-造成伤害并夹值处理" class="headerlink" title="4 造成伤害并夹值处理"></a>4 造成伤害并夹值处理</h2><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDU3MmQzZTZlNzU0MWFkMDIyNjkyMjczZjQ3NjUxZDBfWERnbTNTTU5YRzd5SlQyTlN3dmFsd1NSZ25Ldk9UMGZfVG9rZW46V2ZmdGI5ZXhYb2Z3VTB4ZWlzYWMyT1NlblZjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h2 id="4-造成伤害并夹值处理"><a href="#4-造成伤害并夹值处理" class="headerlink" title="4 造成伤害并夹值处理"></a>4 造成伤害并夹值处理</h2><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>伤害和cd一样都是GE，先创建GE，然后在碰撞后调用</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWMwZGZjZWQwYWY4ZGIzM2IwNjBhOTVhMmJhMTQ4NzRfaUt2dTNvNjkwS0xGcXBTZk9SQUpKQUJGMnl6MU1zaHRfVG9rZW46T0EzdmJYd1Q2b2VzbXZ4Ymh4WmNKblYybkZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>显示属性变化。</p>
 <h3 id="4-2-夹值处理"><a href="#4-2-夹值处理" class="headerlink" title="4.2 夹值处理"></a>4.2 夹值处理</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">UBaseAttributeSet::PostGameplayEffectExecute</span><span class="params">(<span class="type">const</span> FGameplayEffectModCallbackData&amp; Data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Super::<span class="built_in">PostGameplayEffectExecute</span>(Data);</span><br><span class="line">    <span class="keyword">if</span>(Data.EvaluatedData.Attribute==<span class="built_in">GetHPAttribute</span>())</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="built_in">SetHP</span>(FMath::<span class="built_in">Clamp</span>(<span class="built_in">GetHP</span>(),<span class="number">0.0</span>,<span class="built_in">GetMaxHP</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Data.EvaluatedData.Attribute==<span class="built_in">GetMPAttribute</span>())</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="built_in">SetMP</span>(FMath::<span class="built_in">Clamp</span>(<span class="built_in">GetMP</span>(),<span class="number">0.0</span>,<span class="built_in">GetMaxMP</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(Data.EvaluatedData.Attribute==<span class="built_in">GetStrengthAttribute</span>())</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="built_in">SetStrength</span>(FMath::<span class="built_in">Clamp</span>(<span class="built_in">GetStrength</span>(),<span class="number">0.0</span>,<span class="built_in">GetMaxStrength</span>()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <p>这个函数是GE的后处理，效果生成后对目标在进行处理。</p>
 <h2 id="5-伤害配表和敌人行为树"><a href="#5-伤害配表和敌人行为树" class="headerlink" title="5 伤害配表和敌人行为树"></a>5 伤害配表和敌人行为树</h2><h3 id="5-1-镜头处理，碰撞和延迟跟随。"><a href="#5-1-镜头处理，碰撞和延迟跟随。" class="headerlink" title="5.1 镜头处理，碰撞和延迟跟随。"></a>5.1 镜头处理，碰撞和延迟跟随。</h3><p>都是在cameraArm下更改的</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDAwMWU0OGM3MjY0ZmU0ZmExNzU4ZTdlYzg0NjdmMDFfR1pvaG54N2hMMW1iUTdZWjdNVkFnWTVMY1ZCQzB4RUlfVG9rZW46U08yVWJDcW84b2E3UnB4S1FKSmMzeXJMbmRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWQ0M2YyMDNhNDg1ZmJiMDQxNDZjOWY2NWMzODVhNDdfRk9tS1JXVGEwcWtISjM1cTd3RHlEVjRTMURuUDFBbzhfVG9rZW46VDJrM2I4Z3VDb3RNQ254S3lZSmNPNXNzbkRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h3 id="5-2-不同等级的伤害配表"><a href="#5-2-不同等级的伤害配表" class="headerlink" title="5.2 不同等级的伤害配表"></a>5.2 不同等级的伤害配表</h3><p>创建csv文件，丢进引擎中选择离散型曲线table</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxZGJjNzRlMDJkYjM4ZDQ2MThjYjA4YzZkNDFiOGFfSjB2QTJwWUo0cHVOenpsRWE1bExRdG5CM1BodHJqek9fVG9rZW46SmNqNmJsRFl5b2UzUHR4Z0NOd2Mza05nbmNlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>然后导入GE中</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTBlYWY5MDM0NmVjZWM4OWZiNTU0ZDVkOWJmNjY0MzFfTnJKVHkwa1QyOU9uMWRMT3pFUkZyWGdLd1ZoMmpvTk1fVG9rZW46T1B1aWJvWkR5b0lhTW14azVIR2M4Z0p3bm1kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>在调用时控制level即可。</p>
-<h3 id="5-3-敌人的ai行为树控制"><a href="#5-3-敌人的ai行为树控制" class="headerlink" title="5.3 敌人的ai行为树控制"></a>5.3 敌人的ai行为树控制</h3><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDAxYmU4ZmRlNjNkNjQ4ZjA5Nzk4YmJlZDhkZDM4OTlfSXhTa1hhcE9mMkNITnB1ek1YVkZYTFozeEpmRkRRWnhfVG9rZW46WDg5N2J2S3Bvb1ZSM0t4VVhMUGNsdzAybktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="5-3-敌人的ai行为树控制"><a href="#5-3-敌人的ai行为树控制" class="headerlink" title="5.3 敌人的ai行为树控制"></a>5.3 敌人的ai行为树控制</h3><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>创建行为树，在其中创建各个BTTask，也就是需要完成的任务。</p>
 <p>Sequence中的各项任务是从左到右依次进行的，一项任务无法进行就会继续进行。</p>
 <p>BBT_FindPlayer：</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NTI4MjFlMzdiMDc3ZGRlYTY2MzQwZTdiNjYwMGMxNTRfeFpvZTFsR01VSktaMWZ4U2VYZzFxT29meWxKSjU2enVfVG9rZW46QllpdGJVQVJwb2R4SW54YTFrN2NrcGhabndiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>覆写Execute AI函数，寻找玩家是否存在，存在就将actor存入黑板中，finish success 不存在就失败，也就是继续查找。</p>
 <p>出现的问题：定义Key时不能选择所要的key，只能删除原本用不到的默认key。</p>
 <p>BBT_AttackMelee：</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NzQ1YTEyODY2OTBkN2U5Yzg3NWFiNWY4NGFmNzY0NjJfcG5IbVJBZzd4VUdxSjU2Q1NRWTV6RzdERzBXa3JZMDJfVG9rZW46U1pkRmJleU9jb3A5Mjh4dnM2ZGN3bUpNbk9kXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>也是覆写Execute AI函数，cast to 目标类，是为了调用目标类中的攻击函数。</p>
 <p>然后将ai行为树挂载到enemy上，再在地图中用</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWYxMWMyZWFhNDgxNmViMjE3YTQwZTMyYzA1YzdmMGNfd0tlTG5lazZKSGNTWHdZNktvd0hMM2FyY05jYTZmOXZfVG9rZW46SGl5NmJaeHVsb3N5NUR4SUk0VWNvRlpRblBiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>来划分行动范围。</p>
 <h2 id="6-生命值改变时广播"><a href="#6-生命值改变时广播" class="headerlink" title="6 生命值改变时广播"></a>6 生命值改变时广播</h2><p>C+中实现。</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多波动态委托 带DYNAMIC的才能被蓝图调用 写在头文件的uclass上</span></span><br><span class="line"><span class="built_in">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</span>(FOnHealthChangeEvent,<span class="type">float</span>,NewValue);</span><br><span class="line">UAbilitySystemComponent* MyAbilitySystemComponent=<span class="keyword">this</span>-&gt;<span class="built_in">FindComponentByClass</span>&lt;UAbilitySystemComponent&gt;();</span><br><span class="line"><span class="comment">//得到自己身上的UAbilitySystemComponent。</span></span><br><span class="line"><span class="keyword">if</span>(MyAbilitySystemComponent)</span><br><span class="line">&#123;</span><br><span class="line">    MyAbilitySystemComponent-&gt;<span class="built_in">GetGameplayAttributeValueChangeDelegate</span>(UBaseAttributeSet::<span class="built_in">GetHPAttribute</span>()).<span class="built_in">AddUObject</span>(<span class="keyword">this</span>,&amp;ABaseCharacter::OnHealthAttributeChanged);</span><br><span class="line"><span class="comment">//调用官方的委托，(UBaseAttributeSet::GetHPAttribute())是限制HP变化的时候访问事件</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ABaseCharacter::OnHealthAttributeChanged</span><span class="params">(<span class="type">const</span> FOnAttributeChangeData&amp; Data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    HPChangeEvent.<span class="built_in">Broadcast</span>(Data.NewValue);</span><br><span class="line">    <span class="comment">//将值广播出去</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//FOnAttributeChangeData是个结构体，其中有一个新值和旧值，</span></span><br></pre></td></tr></table></figure></div>
@@ -468,27 +468,27 @@
 <p><img lazyload src="/images/loading.svg" data-src="/" alt="img"></p>
 <p>将广播挂载在character上，并且与事件绑定。</p>
 <h2 id="7-死亡处理"><a href="#7-死亡处理" class="headerlink" title="7 死亡处理"></a>7 死亡处理</h2><p>见上图，在血量变化时，检测是否调用函数，检测是否死亡。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZjVlMDIxOWEyNGNhNDg4MzgyN2M5OWQyNWQ3ZTcwNGFfQXU0cXBNOVVHemZsd0xtU3VPRXJ4elNEa1VkVEtldE9fVG9rZW46UERZMmIyeHVQb0o0ck54bVN6S2NBdjIwbmZlXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>通过属性值判定是否死亡，同时读取isDeath属性防止重复死亡。</p>
 <h3 id="7-1防止重复播放死亡动画"><a href="#7-1防止重复播放死亡动画" class="headerlink" title="7.1防止重复播放死亡动画"></a>7.1防止重复播放死亡动画</h3><p>montage中最后一帧循环播放，设置节点，当到该节点是destory</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OGNlZWFhZGMwNjFkNjk2MTQwMjY2MzAwZDA5YzllOWVfcXBUUFJXSUNRVVdMa0RHWXpXRHplUWQ0OFlHVk1yNEtfVG9rZW46T005d2JMV2dHb0xMUTB4UEJONWNjR2N2bm1iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
-<h3 id="7-2-防止死亡后仍可以控制角色移动"><a href="#7-2-防止死亡后仍可以控制角色移动" class="headerlink" title="7.2 防止死亡后仍可以控制角色移动"></a>7.2 防止死亡后仍可以控制角色移动</h3><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2NjNzhhMzE0ZWQxYzM5NDEwN2Q1OTRjNzQxOTExMTFfUEZadHVkMGwycWVITm9oTHZySTJZMWFTckQzQ3JsTm5fVG9rZW46V0ZlcmIzeW5sb0M1VjJ4OTdzTmNQNHMybjdiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<h3 id="7-2-防止死亡后仍可以控制角色移动"><a href="#7-2-防止死亡后仍可以控制角色移动" class="headerlink" title="7.2 防止死亡后仍可以控制角色移动"></a>7.2 防止死亡后仍可以控制角色移动</h3><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>调用父类的HPChange Event来判断事件</p>
-<h3 id="7-3UMG敌人血条实现"><a href="#7-3UMG敌人血条实现" class="headerlink" title="7.3UMG敌人血条实现"></a>7.3UMG敌人血条实现</h3><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGMxYTljN2EyMTZjNDg1OGNhZWE2ODc2YWYxNDMzMDNfZDhjaTNVQ1JhclhIZGdCU25FcXNzYmhROVBZU2JHeUxfVG9rZW46QzQ5N2JvM0Ztb3lFT3R4elR3emN3NjdYbkVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<h3 id="7-3UMG敌人血条实现"><a href="#7-3UMG敌人血条实现" class="headerlink" title="7.3UMG敌人血条实现"></a>7.3UMG敌人血条实现</h3><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>enemy类调用父类event，生命值改变时set血条显示百分比；取新值、取ability system中的MaxHP的值相除的百分比，拿取HPBar的实例，get其中的User Widget Object ，再将其cast成我们写的enemybar，调用其中设置血量的函数。</p>
 <h2 id="8-ui主界面的制作-制作一个buffer"><a href="#8-ui主界面的制作-制作一个buffer" class="headerlink" title="8 ui主界面的制作&amp;制作一个buffer"></a>8 ui主界面的制作&amp;制作一个buffer</h2><h3 id="8-1创建血量材质球UI"><a href="#8-1创建血量材质球UI" class="headerlink" title="8.1创建血量材质球UI"></a>8.1创建血量材质球UI</h3><p>材质球可以改变颜色和百分比显示， 写函数设定颜色和百分比。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDVhMGQxMGQ1Mzk0Yzc1OGE2NzUxOThiOTU3MzUzNDlfS2ZrSGJ6VjZSWEp1ZWtBSXBvdEExVzhvdm9DSW9UNHdfVG9rZW46U3B3aWJmRllyb3pyc1l4eXVGZGN4bHdxbklmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h3 id="8-2-创建MainUI"><a href="#8-2-创建MainUI" class="headerlink" title="8.2 创建MainUI"></a>8.2 创建MainUI</h3><p>把Bar拖入即可。</p>
 <p>设置颜色</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YThmZGYxNzhiMjZkZDEzMGJiYzJkZDE4MjA4Zjk5MDJfR0VOU3V1M0h5eHVjemFFRWhYcXJDeVZydVVVSjBpbURfVG9rZW46SjZyRmJrUE94b0dlWHh4dktjU2NJejlMblJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTQ2NDM0ODg3MTdhZmRlZTAyNmMzNzYyZWZhZDAwMTJfT3cyT0N3NVZydVRZaUpidlJsYnluWllmSENyQlpZTUZfVG9rZW46SjZyRmJrUE94b0dlWHh4dktjU2NJejlMblJkXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <p>Sequence分支执行。这是构造函数，在begin前执行。</p>
 <p>在controller类中，在begin下创建UI,再将它set成一个变量，加入到主屏幕（viewport）中。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDc4MzgxY2Y5ZDEyODZkY2YzOGIzNDkwMDJmODUwMGVfaGJZUEQ5MG16Mk9aN3NOaVc5b3VJY3VUU0xzMHhZRlBfVG9rZW46SE1vUmJBc2ptb1NqTHN4dUNZZWNjRnJ0blRnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZWQzM2RmZjQ5N2QwY2ExZTg1YmI4MjA3MTk3MzcyOTVfeWlCNUZrTmE3UUhOd00yMjRJSjRzNlFsa2hTZGQ4Q2xfVG9rZW46TGNaUGJySGNIbzJkUVN4NEg3WmNST3cxblNoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h3 id="8-3-同步角色属性到ui上"><a href="#8-3-同步角色属性到ui上" class="headerlink" title="8.3 同步角色属性到ui上"></a>8.3 同步角色属性到ui上</h3><p>获取正确的Bar，调用其中的函数。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZGNjMTJkODAwZmJkMGZiY2UxYTFhZmZkN2JiNjZhZjhfekppVkZ4WmxDOXh1QmkzTXpvMGZNT0xpVFRXU2llNlZfVG9rZW46RkgzM2JZS1c3b0o3WTF4OGtGNmNiSDdFbktiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h3 id="8-4-制作buffer-自动回复"><a href="#8-4-制作buffer-自动回复" class="headerlink" title="8.4 制作buffer 自动回复"></a>8.4 制作buffer 自动回复</h3><p>继承BaseAbility，类似于平aMelee，也就是一种技能，下面是GE的配置，主要是Duration是永久。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YzkxMGE4ZDJhMjMyMTVjYTAzOTVjZGVjZDRmZTk5ZTNfdXE1N1NTUHhiSmNZNUV1RmhXOVZqM2dEUnV6WGRxVnBfVG9rZW46S0hremJpaTg2b1FnbVF4Tk9kRmM1UU81bk5oXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjA5MDZjODA0ZDUyZjgzYTI3OGM2MTcyODIwM2FmMmNfVkJQcWRTdkc1QjM2Q3NkTHVBZkl1RWoxODBPbDZiUHdfVG9rZW46S1JYWWJJSnpVb2pjM1B4ZTZEZWNUWUtsbnZnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>然后player中调用give即可。</p>
 <h2 id="9-构建技能信息结构体"><a href="#9-构建技能信息结构体" class="headerlink" title="9 构建技能信息结构体"></a>9 构建技能信息结构体</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.h</span></span><br><span class="line"><span class="built_in">UENUM</span>(BlueprintType)</span><br><span class="line"><span class="keyword">enum class</span> <span class="title class_">ECostType</span>:uint8</span><br><span class="line">&#123;</span><br><span class="line">    HP,</span><br><span class="line">    MP,</span><br><span class="line">    Strength</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">USTRUCT</span>(BlueprintType)</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">FGameplayAbilityInfo</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">GENERATED_BODY</span>()</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    <span class="type">float</span> CD;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    ECostType CostType;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    <span class="type">float</span> CostValue;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    UMaterialInstance *IconMaterial;</span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite,Category=<span class="string">&quot;AbilityInfo&quot;</span>)</span><br><span class="line">    TSubclassOf&lt;UBaseGameplayAbility&gt; AbilityClass;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">FGameplayAbilityInfo</span>();</span><br><span class="line">    <span class="built_in">FGameplayAbilityInfo</span>(<span class="type">float</span> CD,ECostType CostType,<span class="type">float</span> CostValue,UMaterialInstance *IconMaterial,  TSubclassOf&lt;UBaseGameplayAbility&gt; AbilityClass);</span><br><span class="line">    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
 
@@ -500,16 +500,16 @@
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">FGameplayAbilityInfo <span class="title">ABaseCharacter::GameplayAbilityInfo</span><span class="params">(TSubclassOf&lt;UBaseGameplayAbility&gt; AbilityClass, <span class="type">int</span> level)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//获取角色组件</span></span><br><span class="line">    UAbilitySystemComponent* MyAbilitySystemComponent =<span class="keyword">this</span>-&gt;<span class="built_in">FindComponentByClass</span>&lt;UAbilitySystemComponent&gt;();</span><br><span class="line">    <span class="comment">//获取技能组</span></span><br><span class="line">    UBaseGameplayAbility* AbilityIncetance = AbilityClass-&gt;<span class="built_in">GetDefaultObject</span>&lt;UBaseGameplayAbility&gt;();</span><br><span class="line">    <span class="keyword">if</span>(MyAbilitySystemComponent&amp;&amp;AbilityIncetance)</span><br><span class="line">    &#123;</span><br><span class="line">       <span class="keyword">return</span>  AbilityIncetance-&gt;<span class="built_in">GetAbilityInfo</span>(level);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">FGameplayAbilityInfo</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
 <h3 id="9-1-技能信息UI获取"><a href="#9-1-技能信息UI获取" class="headerlink" title="9.1 技能信息UI获取"></a>9.1 技能信息UI获取</h3><p>主要是几个UI蓝图函数的书写</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjNiZThjNDQxOGQ4ZWJmNTRhMThmZmY1NmM0MmJhNmFfdnhWYnJuUDBWY3VEUVdjcjY0WDRicnBHeVRCUTJLZmpfVG9rZW46UzdIQmJDWGRqb3NMbE14dFI2d2NuM0xtblJnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODliNzhiZjlkNGNhNDY5NGNjMjlhZjE4MzY2N2I5MjVfNjN1aWV0N2VkbnpTTlUycjhOU1piYUJ4eWoxbG02OTBfVG9rZW46VDNqdWJOSEFpb25yNDN4SUo5bWNYOUpLblNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWY3MzBiYTdiNmE1NWY4OWY0YjM4N2JiNDhkYTZiYjVfbUNKV3VGWFdoeDlKNDc1VzFEckhLMzliZjBvVlJmV2hfVG9rZW46VDNqdWJOSEFpb25yNDN4SUo5bWNYOUpLblNkXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <p>CD显示计时器。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NDhjYjkwYmE5NmI2MzVjZTE2MTg5YzFkMWM1MDMwYWZfZ0RnNHlkenRscEJiVW1DTklPcFlDSnllWXdWSlNTRWtfVG9rZW46U01seWJ2dHFsb0k0bXV4UVE4UmNFamVrbmVmXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
-<h2 id="10-公共库函数的书写及技能初始化"><a href="#10-公共库函数的书写及技能初始化" class="headerlink" title="10 公共库函数的书写及技能初始化"></a>10 公共库函数的书写及技能初始化</h2><p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZTEzNDdhZjgzZGVhMTNiMDA0YTYzNTI4YWIyYjJjYTdfem5wZXpka3htSXFyamZ2TGpvUWRDRzc1cWR6S1AyN3NfVG9rZW46QlNHaWJTWTZWb2tkdFJ4TUJCVGNCcFAybmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YTc3ODIyYTZkZWE2MmM0NGM0NmUwYjQzZDdlZWJhM2FfTmxVWGVQMjdSZjhOYWpONDhQS3Vlem5WVlBIdVFiVFJfVG9rZW46U1pNdWJ4QVRFb0l4U2p4STBiemNDdkF4bk9iXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTMyOGFmNTY2YjU5ZjhiODM0MzU4ODVkMDQ1ZjA0ZWFfclBrQVlmaXRFVjBiZ3JBR1hUdEhYOXFCUGxyM3Rnam9fVG9rZW46U01seWJ2dHFsb0k0bXV4UVE4UmNFamVrbmVmXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
+<h2 id="10-公共库函数的书写及技能初始化"><a href="#10-公共库函数的书写及技能初始化" class="headerlink" title="10 公共库函数的书写及技能初始化"></a>10 公共库函数的书写及技能初始化</h2><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmQ0OWFkZWIwY2E0YjI2NGNiMjM4M2UwMTNjZTk1MzRfeG03eE9yN0JhVG56aHU3WG1SYXpzYVdVTFdBeGlOQzBfVG9rZW46U1pNdWJ4QVRFb0l4U2p4STBiemNDdkF4bk9iXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <p>将技能组成Array方便统一</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2E4OGZiOTM0NWQ4N2ZiOWI0MmUxZDUzOWNlOTQ3MzBfNG5uTmtyVXFVSkNXUWVXNVNyT0ZRVHVuRGRRSzRUMHVfVG9rZW46UHkwdWJQRnh1bzJtazF4RFV4SWNnemZMbmxiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>在角色类中初始化UI,遍历Array，主要是角色类方便统一。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MjQxNGJkM2ViZDA5ZDU5OGFlZTVhMTk5M2M2YzYzZjVfa2E3blJ1OUpKcnBya0toYnJpMjI2TzRUTXB2WDBRN0JfVG9rZW46V0tIM2JYTkVDbzJ0NDl4SVg5d2N3N21lbnZkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h2 id="11-编写回血技能"><a href="#11-编写回血技能" class="headerlink" title="11 编写回血技能"></a>11 编写回血技能</h2><p>最简单的技能。</p>
 <p>编写技能的基础流程，</p>
 <ol>
@@ -519,32 +519,32 @@
 <li>PlayerController中选择按键调用技能Active Ability</li>
 </ol>
 <p>特效可以放在Cost里面也可以是在激活函数的Play Montage中的MA中。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YjBhMWQ1YjU1MzE2NzNiZDNkYmZkNDU2ZDU1MGM3OTJfZHB2MzRLSnp5YVNMZWM3TzFmZEQ3VlJsWEo1ZDZxcVBfVG9rZW46QlU5T2JxQW14b2F4VjR4a1VPd2NBVTA0bnpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>构造函数如上，</p>
 <h2 id="补充-CD的显示"><a href="#补充-CD的显示" class="headerlink" title="补充 CD的显示"></a>补充 CD的显示</h2><p>这个是写在GAB基类BaseGameAbility的，主要意思就是对应UI中的技能与释放的技能，然后开始cd。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWUyNGRhMzZiMDQyN2I3MTNkNTFkOWRlZjMwNGQ0YzBfTldMYVFCelJISkZSd1RSVURsdVJLQkFweFdUektBY09fVG9rZW46UnFsUmJjaUVib21KZWx4Y0dhTmNrU29DbkI2XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NmNlNDg4Y2JhMDk1NDBkMDZlZWNkMzFmNmFlMzJlZTVfU0FaNGVpNTJ6MUhqZ1hPazdIN01XNE15aFliMDBoUWhfVG9rZW46UnFsUmJjaUVib21KZWx4Y0dhTmNrU29DbkI2XzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <p>设置 bool变量，然后开启cd实例数值的显示。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2IwNmZlNjVjMzQ2MDkwNjI5Njk2NTk5NDExODhmYzZfczRKaUhyc1FqejBCWUxEd0o3dkJNd3hVeUdFWlBGd0hfVG9rZW46WlVWQ2J1MGJwb2lvd2F4c2JDR2M0MWVRbnFnXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h2 id="12-编写冲刺技能"><a href="#12-编写冲刺技能" class="headerlink" title="12 编写冲刺技能"></a>12 编写冲刺技能</h2><p>主角的冲刺位移。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NWEzYzE5NWIyMTllOTUxNzFjNzZmMjEwZDg1NGUzYTNfRDhHWWVpa0tMWWZRMmlVaXBwbTgzUjFsMDdkaUM5eTVfVG9rZW46UW80QWJwTzRpb1ZFdEh4T0E0b2N1cVhiblRoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>大致步骤见公式，主要的特别点是</p>
 <ol>
 <li>冲刺时要对敌人进行击飞、眩晕和造成伤害。</li>
 </ol>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MGU5ZjZlNDAxYTY3OTYxMWQ2ZjczMzEwNGE0NDBkYThfaTZiNDBJRlFwbVowb0IwOFpQMFBzN0ljcnl3WnRmZ0FfVG9rZW46WEZ1MWJ6YzAyb0lwUHd4ZmU5ZGN1ZzRCbmZoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>眩晕就是stop Controller过一会再给回去。</p>
 <p>击退：</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTcxNDM4NDNmZWNkMTNjNjc2NDc5YTZmZjAzYjgwY2FfNnBlcE1SdTEyQ0tQS3ZIZFJNaUh0eGpSQ0lNZmZKZEFfVG9rZW46UGwxd2J4NFlIb1Vxd3B4a1N5OWNQTzRRbmNkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>主要就是播放montage，然后0摩擦，给Impulse，然后恢复摩擦，主要点是获取主角位置来设置力的方向。</p>
 <ol>
 <li>冲刺时要将主角和受击敌人的摩擦力写为零。</li>
 </ol>
 <p>也很简单，就是更改Character Movement中的Ground Friction。不过要在游戏开始时记录原有摩擦力，用来还原摩擦力。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NjQxYWU3YTU1ODFiNzRhZmU3YzkwOWJkMmI5NmJhZWRfQkJDVXV4U0taaEZQM1AyVTNJUjRseGg5eHZ1M2tESmhfVG9rZW46RThzcmJCZWhxb1JBeTJ4WVhZeGNka1pWbmNjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <ol>
 <li>在冲刺技能释放过程中禁止使用其他技能打断。</li>
 </ol>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MTE1MTIwYjQ5MDQ1NjY2MTk1Y2M2NDQxY2EzYmM0MzhfNUZRcDhrZ21uak5COHpJNWlKRFl0TlprbTFrNXZsT1lfVG9rZW46VUlMeWJFSzVab3JQakd4elEwSmNlM1V6bnJMXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=YTJhODgwY2Q1NjdiNGExZTgwMjg2OThmMzRmNzczNDFfbFFTNlowQUNMWEZldERsY1JOR211eTkxRURiMExQakNfVG9rZW46VUlMeWJFSzVab3JQakd4elEwSmNlM1V6bnJMXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <p>Activation Owned Tags是在技能释放过程中挂起，然后我们在其他技能中将active tag填写在Activation  Blocked Tags就可以阻止其他技能释放了。</p>
 <h2 id="13-编写激光技能"><a href="#13-编写激光技能" class="headerlink" title="13 编写激光技能"></a>13 编写激光技能</h2><p>特殊点：</p>
 <ol>
@@ -556,30 +556,30 @@
 <h3 id="13-1-解决1"><a href="#13-1-解决1" class="headerlink" title="13.1 解决1"></a>13.1 解决1</h3><p>射线从人物身前开始，在射到第一个物体结束。</p>
 <p>神奇解决办法：用Springarm 也就是相机杆子，他会在终点截止（打开 Collision Test），设置一个point在Springarm 子类中，他会自动附在终端。然后就编写动画将激光尾端终止在point处。</p>
 <p>在Event蓝图里获取信息。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGEwMjUyNmI2MTY0NmRjZjdmZTQ4ZWI5MGU5MDhiZWNfZXFTTG9QbGNCd25rZUlnYlRiamJjeTJXOTNnR0xBYjZfVG9rZW46S24ybGI3cmp3b0QyMTF4bTFFV2NIUlBwbk9jXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>在动画蓝图中更改end骨骼的位置。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OWNlOTZhZDZhM2U4NjcxOTBlNmI4OGZiMjRmZTQ4YWZfSGFGelJlR3NGSVJOVXQyT29VQmg4RTdhVDZOMlNNdWVfVG9rZW46SlVlN2Jib3hSb3RSell4ZUk3UWNWallZbkpoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>主要是Transform bone的设置。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=NGFlMjAxNjMwMzhlMjQxNTI0NzQ5ZWZiNWM0N2U1YzVfOUlQRXFsYmE2ZTRTa25kRFJGN21BYWZmbEs2VXJNSnpfVG9rZW46QmY3SWJpMkhYb1c0Mlh4QVgyRmNobTRubmJpXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>然后把动画挂载在actor上即可。</p>
 <h3 id="13-2-解决2"><a href="#13-2-解决2" class="headerlink" title="13.2 解决2"></a>13.2 解决2</h3><p>持续性技能，各个技能之间的打断关系，终止条件的判断。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MDFhNmZmYmU0YjZjMzdmMTJiY2JhOTc4ZDNlYzhiN2VfVkFwYmpFRDNQUzFqaHB2YWZNdVJTNHRDNmVIVGZEWE9fVG9rZW46RldLTmJvZ3Jqb0ZQZ2F4NFQ3dmNmUlRTblVoXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWI2MWFlNDVhN2Y1M2QyMzkwYTQ1NzNlMzA1ZTkwNmJfYm5UTGgyUjY2VnU2UEQxazlCZk5xZjF0SXYyY08yN0FfVG9rZW46RldLTmJvZ3Jqb0ZQZ2F4NFQ3dmNmUlRTblVoXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <p>在基类中更改，每个技能之间可以取消其他技能，activation Blocked Tags的优先级比较高，会阻止其他打断。</p>
 <p>启用关闭条件是 按第一下启动，按第二下关闭，就需要代理 去关闭（？），重点是代理事件，不用tick里面去查看</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZmY2NmYyNWY5MDg1YWNjYmNkMDgyODFjYmZlYjQ0MDFfQ1psdzR3Q0RnM2llOURPdTJsVFRJa21kQnBZTWxkbmNfVG9rZW46V0ptNWJzMmU3bzhkeUF4ZERlOWN1NEo2bnJkXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <p>二次点击时call event，在GAB中start处绑定事件。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=Y2QzYTNhNDgxMjkxZWYzNTA2ODc4ZGU0YzZkYmQ2ZGNfSzhDMWdlbXVOVk9TSmJxdGl4d05BSUtvSTllWmFOVDBfVG9rZW46SzNzR2I3Q0xWb0g1YjV4YW1OZmNmM29kblA1XzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h3 id="13-3-解决3"><a href="#13-3-解决3" class="headerlink" title="13.3 解决3"></a>13.3 解决3</h3><p>射线生成。</p>
 <p>生成在Player的Laser Point处，然后attach在该component。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ZDQ5ZmI4NDY1MTFjZTlmM2YwZGFkNzM2ZjJhNzRhMTJfYVVuS0VYQlg1VHRNTzhRZjhDaDdpQWdpbWp6d2ExUXBfVG9rZW46UFlURmJzYzVEb3dkZkR4dWZrN2NzdjhJbjRjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=ODM4NDA3MTJlZTA2YTFhMmE3YjE5NWE3YWIxM2I4YzRfZzVYYUNlU041TnV5WEZPYU9xVHVHcnRaMTJtOTZhbHlfVG9rZW46UFlURmJzYzVEb3dkZkR4dWZrN2NzdjhJbjRjXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <h3 id="13-4-解决4"><a href="#13-4-解决4" class="headerlink" title="13.4 解决4"></a>13.4 解决4</h3><p>对敌人造成伤害。</p>
 <p>通过碰撞体碰撞体获取敌人实例，放入array中，overlap end是移除。</p>
 <p>重点是如何传到GAB中：</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MWZkNTI0MzMzNTQzYjhmOGUyM2ZjMTFlNjE4ZTExODJfQ3ZmNDloVXBrVHhYMjJCSzlxTkJpd2VjbDkzcUdSZDZfVG9rZW46TTZHMWJLcGNlb0JJYjV4Z3NnUmN6OERBblFiXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=OTdmMDVmOTk5YTZiNjZhY2Y5ZWVkMzYzYzNlNjQ3NmFfRkx5bGRhZk05NmRrelR0bU5vWmk1Umk4aDE2ekNlYjBfVG9rZW46TTZHMWJLcGNlb0JJYjV4Z3NnUmN6OERBblFiXzE3Mjk5MjY4MDc6MTcyOTkzMDQwN19WNA" alt="img"></p>
 <p>Set Timer by Event 的作用是每隔一段时间调用一次事件，</p>
 <p>在本次使用中，也就是每次发出一个data,通过tag标签传给GAB，其中data包装的就是all enemy的数组变量。</p>
 <p>然后到了GAB中，我们先等待接收到event tag，然后拆解data，就可以进行一系列操作了。</p>
-<p><img lazyload src="/images/loading.svg" data-src="https://z1wt6ruhl99.feishu.cn/space/api/box/stream/download/asynccode/?code=MmRkNDlmZDM5ZjYwZTk0YmQ0YmVhOGZkOTIyMDkzZWRfcE1hRmh3U212ZzdraDU3c1V6RHpkZ0ZEd3RucG1ld0hfVG9rZW46R3JKTWIxc2Zyb2tYSU14MVpJWGN5bkd2blVjXzE3Mjk5MjE2NTc6MTcyOTkyNTI1N19WNA" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
 <h2 id="14-编写天崩地裂技能"><a href="#14-编写天崩地裂技能" class="headerlink" title="14 编写天崩地裂技能"></a>14 <strong>编写天崩地裂技能</strong></h2><h3 id="14-1-编写选取目标函数c"><a href="#14-1-编写选取目标函数c" class="headerlink" title="14.1 编写选取目标函数c++"></a>14.1 编写选取目标函数c++</h3><p>创建c++函数，基类为<strong>GameplayAbilityTargetActor。</strong></p>
 <p>覆写以下函数：</p>
 <div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">StartTargeting</span><span class="params">(UGameplayAbility* Ability)</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">ConfirmTargetingAndContinue</span><span class="params">()</span> <span class="keyword">override</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">UFUNCTION</span>(BlueprintCallable,Category=<span class="string">&quot;GroundSelect&quot;</span>)</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">GetPlayerLookAtPoint</span><span class="params">(FVector&amp; Out_LookPoint)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">UPROPERTY</span>(EditAnywhere,BlueprintReadWrite ,meta=(ExposeOnSpawn=<span class="literal">true</span>),Category=<span class="string">&quot;GroundSelect&quot;</span>)</span><br><span class="line">    <span class="type">float</span> SelectRadius;<span class="comment">//上面的这个meta的作用是，在spawn的时候就赋予初值</span></span><br></pre></td></tr></table></figure></div>
@@ -605,7 +605,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-10-26 14:58:55
+                    :</strong> 2024-10-26 15:13:46
             </li>
         
         <li>
@@ -637,7 +637,7 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/08/29/GAS-learn2/"
+                        href="/2024/09/12/GAS-learn2/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
@@ -649,6 +649,21 @@
                         </a>
                     </div>
                 
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/03/21/How-to-post-your-article/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">windows搭建个人博客 GitHub page+hexo</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -739,7 +754,7 @@
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        4 posts in total
+                        5 posts in total
                     </span>
                     
                 </p>

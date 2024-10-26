@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="沐云白">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/10/11/disassemble-the-joker-card-effect/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="做了挺多状态的开关的bool变量，有些暂时还没看出有啥用，但是做了的话代码会干净很多，预防bug的产生。 丝滑的很多实现都是通过在update里调用lerp、DOTween库来实现的， 1 简单的拖动和悬浮在纸牌上的检测。鼠标在纸牌上面的检测，基本上是用unity自带的接口完成的。 1.1拖动的实现： 调用darg函数，来获取抓住图片的信息，主要是 鼠标位置、偏移量，然后修改一些设置防止误触（很关">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小丑牌丝滑效果代码拆解">
+<meta property="og:url" content="http://example.com/2024/10/11/Disassemble-the-Joker-Card-effect/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="做了挺多状态的开关的bool变量，有些暂时还没看出有啥用，但是做了的话代码会干净很多，预防bug的产生。 丝滑的很多实现都是通过在update里调用lerp、DOTween库来实现的， 1 简单的拖动和悬浮在纸牌上的检测。鼠标在纸牌上面的检测，基本上是用unity自带的接口完成的。 1.1拖动的实现： 调用darg函数，来获取抓住图片的信息，主要是 鼠标位置、偏移量，然后修改一些设置防止误触（很关">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="article:published_time" content="2024-10-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-26T07:20:14.323Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/asynccode">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            小丑牌丝滑效果代码拆解 | 沐云白的个人主页
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沐云白的个人主页","subtitle":{"text":["What`s happened`s happened.","Which is an expression of faith in the mechanies of the world.","It`s not an excuse to do nothing."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"GITHUB":{"path":"https://github.com/zhangyuxinn","icon":"fa-brands fa-github"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                沐云白的个人主页
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">5</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">小丑牌丝滑效果代码拆解</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">沐云白</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-10-11</span>
+        <span class="mobile">2024-10-11</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-10-26 15:20:14</span>
+            <span class="mobile">2024-10-26 15:20:14</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>做了挺多状态的开关的bool变量，有些暂时还没看出有啥用，但是做了的话代码会干净很多，预防bug的产生。</p>
+<p>丝滑的很多实现都是通过在update里调用lerp、DOTween库来实现的，</p>
+<h1 id="1-简单的拖动和悬浮在纸牌上的检测。"><a href="#1-简单的拖动和悬浮在纸牌上的检测。" class="headerlink" title="1 简单的拖动和悬浮在纸牌上的检测。"></a>1 简单的拖动和悬浮在纸牌上的检测。</h1><p>鼠标在纸牌上面的检测，基本上是用unity自带的接口完成的。</p>
+<p>1.1拖动的实现：</p>
+<p>调用darg函数，来获取抓住图片的信息，主要是 鼠标位置、偏移量，然后修改一些设置防止误触（很关键）</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="type">void</span> <span class="title">OnBeginDrag</span><span class="params">(PointerEventData eventData)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    BeginDragEvent.<span class="built_in">Invoke</span>(<span class="keyword">this</span>);</span><br><span class="line">    Vector2 mousePosition = Camera.main.<span class="built_in">ScreenToWorldPoint</span>(Input.mousePosition);</span><br><span class="line">    offset = mousePosition - (Vector2)transform.position;<span class="comment">//获取偏移量。</span></span><br><span class="line">    isDragging = <span class="literal">true</span>;</span><br><span class="line">    canvas.<span class="built_in">GetComponent</span>&lt;GraphicRaycaster&gt;().enabled = <span class="literal">false</span>;<span class="comment">//保证在拖动时不会触发其他ui事件。</span></span><br><span class="line">    imageComponent.raycastTarget = <span class="literal">false</span>;<span class="comment">//？ 问一下</span></span><br><span class="line"></span><br><span class="line">    wasDragged = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后就是拖动的过程中的处理，先是如何拖动的：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (isDragging)</span><br><span class="line">&#123;</span><br><span class="line">    Vector2 targetPosition = Camera.main.<span class="built_in">ScreenToWorldPoint</span>(Input.mousePosition) - offset;</span><br><span class="line">    Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;</span><br><span class="line">    Vector2 velocity = direction * Mathf.<span class="built_in">Min</span></span><br><span class="line">        (moveSpeedLimit, Vector<span class="number">2.</span><span class="built_in">Distance</span>(transform.position, targetPosition) / Time.deltaTime);</span><br><span class="line">    transform.<span class="built_in">Translate</span>(velocity * Time.deltaTime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>逻辑还是比较简单的，大概就是获取获取当前帧鼠标的世界坐标，然后算出标准化的方向，乘上速率就是向量的速度了， 写这么复杂主要还是为了让卡牌的拖动速度有个上限，有种滑动的感觉。</p>
+<p>其实他这个是有种微分的思想，一帧一帧来考虑，上一帧的位置来指向下一帧的位置，以这样来位移行动。</p>
+<p>接着是个可选项，个人感觉还是做了比较好，这个函数的目的是保证卡牌不会拖出屏幕，如果不做的话可能会在屏幕外松手，然后就抓不到卡牌了。。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">ClampPosition</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Vector2 screenBounds = Camera.main.<span class="built_in">ScreenToWorldPoint</span>(<span class="keyword">new</span> <span class="built_in">Vector3</span>(Screen.width, Screen.height, Camera.main.transform.position.z));</span><br><span class="line">    Vector3 clampedPosition = transform.position;</span><br><span class="line">    clampedPosition.x = Mathf.<span class="built_in">Clamp</span>(clampedPosition.x, -screenBounds.x, screenBounds.x);</span><br><span class="line">    clampedPosition.y = Mathf.<span class="built_in">Clamp</span>(clampedPosition.y, -screenBounds.y, screenBounds.y);</span><br><span class="line">    transform.position = <span class="keyword">new</span> <span class="built_in">Vector3</span>(clampedPosition.x, clampedPosition.y, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>使用 <code>Mathf.Clamp</code> 方法将UI元素的x坐标限制在 <code>-Screen.width</code> 和 <code>Screen.width</code> 之间。<code>Mathf.Clamp</code> 方法确保值不会超出指定的最小值和最大值。</li>
+</ul>
+<p>按照逻辑顺序，现在就是要考虑拖动结束，也就是松手的时候的处理了。</p>
+<p>先是要把开始拖动时修改的设置改回去，，然后要考虑的是，我们之前设置了拖动的速度上限，如果松手就直接停止拖拽，卡牌就会停在原地，所以我们要延迟一帧在停止。</p>
+<p>这种模式通常用于在拖拽操作结束后执行一些清理工作，例如重置状态、更新UI元素的显示等。使用协程可以确保这些操作在下一帧开始之前完成，从而避免在拖拽过程中出现不一致的状态。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="type">void</span> <span class="title">OnEndDrag</span><span class="params">(PointerEventData eventData)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    EndDragEvent.<span class="built_in">Invoke</span>(<span class="keyword">this</span>);</span><br><span class="line">    isDragging = <span class="literal">false</span>;</span><br><span class="line">    canvas.<span class="built_in">GetComponent</span>&lt;GraphicRaycaster&gt;().enabled = <span class="literal">true</span>;</span><br><span class="line">    imageComponent.raycastTarget = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">StartCoroutine</span>(<span class="built_in">FrameWait</span>());<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">    <span class="function">IEnumerator <span class="title">FrameWait</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForEndOfFrame</span><span class="params">()</span></span>;</span><br><span class="line">        wasDragged = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h1 id="2-纸牌排列和出牌收牌的检测"><a href="#2-纸牌排列和出牌收牌的检测" class="headerlink" title="2 纸牌排列和出牌收牌的检测"></a>2 纸牌排列和出牌收牌的检测</h1><p>start的处理。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Start</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; cardsToSpawn; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">Instantiate</span>(slotPrefab, transform);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    rect = <span class="built_in">GetComponent</span>&lt;RectTransform&gt;();</span><br><span class="line">    cards = <span class="built_in">GetComponentsInChildren</span>&lt;Card&gt;().<span class="built_in">ToList</span>();</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cardCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    foreach (Card card in cards)</span><br><span class="line">    &#123;</span><br><span class="line">        card.PointerEnterEvent.<span class="built_in">AddListener</span>(CardPointerEnter);</span><br><span class="line">        card.PointerExitEvent.<span class="built_in">AddListener</span>(CardPointerExit);</span><br><span class="line">        card.BeginDragEvent.<span class="built_in">AddListener</span>(BeginDrag);</span><br><span class="line">        card.EndDragEvent.<span class="built_in">AddListener</span>(EndDrag);</span><br><span class="line">        card.name = cardCount.<span class="built_in">ToString</span>();</span><br><span class="line">        cardCount++;</span><br><span class="line">    &#125;<span class="comment">//把每张卡牌加入委托。</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">StartCoroutine</span>(<span class="built_in">Frame</span>());</span><br><span class="line"></span><br><span class="line">    <span class="function">IEnumerator <span class="title">Frame</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSecondsRealtime</span><span class="params">(<span class="number">.1f</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; cards.Count; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (cards[i].cardVisual != null)</span><br><span class="line">                cards[i].cardVisual.<span class="built_in">UpdateIndex</span>(transform.childCount);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>先生成实例，然后把他们加入到cards的列表中。</p>
+<p>协程部分应该是用来更新每个卡片的视觉表示的索引，为了重新排序UI元素。</p>
+<p>这个函数是：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="type">void</span> <span class="title">UpdateIndex</span><span class="params">(<span class="type">int</span> length)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    transform.<span class="built_in">SetSiblingIndex</span>(parentCard.transform.parent.<span class="built_in">GetSiblingIndex</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>将牌抓起在上一节已经做过了，现在要来做在一排牌中，抓起一张可以放到另一个位置中，让他们自动排序。</p>
+<p>然后我们需要的是抓牌，也就是需要知道选中的牌是哪张。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">BeginDrag</span><span class="params">(Card card)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    selectedCard = card;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>现在是过程的处理。</p>
+<p>先实现核心部分，交换牌。</p>
+<ul>
+<li>要做一个状态的控制，就用一个简单的bool值表示把。isCrossing</li>
+<li>他其实是把位置和卡牌的实体分开了，</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>cardSlot是卡槽，位置不变，里面的 0、1、2啥的才是卡本体，通过判断卡本体和卡槽的位置来决定是否换位置。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; cards.Count; i++)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (selectedCard.transform.position.x &gt; cards[i].transform.position.x)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (selectedCard.<span class="built_in">ParentIndex</span>() &lt; cards[i].<span class="built_in">ParentIndex</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">Swap</span>(i);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (selectedCard.transform.position.x &lt; cards[i].transform.position.x)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (selectedCard.<span class="built_in">ParentIndex</span>() &gt; cards[i].<span class="built_in">ParentIndex</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">Swap</span>(i);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>试过删去isCrossing感觉没影响，但是这样写比较规范可以预防一些奇怪的bug把。</p>
+<p>visual部分貌似还没用到。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">Swap</span><span class="params">(<span class="type">int</span> index)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    isCrossing = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">//获取卡牌底座。</span></span><br><span class="line">    Transform focusedParent = selectedCard.transform.parent;</span><br><span class="line">    Transform crossedParent = cards[index].transform.parent;</span><br><span class="line">    <span class="comment">//把换过来的咖啡设置到对应的底座里，然后根据selected来确定具体位置</span></span><br><span class="line">    cards[index].transform.<span class="built_in">SetParent</span>(focusedParent);</span><br><span class="line">    cards[index].transform.localPosition = cards[index].selected ? <span class="keyword">new</span> <span class="built_in">Vector3</span>(<span class="number">0</span>, cards[index].selectionOffset, <span class="number">0</span>) : Vector<span class="number">3.</span>zero;</span><br><span class="line">    selectedCard.transform.<span class="built_in">SetParent</span>(crossedParent);</span><br><span class="line"></span><br><span class="line">    isCrossing = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">//往下的部分还没理解。</span></span><br><span class="line">    <span class="keyword">if</span> (cards[index].cardVisual == null)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    <span class="type">bool</span> swapIsRight = cards[index].<span class="built_in">ParentIndex</span>() &gt; selectedCard.<span class="built_in">ParentIndex</span>();</span><br><span class="line">    cards[index].cardVisual.<span class="built_in">Swap</span>(swapIsRight ? <span class="number">-1</span> : <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Updated Visual Indexes</span></span><br><span class="line">    foreach (Card card in cards)</span><br><span class="line">    &#123;</span><br><span class="line">        card.cardVisual.<span class="built_in">UpdateIndex</span>(transform.childCount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>后续就是松手的endDrag部分：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">EndDrag</span><span class="params">(Card card)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (selectedCard == null)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">    selectedCard.transform.<span class="built_in">DOLocalMove</span></span><br><span class="line">    (selectedCard.selected ?</span><br><span class="line">     <span class="keyword">new</span> <span class="built_in">Vector3</span>(<span class="number">0</span>,selectedCard.selectionOffset,<span class="number">0</span>) : </span><br><span class="line">     Vector<span class="number">3.</span>zero, tweenCardReturn ? <span class="number">.15f</span> : <span class="number">0</span>).<span class="built_in">SetEase</span>(Ease.OutBack);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这俩不知道干啥用的说实话。。</span></span><br><span class="line">    rect.sizeDelta += Vector<span class="number">2.</span>right;</span><br><span class="line">    rect.sizeDelta -= Vector<span class="number">2.</span>right;</span><br><span class="line"></span><br><span class="line">    selectedCard = null;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>DOTween，这是一个在Unity中广泛使用的动画库，它提供了简洁的API来创建平滑的动画效果。代码的目的是在卡片被选中时，使用DOTween的<code>DOLocalMove</code>方法来平滑地移动卡片的位置。</li>
+<li>.SetEase(Ease.<strong>OutBack</strong>);这个方法调用设置了动画的缓动类型为<code>Ease.OutBack</code>，这是一种缓动函数，它会使动画在结束时有一个超出目标位置再返回的效果，这可以给动画增加一种弹性的感觉。</li>
+</ul>
+<p>到这里基本的操作都已经做完了，接下来正式进入丝滑的动画表现实现。</p>
+<h1 id="3-CardVisual"><a href="#3-CardVisual" class="headerlink" title="3 CardVisual"></a>3 CardVisual</h1><p>其实之前移动的都是slot，也就是放牌的壳子，接下来我们要把壳子去掉，开始移动真正的牌。</p>
+<p>四个核心函数。</p>
+<h2 id="3-0-基础变量"><a href="#3-0-基础变量" class="headerlink" title="3.0 基础变量"></a>3.0 基础变量</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">CreateAssetMenu</span>(fileName = <span class="string">&quot;CurveParameters&quot;</span>, menuName = <span class="string">&quot;Hand Curve Parameters&quot;</span>)]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CurveParameters</span> : ScriptableObject</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> AnimationCurve positioning;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> positioningInfluence = <span class="number">.1f</span>;</span><br><span class="line">    <span class="keyword">public</span> AnimationCurve rotation;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">float</span> rotationInfluence = <span class="number">10</span>f;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>第一个比较重要的是这个ScriptableObject，他存储了动画曲线和一些俩个参数，用他们来控制卡牌拖拽时的晃动。</p>
+<p>完整效果：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<h2 id="3-1-HandPositioning"><a href="#3-1-HandPositioning" class="headerlink" title="3.1 HandPositioning"></a>3.1 HandPositioning</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">HandPositioning</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    curveYOffset = (curve.positioning.<span class="built_in">Evaluate</span> </span><br><span class="line">    (parentCard.<span class="built_in">NormalizedPosition</span>()) * curve.positioningInfluence) * parentCard.<span class="built_in">SiblingAmount</span>();</span><br><span class="line">    curveYOffset = parentCard.<span class="built_in">SiblingAmount</span>() &lt; <span class="number">5</span> ? <span class="number">0</span> : curveYOffset;</span><br><span class="line">    curveRotationOffset = curve.rotation.<span class="built_in">Evaluate</span>(parentCard.<span class="built_in">NormalizedPosition</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>该函数不生效的状态。</p>
+<p>curve.positioning.Evaluate(time);</p>
+<p>返回的是这个曲线在time点的值。</p>
+<h2 id="3-2-SmoothFollow"><a href="#3-2-SmoothFollow" class="headerlink" title="3.2 SmoothFollow"></a>3.2 SmoothFollow</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">SmoothFollow</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Vector3 verticalOffset = (Vector<span class="number">3.</span>up * (parentCard.isDragging ? <span class="number">0</span> : curveYOffset));</span><br><span class="line">    transform.position = Vector<span class="number">3.L</span>erp(transform.position, cardTransform.position + verticalOffset, followSpeed * Time.deltaTime);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>核心函数，让卡牌可以沿lerp曲线到达卡牌壳子的位置。 （那个offset我还是不知道有啥区别好吧。。。）</p>
+<h2 id="3-3-FollowRotation"><a href="#3-3-FollowRotation" class="headerlink" title="3.3 FollowRotation"></a>3.3 FollowRotation</h2><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">FollowRotation</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Vector3 movement = (transform.position - cardTransform.position);</span><br><span class="line">    movementDelta = Vector<span class="number">3.L</span>erp(movementDelta, movement, <span class="number">25</span> * Time.deltaTime);</span><br><span class="line">    Vector3 movementRotation =</span><br><span class="line">     (parentCard.isDragging ? movementDelta : movement) * rotationAmount;</span><br><span class="line">    rotationDelta = </span><br><span class="line">    Vector<span class="number">3.L</span>erp(rotationDelta, movementRotation, rotationSpeed * Time.deltaTime);</span><br><span class="line">    transform.eulerAngles = </span><br><span class="line">    <span class="keyword">new</span> <span class="built_in">Vector3</span>(transform.eulerAngles.x, transform.eulerAngles.y, Mathf.<span class="built_in">Clamp</span>(rotationDelta.x, <span class="number">-60</span>, <span class="number">60</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>效果就是可以让卡牌有飞向目标的那个旋转效果。</p>
+<ul>
+<li>其中movementDelta、rotationDelta不用初始化，因为这个函数是放在update里面的，一开始进去的时候卡牌是精止的，movement&#x3D;（0，0，0），这两个变换就会无限趋近于0，等于初始化完成了。</li>
+<li>然后通过距离来控制卡牌旋转的角度，距离目标点越远，也就是卡牌移动的速度越快，角度越大。</li>
+<li>对于抓住的牌，多用了个movementDelta来更细腻的控制转动角度，会更跟手，转动的速度会慢一点点。</li>
+</ul>
+<h1 id="4-除了前面部分的剩下丝滑部分"><a href="#4-除了前面部分的剩下丝滑部分" class="headerlink" title="4 除了前面部分的剩下丝滑部分"></a>4 除了前面部分的剩下丝滑部分</h1><h2 id="4-1-CardTilt"><a href="#4-1-CardTilt" class="headerlink" title="4.1 CardTilt"></a>4.1 CardTilt</h2><p>这个代码的效果是卡牌有漂浮的效果，并且当你鼠标放到卡牌上时，他会向鼠标放置的角度倾斜一点。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">CardTilt</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//比较巧妙的一种写法，这个函数放在update中，</span></span><br><span class="line">    <span class="comment">//一开始的savedIndex就会等于parentCard.ParentIndex()，然后当你抓起卡牌时，他就不会改变，也就达到了save的目的</span></span><br><span class="line">    savedIndex = parentCard.isDragging ? savedIndex : parentCard.<span class="built_in">ParentIndex</span>();</span><br><span class="line">    <span class="comment">//鼠标悬浮在上面的时候sine和cosine就小一点。</span></span><br><span class="line">    <span class="type">float</span> sine = Mathf.<span class="built_in">Sin</span>(Time.time + savedIndex) * (parentCard.isHovering ? <span class="number">.2f</span> : <span class="number">1</span>);</span><br><span class="line">    <span class="type">float</span> cosine = Mathf.<span class="built_in">Cos</span>(Time.time + savedIndex) * (parentCard.isHovering ? <span class="number">.2f</span> : <span class="number">1</span>);</span><br><span class="line">    <span class="comment">//如果卡牌在鼠标下，就计算倾斜角度，通过离质心的距离来算。</span></span><br><span class="line">    Vector3 offset = transform.position - Camera.main.<span class="built_in">ScreenToWorldPoint</span>(Input.mousePosition);</span><br><span class="line">    <span class="type">float</span> tiltX = parentCard.isHovering ? ((offset.y * <span class="number">-1</span>) * manualTiltAmount) : <span class="number">0</span>;</span><br><span class="line">    <span class="type">float</span> tiltY = parentCard.isHovering ? ((offset.x) * manualTiltAmount) : <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//如果卡牌被拖动，就不改变轴的旋转值，不然就根据在牌的数量来计算展开的角度</span></span><br><span class="line">    <span class="type">float</span> tiltZ = parentCard.isDragging ? tiltParent.eulerAngles.z : </span><br><span class="line">        (curveRotationOffset * (curve.rotationInfluence * parentCard.<span class="built_in">SiblingAmount</span>()));</span><br><span class="line">    <span class="comment">//让卡牌能丝滑的达到目标角度。</span></span><br><span class="line">    <span class="type">float</span> lerpX = </span><br><span class="line">        Mathf.<span class="built_in">LerpAngle</span>(tiltParent.eulerAngles.x, tiltX + (sine * autoTiltAmount), tiltSpeed * Time.deltaTime);</span><br><span class="line">    <span class="type">float</span> lerpY = </span><br><span class="line">        Mathf.<span class="built_in">LerpAngle</span>(tiltParent.eulerAngles.y, tiltY + (cosine * autoTiltAmount), tiltSpeed * Time.deltaTime);</span><br><span class="line">    <span class="type">float</span> lerpZ = </span><br><span class="line">        Mathf.<span class="built_in">LerpAngle</span>(tiltParent.eulerAngles.z, tiltZ, tiltSpeed / <span class="number">2</span> * Time.deltaTime);</span><br><span class="line"></span><br><span class="line">    tiltParent.eulerAngles = <span class="keyword">new</span> <span class="built_in">Vector3</span>(lerpX, lerpY, lerpZ);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="4-2-鼠标放上去后的回弹效果。"><a href="#4-2-鼠标放上去后的回弹效果。" class="headerlink" title="4.2 鼠标放上去后的回弹效果。"></a>4.2 鼠标放上去后的回弹效果。</h2><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">Select</span><span class="params">(Card card, <span class="type">bool</span> state)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//终止其他动画</span></span><br><span class="line">    DOTween.<span class="built_in">Kill</span>(<span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">    <span class="type">float</span> dir = state ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    shakeParent.<span class="built_in">DOPunchPosition</span>(shakeParent.up * selectPunchAmount * dir, scaleTransition, <span class="number">10</span>, <span class="number">1</span>);</span><br><span class="line">    shakeParent.<span class="built_in">DOPunchRotation</span>(Vector<span class="number">3.f</span>orward * (hoverPunchAngle/<span class="number">2</span>), hoverTransition, <span class="number">20</span>, <span class="number">1</span>).<span class="built_in">SetId</span>(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(scaleAnimations)</span><br><span class="line">        transform.<span class="built_in">DOScale</span>(scaleOnHover, scaleTransition).<span class="built_in">SetEase</span>(scaleEase);</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>核心函数是DOPunchPosition和DOPunchRotation，会给卡牌一个脉冲，卡牌弹一下的效果。</p>
+<p>接下来是一些基础的控制部分。</p>
+<p>这个就是拖拽的时候卡牌会变大一点。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">BeginDrag</span><span class="params">(Card card)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(scaleAnimations)</span><br><span class="line">        transform.<span class="built_in">DOScale</span>(scaleOnSelect, scaleTransition).<span class="built_in">SetEase</span>(scaleEase);</span><br><span class="line"></span><br><span class="line">    canvas.overrideSorting = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>当然结束拖拽的时候卡牌要变小回去。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">EndDrag</span><span class="params">(Card card)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    canvas.overrideSorting = <span class="literal">false</span>;</span><br><span class="line">    transform.<span class="built_in">DOScale</span>(<span class="number">1</span>, scaleTransition).<span class="built_in">SetEase</span>(scaleEase);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>鼠标开始悬浮和结束悬浮的时候也是类似的。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">PointerEnter</span><span class="params">(Card card)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(scaleAnimations)</span><br><span class="line">        transform.<span class="built_in">DOScale</span>(scaleOnHover, scaleTransition).<span class="built_in">SetEase</span>(scaleEase);</span><br><span class="line"></span><br><span class="line">    DOTween.<span class="built_in">Kill</span>(<span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">    shakeParent.<span class="built_in">DOPunchRotation</span>(Vector<span class="number">3.f</span>orward * hoverPunchAngle, hoverTransition, <span class="number">20</span>, <span class="number">1</span>).<span class="built_in">SetId</span>(<span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">PointerExit</span><span class="params">(Card card)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!parentCard.wasDragged)</span><br><span class="line">        transform.<span class="built_in">DOScale</span>(<span class="number">1</span>, scaleTransition).<span class="built_in">SetEase</span>(scaleEase);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这俩代码与前面的部分类似，</p>
+<ul>
+<li>当 <code>overrideSorting</code> 设置为 <code>true</code> 时，画布将覆盖其子对象的排序顺序，这通常用于确保阴影显示在正确的位置。</li>
+</ul>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">PointerUp</span><span class="params">(Card card, <span class="type">bool</span> longPress)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(scaleAnimations)</span><br><span class="line">        transform.<span class="built_in">DOScale</span>(longPress ? scaleOnHover : scaleOnSelect, scaleTransition).<span class="built_in">SetEase</span>(scaleEase);</span><br><span class="line">    canvas.overrideSorting = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    visualShadow.localPosition = shadowDistance;</span><br><span class="line">    shadowCanvas.overrideSorting = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="type">void</span> <span class="title">PointerDown</span><span class="params">(Card card)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(scaleAnimations)</span><br><span class="line">        transform.<span class="built_in">DOScale</span>(scaleOnSelect, scaleTransition).<span class="built_in">SetEase</span>(scaleEase);</span><br><span class="line">        </span><br><span class="line">    visualShadow.localPosition += (-Vector<span class="number">3.</span>up * shadowOffset);</span><br><span class="line">    shadowCanvas.overrideSorting = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 小丑牌丝滑效果代码拆解</li>
+        <li><strong>Author:</strong> 沐云白</li>
+        <li><strong>Created at
+                :</strong> 2024-10-11 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-10-26 15:20:14
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/10/11/Disassemble-the-Joker-Card-effect/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/10/01/Extend-Editor/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">编辑器拓展</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">小丑牌丝滑效果代码拆解</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%AE%80%E5%8D%95%E7%9A%84%E6%8B%96%E5%8A%A8%E5%92%8C%E6%82%AC%E6%B5%AE%E5%9C%A8%E7%BA%B8%E7%89%8C%E4%B8%8A%E7%9A%84%E6%A3%80%E6%B5%8B%E3%80%82"><span class="nav-text">1 简单的拖动和悬浮在纸牌上的检测。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%BA%B8%E7%89%8C%E6%8E%92%E5%88%97%E5%92%8C%E5%87%BA%E7%89%8C%E6%94%B6%E7%89%8C%E7%9A%84%E6%A3%80%E6%B5%8B"><span class="nav-text">2 纸牌排列和出牌收牌的检测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-CardVisual"><span class="nav-text">3 CardVisual</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-0-%E5%9F%BA%E7%A1%80%E5%8F%98%E9%87%8F"><span class="nav-text">3.0 基础变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-HandPositioning"><span class="nav-text">3.1 HandPositioning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-SmoothFollow"><span class="nav-text">3.2 SmoothFollow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-FollowRotation"><span class="nav-text">3.3 FollowRotation</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%99%A4%E4%BA%86%E5%89%8D%E9%9D%A2%E9%83%A8%E5%88%86%E7%9A%84%E5%89%A9%E4%B8%8B%E4%B8%9D%E6%BB%91%E9%83%A8%E5%88%86"><span class="nav-text">4 除了前面部分的剩下丝滑部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-CardTilt"><span class="nav-text">4.1 CardTilt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E9%BC%A0%E6%A0%87%E6%94%BE%E4%B8%8A%E5%8E%BB%E5%90%8E%E7%9A%84%E5%9B%9E%E5%BC%B9%E6%95%88%E6%9E%9C%E3%80%82"><span class="nav-text">4.2 鼠标放上去后的回弹效果。</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        5 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
