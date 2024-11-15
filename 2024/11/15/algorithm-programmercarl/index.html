@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="沐云白">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/11/15/algorithm-programmercarl/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="写题理念看到难题别怕，先慢慢拆解，看看难点是什么，然后拿东西去解决，不行再开始天马行空，别直接feeling启动了，一般的题目正常写都是可以解的。 多注意考虑边界情况，相加和问题，小心零，要多注意一下边界、特殊情况。 一些经典模板（方法论）：递归三部曲（深度优先）： 确定递归函数的参数和返回值：确定在函数里要做什么处理。 确定终止条件：先写终止条件！！操作系统也是用一个栈的结构来保存每一层递归的信">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法细节&amp;二刷代码随想录：">
+<meta property="og:url" content="http://example.com/2024/11/15/algorithm-programmercarl/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="写题理念看到难题别怕，先慢慢拆解，看看难点是什么，然后拿东西去解决，不行再开始天马行空，别直接feeling启动了，一般的题目正常写都是可以解的。 多注意考虑边界情况，相加和问题，小心零，要多注意一下边界、特殊情况。 一些经典模板（方法论）：递归三部曲（深度优先）： 确定递归函数的参数和返回值：确定在函数里要做什么处理。 确定终止条件：先写终止条件！！操作系统也是用一个栈的结构来保存每一层递归的信">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="article:published_time" content="2024-11-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-15T13:38:48.326Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/asynccode">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            算法细节&amp;二刷代码随想录： | 沐云白的个人主页
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沐云白的个人主页","subtitle":{"text":["What`s happened`s happened.","Which is an expression of faith in the mechanies of the world.","It`s not an excuse to do nothing."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"GITHUB":{"path":"https://github.com/zhangyuxinn","icon":"fa-brands fa-github"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/10 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                沐云白的个人主页
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">算法细节&amp;二刷代码随想录：</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">沐云白</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-15</span>
+        <span class="mobile">2024-11-15</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-15 21:38:48</span>
+            <span class="mobile">2024-11-15 21:38:48</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="写题理念"><a href="#写题理念" class="headerlink" title="写题理念"></a>写题理念</h2><p>看到难题别怕，先慢慢拆解，看看难点是什么，然后拿东西去解决，不行再开始天马行空，别直接feeling启动了，一般的题目正常写都是可以解的。</p>
+<p>多注意考虑边界情况，相加和问题，小心零，要多注意一下边界、特殊情况。</p>
+<h2 id="一些经典模板（方法论）："><a href="#一些经典模板（方法论）：" class="headerlink" title="一些经典模板（方法论）："></a>一些经典模板（方法论）：</h2><h3 id="递归三部曲（深度优先）："><a href="#递归三部曲（深度优先）：" class="headerlink" title="递归三部曲（深度优先）："></a>递归三部曲（深度优先）：</h3><ol>
+<li>确定递归函数的参数和返回值：确定在函数里要做什么处理。</li>
+<li>确定终止条件：先写终止条件！！操作系统也是用一个栈的结构来保存每一层递归的信息，如果递归没有终止，就会溢出。</li>
+<li>确认单纯递归的逻辑：确定每一层需要处理的逻辑。</li>
+</ol>
+<p>模板题：</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%80%92%E5%BD%92%E9%81%8D%E5%8E%86.html#%E6%80%9D%E8%B7%AF">代码随想录 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>二叉树遍历</p>
+<h3 id="广度优先："><a href="#广度优先：" class="headerlink" title="广度优先："></a>广度优先：</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">levelOrder</span>(TreeNode* root) </span><br><span class="line">&#123;</span><br><span class="line">        queue&lt;TreeNode*&gt; que;</span><br><span class="line">        <span class="keyword">if</span> (root != <span class="literal">NULL</span>) que.<span class="built_in">push</span>(root);</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result;</span><br><span class="line">        <span class="keyword">while</span> (!que.<span class="built_in">empty</span>()) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="type">int</span> size = que.<span class="built_in">size</span>();</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; vec;<span class="comment">// 这里一定要使用固定大小size，不要使用que.size()，因为que.size是不断变化的</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">                TreeNode* node = que.<span class="built_in">front</span>();</span><br><span class="line">                que.<span class="built_in">pop</span>();</span><br><span class="line">                vec.<span class="built_in">push_back</span>(node-&gt;val);</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;left) que.<span class="built_in">push</span>(node-&gt;left);</span><br><span class="line">                <span class="keyword">if</span> (node-&gt;right) que.<span class="built_in">push</span>(node-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line">            result.<span class="built_in">push_back</span>(vec);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>while处理每一层，while里的for处理层内的每个节点。</p>
+<h3 id="贪心一般解题步骤"><a href="#贪心一般解题步骤" class="headerlink" title="贪心一般解题步骤"></a>贪心一般解题步骤</h3><p>贪心算法一般分为如下四步：</p>
+<ul>
+<li>将问题分解为若干个子问题</li>
+<li>找出适合的贪心策略</li>
+<li>求解每一个子问题的最优解</li>
+<li>将局部最优解堆叠成全局最优解</li>
+</ul>
+<h3 id="回溯算法："><a href="#回溯算法：" class="headerlink" title="回溯算法："></a>回溯算法：</h3><p>模板是：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">先搞俩全局变量，储存单次的循环结果，另一个存总的结果</span><br><span class="line">然后的回溯函数</span><br><span class="line"></span><br><span class="line">backtraceing（）&#123;</span><br><span class="line">    <span class="keyword">if</span>（终止条件）</span><br><span class="line">    &#123;</span><br><span class="line">        存入result;</span><br><span class="line">        <span class="keyword">return</span>；</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>（）</span><br><span class="line">    &#123;</span><br><span class="line">        深度</span><br><span class="line">        backtraceing（）；</span><br><span class="line">        回溯</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>其遍历过程就是：for循环横向遍历，递归纵向遍历，回溯不断调整结果集。</p>
+<p>可以把他看作是一个树状结构，然后深入再广度</p>
+<h2 id="小知识"><a href="#小知识" class="headerlink" title="小知识"></a>小知识</h2><p>K–&#x3D;k；</p>
+<p>–k&#x3D;k-1；</p>
+<p>注意有没有排序，可能题目的样例是排序好的，但是提交里不是，所以要仔细看清题目，看是否有明说排序好，没有的话最好还是自己先排序一下，</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mid=(<span class="type">int</span>)(left+right)/<span class="number">2</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>取平均数，写成下面这样样子，可以防止溢出。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mid = left + ((right - left) / <span class="number">2</span>);</span><br></pre></td></tr></table></figure></div>
+
+<ol>
+<li><strong>双引号（”a”）</strong>：<ol>
+<li><code>&quot;a&quot;</code> 是一个字符串字面量，表示一个以空字符（<code>\0</code>）结尾的字符数组。</li>
+<li>它属于 <code>const char[]</code> 类型，在内存中占用更多的空间，因为它包含终止的空字符。</li>
+<li>字符串字面量是不可变的，这意味着你不能修改字符串中的字符。</li>
+<li>例如，<code>&quot;hello&quot;</code> 是一个包含5个字符的字符串：<code>&#39;h&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;</code>，后面跟着一个空字符。</li>
+</ol>
+</li>
+<li><strong>单引号（’a’）</strong>：<ol>
+<li><code>&#39;a&#39;</code> 是一个字符字面量，表示单个字符。</li>
+<li>它属于 <code>char</code> 类型，通常在内存中占用一个字节。</li>
+<li>字符字面量可以用于表示单个字符，并且可以被修改（尽管在某些情况下，如字符串字面量内部的字符，它们是不可修改的）。</li>
+</ol>
+</li>
+</ol>
+<p>注意这个细节，例如：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">record[s[i]-<span class="string">&#x27;a&#x27;</span>]++;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个代码中”a”就不可以，只能用’a’。</p>
+<p>函数参数是数组时，要&amp;引用，不然只能传值进去。</p>
+<h3 id="erase-时间复杂度是O-n"><a href="#erase-时间复杂度是O-n" class="headerlink" title="erase 时间复杂度是O(n)"></a>erase 时间复杂度是O(n)</h3><p>vector和string移除都用erase，要移除指定位置的元素，比如第i位的，vector.erase(vector.begin()+i);</p>
+<h4 id="移除一段范围内的元素"><a href="#移除一段范围内的元素" class="headerlink" title="移除一段范围内的元素"></a>移除一段范围内的元素</h4><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;<span class="type">int</span>&gt; vec = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line">vec.<span class="built_in">erase</span>(vec.<span class="built_in">begin</span>() + <span class="number">1</span>, vec.<span class="built_in">begin</span>() + <span class="number">3</span>); <span class="comment">// 移除第二个到第三个元素（值为2和3）</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，<code>erase</code> 函数接受两个迭代器参数，分别指向要移除范围的开始和结束。不包括结束迭代器指向的元素。范围外的所有元素的迭代器、指针和引用都会变得无效。</p>
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a>sort</h3><p>sort()并非只是普通的快速排序，除了对普通的快速排序进行优化，它还结合了插入排序和堆排序。根据不同的数量级别以及不同情况，能自动选用合适的排序方法。当数据量较大时采用快速排序，分段递归。一旦分段后的数据量小于某个阀值，为避免递归调用带来过大的额外负荷，便会改用插入排序。而如果递归层次过深，有出现最坏情况的倾向，还会改用堆排序。所以说sort()是一个比较灵活的函数，它也会根据我们数据的需要进行排序，所以我们就不用担心以上的问题了。对于大部分的排序需求，sort()都是可以满足的。</p>
+<p>sort()基本使用方法</p>
+<p> sort()函数可以对给定区间所有元素进行排序。它有三个参数sort(begin, end, cmp)，其中begin为指向待sort()的数组的第一个元素的指针，end为指向待sort()的数组的最后一个元素的下一个位置的指针，cmp参数为排序准则，cmp参数可以不写，如果不写的话，默认从小到大进行排序。如果我们想从大到小排序可以将cmp参数写为greater<int>()就是对int数组进行排序，当然&lt;&gt;中我们也可以写double、long、float等等。如果我们需要按照其他的排序准则，那么就需要我们自己定义一个bool类型的函数来传入。比如我们对一个整型数组进行从大到小排序：</int></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> num[<span class="number">10</span>] = &#123;<span class="number">6</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="built_in">sort</span>(num,num<span class="number">+10</span>,<span class="built_in">greater</span>&lt;<span class="type">int</span>&gt;());</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</span><br><span class="line">                cout&lt;&lt;num[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;<span class="comment">//输出结果:9 8 7 6 5 4 3 2 1 0</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></div>
+
+<h4 id="自定义排序准则"><a href="#自定义排序准则" class="headerlink" title="自定义排序准则"></a>自定义排序准则</h4><p> 上面我们说到sort()函数可以自定义排序准则，以便满足不同的排序情况。使用sort()我们不仅仅可以从大到小排或者从小到大排，还可以按照一定的准则进行排序。比如说我们按照每个数的个位进行从大到小排序，我们就可以根据自己的需求来写一个函数作为排序的准则传入到sort()中。</p>
+<p>我们可以将这个函数定义为：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x % <span class="number">10</span> &gt; y % <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>也可以对结构体排序</p>
+<p>完整代码：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">        string name;</span><br><span class="line">        <span class="type">int</span> score;</span><br><span class="line">        <span class="built_in">Student</span>() &#123;&#125;</span><br><span class="line">        <span class="built_in">Student</span>(string n,<span class="type">int</span> s):<span class="built_in">name</span>(n),<span class="built_in">score</span>(s) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp_score</span><span class="params">(Student x,Student y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> x.score &gt; y.score;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Student stu[<span class="number">3</span>];</span><br><span class="line">        string n;</span><br><span class="line">        <span class="type">int</span> s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">                cin&gt;&gt;n&gt;&gt;s;</span><br><span class="line">                stu[i] = <span class="built_in">Student</span>(n,s);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">sort</span>(stu,stu<span class="number">+3</span>,cmp_score);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">                cout&lt;&lt;stu[i].name&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;stu[i].score&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="关于值传递与引用传递"><a href="#关于值传递与引用传递" class="headerlink" title="关于值传递与引用传递"></a>关于值传递与引用传递</h4><p> 在以上的代码示例中使用了值传递，其实这并不是一种好的的做法，因为使用值传递每次调用函数时都会创建Student对象的副本，会增加额外的开销也会降低排序的效率。所以应该使用引用传递。使用引用传递的好处在于：</p>
+<p><strong>避免拷贝开销：</strong>值传递会创建参数的副本，对于大型对象或复杂数据结构，这可能涉及大量的内存分配和数据复制。引用传递避免了这些操作，因为它直接操作原始对象。</p>
+<p><strong>提高执行效率：</strong>由于避免了拷贝操作，函数调用的执行速度会更快，尤其是在处理大型数据或在需要频繁调用函数的情况下。</p>
+<p><strong>减少内存使用：</strong>引用传递不涉及额外的内存分配，因此可以减少程序的内存占用。</p>
+<p><strong>允许修改原始数据：</strong>引用传递允许函数直接修改原始数据，这在某些情况下非常有用，比如在排序函数中修改对象的内部状态。</p>
+<p><strong>保持数据一致性：</strong>引用传递确保函数内部对数据的任何修改都会反映到原始数据上，这有助于保持数据的一致性。</p>
+<p>所以应该这样写。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">cmp_score</span><span class="params">(<span class="type">const</span> Student&amp; x, <span class="type">const</span> Student&amp; y)</span> </span>&#123;</span><br><span class="line">    <span class="type">double</span> average_x = (x.score[<span class="number">0</span>] + x.score[<span class="number">1</span>] + x.score[<span class="number">2</span>] + x.score[<span class="number">3</span>]) / <span class="number">4</span>;</span><br><span class="line">    <span class="type">double</span> average_y = (y.score[<span class="number">0</span>] + y.score[<span class="number">1</span>] + y.score[<span class="number">2</span>] + y.score[<span class="number">3</span>]) / <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">return</span> average_x &gt; average_y;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="指针和引用的区别："><a href="#指针和引用的区别：" class="headerlink" title="指针和引用的区别："></a>指针和引用的区别：</h3><p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/681617362">https://zhuanlan.zhihu.com/p/681617362 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>数据量太大的情况下，用scanf和printf，节省时间。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (~<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;a, &amp;b))</span><br><span class="line"> &#123;</span><br><span class="line">     <span class="type">int</span> sum;</span><br><span class="line">     <span class="keyword">if</span> (a == <span class="number">0</span>) sum = p[b];</span><br><span class="line">     <span class="keyword">else</span> sum = p[b] - p[a - <span class="number">1</span>];</span><br><span class="line">     <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, sum);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><h3 id="二分查找："><a href="#二分查找：" class="headerlink" title="二分查找："></a>二分查找：</h3><p>bug：if（nums[mid]&#x3D;target） 。。。。。。。</p>
+<p>二分法要注意区间的定义，先明确定义在去设计函数。</p>
+<p>在这道题目中我们讲到了循环不变量原则，只有在循环中坚持对区间的定义，才能清楚的把握循环中的各种细节。</p>
+<h3 id="移除元素："><a href="#移除元素：" class="headerlink" title="移除元素："></a>移除元素：</h3><p>双指针法标准题目。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/">https://leetcode.cn/problems/remove-element/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>思路不对，应该用双指针法，快指针去找非目标值的数字，慢指针直接覆盖原数组，得到新的数组，就是原地覆盖。</p>
+<p><strong>个人理解：遍历原始数组的速度一定大于覆盖的速度。</strong></p>
+<p>vector<int> result(A.size(), 0);第一个参数是大小，第二个参数是初始化的值。</int></p>
+<h3 id="有序数组的平方："><a href="#有序数组的平方：" class="headerlink" title="有序数组的平方："></a>有序数组的平方：</h3><p><a class="link" target="_blank" rel="noopener" href="https://leetcode.cn/problems/squares-of-a-sorted-array/description/">https://leetcode.cn/problems/squares-of-a-sorted-array/description/ <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>也是双指针。</p>
+<p><strong>双指针的理解：一个目的有两个点有矛盾冲突，或者有两个点有事情要做，然后就可以围绕这个点来建立双指针。</strong></p>
+<h3 id="长度最小的子数组："><a href="#长度最小的子数组：" class="headerlink" title="长度最小的子数组："></a>长度最小的子数组：</h3><p>双指针。</p>
+<p>滑动窗口。</p>
+<h3 id="螺旋矩阵II"><a href="#螺旋矩阵II" class="headerlink" title="螺旋矩阵II"></a>螺旋矩阵II</h3><p>就是模拟，要注意边界的判断，主要是要去一个一个仔细写，复制的容易出问题。</p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p>链表的构造函数：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Node</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    node* next;</span><br><span class="line">    <span class="built_in">Node</span>(<span class="type">int</span> val):<span class="built_in">val</span>(val),<span class="built_in">next</span>(<span class="literal">nullptr</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<h3 id="虚拟头节点"><a href="#虚拟头节点" class="headerlink" title="虚拟头节点"></a>虚拟头节点</h3><p>很好用很关键，这个可以让第一个节点一般化，不用单独对其进行考虑运算。</p>
+<h3 id="移除链表元素"><a href="#移除链表元素" class="headerlink" title="移除链表元素"></a>移除链表元素</h3><p>c++没有自动清理内存，虽然leetcode能过，但是还是要手动清理一下好。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ListNode* tmp = node-&gt;next;</span><br><span class="line">node-&gt;next=node-&gt;next-&gt;next;</span><br><span class="line"><span class="keyword">delete</span> tmp;</span><br></pre></td></tr></table></figure></div>
+
+<p>本题bug点：</p>
+<p> while(head!&#x3D;nullptr&amp;&amp;head-&gt;val&#x3D;&#x3D;val)，应该要先判断存在不存在。</p>
+<h3 id="反转链表"><a href="#反转链表" class="headerlink" title="反转链表"></a>反转链表</h3><p>有点烧脑，主要是流程得捋清楚，每个循环是什么样的。</p>
+<p>第二遍看：感觉比第一次看简单的多，纠结久了头会乱掉，需要跳脱出来重新看一下。</p>
+<h3 id="链表相交"><a href="#链表相交" class="headerlink" title="链表相交"></a>链表相交</h3><p><strong>bug点：</strong>有个变量没有初始化到，要注意这个细节，中途加的变量，要保证赋值的语句一定执行到，比如：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> length=lenA;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i =<span class="number">0</span>;i&lt;diff;i++)</span><br><span class="line">        &#123;   </span><br><span class="line">            <span class="keyword">if</span>(lenA&gt;lenB)</span><br><span class="line">            &#123;</span><br><span class="line">                curA=curA-&gt;next;</span><br><span class="line">                length=lenB;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                curB=curB-&gt;next;</span><br><span class="line">                length=lenA;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>如果这个代码中diff&#x3D;0，他就不会执行这个for语句，这样就会导致length不被赋值</p>
+<h2 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h2><p> 构建哈希表的重点是</p>
+<h3 id="哈希函数"><a href="#哈希函数" class="headerlink" title="哈希函数"></a>哈希函数</h3><h4 id="平方取中法"><a href="#平方取中法" class="headerlink" title="平方取中法"></a>平方取中法</h4><ul>
+<li><strong>平方取中法</strong>：先通过求关键字平方值的方式扩大相近数之间的差别，然后根据表长度取关键字平方值的中间几位数为哈希地址。</li>
+</ul>
+<h4 id="除留余数法"><a href="#除留余数法" class="headerlink" title="除留余数法"></a>除留余数法</h4><ul>
+<li><strong>除留余数法</strong>：假设哈希表的表长为 <code>m</code>，取一个不大于 <code>m</code> 但接近或等于 <code>m</code> 的质数 <code>p</code>，利用取模运算，将关键字转换为哈希地址。即：<code>Hash(key) = key % p</code>，其中 <code>p</code> 为不大于 <code>m</code> 的质数。</li>
+</ul>
+<h4 id="基数转换法"><a href="#基数转换法" class="headerlink" title="基数转换法"></a>基数转换法</h4><ul>
+<li><strong>基数转换法</strong>：将关键字看成另一种进制的数再转换成原来进制的数，然后选其中几位作为哈希地址。</li>
+</ul>
+<p>但是肯定还是会发生冲突，冲突的解决办法有</p>
+<p><strong>开放地址法</strong>：指的是将哈希表中的「空地址」向处理冲突开放。当哈希表未满时，处理冲突时需要尝试另外的单元，直到找到空的单元为止。</p>
+<p>简单的做法就是放在冲突地址的下一个单元。</p>
+<p><strong>链地址法（Chaining）</strong>：将具有相同哈希地址的元素（或记录）存储在同一个线性链表中。</p>
+<h3 id="算法部分"><a href="#算法部分" class="headerlink" title="算法部分"></a>算法部分</h3><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>要判断用什么容器来做哈希表，</p>
+<p>如果能用数组就用数组，数组的空间消耗，时间消耗都比较少。</p>
+<p><strong>数组</strong>：需要题目限制数值的大小，如果哈希值比较少、特别分散、跨度非常大，使用数组就造成空间的极大浪费。</p>
+<p><strong>集合</strong>：如果不用排序，而且数据不要重复就用unordered_set，这个查询、增减很快。</p>
+<p><strong>map映射</strong>：需要存俩值的情况用。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt;::iterator it = map.<span class="built_in">begin</span>(); it != map.<span class="built_in">end</span>(); it++) </span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>map的遍历这样写。</p>
+<h3 id="两个数组的交集"><a href="#两个数组的交集" class="headerlink" title="两个数组的交集"></a>两个数组的交集</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">intersection</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums1, vector&lt;<span class="type">int</span>&gt;&amp; nums2)</span> </span>&#123;</span><br><span class="line">        unordered_set&lt;<span class="type">int</span>&gt; result_set;</span><br><span class="line">        <span class="function">unordered_set&lt;<span class="type">int</span>&gt; <span class="title">nums1_set</span><span class="params">(nums<span class="number">1.</span>begin(),nums<span class="number">1.</span>end())</span></span>;</span><br><span class="line">        <span class="comment">//创建一个 unordered_set 的实例 nums_set，它包含了容器 nums1（可以是 vector、array 或其他容器）中所有的元素。nums1.begin() 返回指向 nums1 第一个元素的迭代器，nums1.end() 返回一个指向 nums1 结束位置的迭代器。unordered_set 的构造函数会使用这两个迭代器来拷贝 nums1 中的所有元素到新创建的 unordered_set 中。</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> num:nums2)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums1_set.<span class="built_in">find</span>(num)!=nums1_set.<span class="built_in">end</span>())<span class="comment">//如果表中find不到某一个数，就return set.end()迭代器</span></span><br><span class="line">            &#123;</span><br><span class="line">                result_set.<span class="built_in">insert</span>(num);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(result_set.<span class="built_in">begin</span>(),result_set.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="两数之和"><a href="#两数之和" class="headerlink" title="两数之和"></a>两数之和</h3><h4 id="为什么用哈希表："><a href="#为什么用哈希表：" class="headerlink" title="为什么用哈希表："></a>为什么用哈希表：</h4><p>思路主要是要找另一个数，我们有一个数，然后有这个数的和，做差去找另一个数即可，以这个思路我们就只需要遍历一遍就有结果了。</p>
+<p>为什么会想到做差去找，因为和是已知的，要利用满所给的数据，尽可能做到不浪费信息。、</p>
+<h4 id="哈希表为什么用map："><a href="#哈希表为什么用map：" class="headerlink" title="哈希表为什么用map："></a>哈希表为什么用map：</h4><p>因为他要返回数在数组里的索引，要存两个数据，也就是一对数据，所以要用map。</p>
+<h4 id="map基础知识："><a href="#map基础知识：" class="headerlink" title="map基础知识："></a>map基础知识：</h4><p>这行代码通过迭代器 <code>iter</code> 访问 <code>map</code> 中元素的第二个元素，即值部分（<code>value</code>）。在 <code>map</code> 中，每个元素都是一个 <code>pair</code>，其中 <code>first</code> 是键（<code>key</code>），<code>second</code> 是值（<code>value</code>）。因此，<code>iter-&gt;second</code> 获取了与键 <code>target - nums[i]</code> 相关联的值。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><h3 id="字符串的库函数"><a href="#字符串的库函数" class="headerlink" title="字符串的库函数"></a>字符串的库函数</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.<span class="built_in">resize</span>(s.<span class="built_in">size</span>() + count * <span class="number">5</span>);</span><br></pre></td></tr></table></figure></div>
+
+<p>swap();</p>
+<p>reverse();翻转字符串在#include <algorithm> 下</algorithm></p>
+<p>用好翻转函数，很多时候有奇效。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//string</span></span><br><span class="line"><span class="built_in">reverse</span>(str.<span class="built_in">begin</span>(), str.<span class="built_in">end</span>());</span><br><span class="line"><span class="comment">//vector</span></span><br><span class="line"><span class="built_in">reverse</span>(vec.<span class="built_in">begin</span>(), vec.<span class="built_in">end</span>());</span><br></pre></td></tr></table></figure></div>
+
+<h4 id="1分割截取substr"><a href="#1分割截取substr" class="headerlink" title="1分割截取substr()"></a>1分割截取substr()</h4><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.<span class="built_in">substr</span>(<span class="number">7</span>,<span class="number">3</span>); <span class="comment">// 从下标7开始截取子字符串，截取长度为3的字符串</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="2-查找指定子字符串find"><a href="#2-查找指定子字符串find" class="headerlink" title="2.查找指定子字符串find()"></a>2.查找指定子字符串find()</h4><p>在字符串中查找指定子字符串,并返回其第一次出现的位置</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> pos = str.<span class="built_in">find</span>(<span class="string">&quot;World&quot;</span>); <span class="comment">// 查找子字符串&quot;World&quot;的位置</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="3-替换字符串中的一部分replace"><a href="#3-替换字符串中的一部分replace" class="headerlink" title="3.替换字符串中的一部分replace()"></a>3.替换字符串中的一部分replace()</h4><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.<span class="built_in">replace</span>(<span class="number">7</span>, <span class="number">5</span>, <span class="string">&quot;Universe&quot;</span>); <span class="comment">// 替换从下标7开始的5个字符为&quot;Universe&quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="4-在指定位置插入字符串insert"><a href="#4-在指定位置插入字符串insert" class="headerlink" title="4.在指定位置插入字符串insert()"></a>4.在指定位置插入字符串insert()</h4><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.<span class="built_in">insert</span>(<span class="number">5</span>, <span class="string">&quot;Beautiful &quot;</span>); <span class="comment">// 在下标5处插入字符串&quot;Beautiful &quot;</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="5-复制字符串-两种方法"><a href="#5-复制字符串-两种方法" class="headerlink" title="5.复制字符串(两种方法)"></a>5.复制字符串(两种方法)</h4><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">string <span class="title">str3</span><span class="params">(str1)</span><span class="comment">//复制str到s</span></span></span><br><span class="line"><span class="function">str3 </span>= str1;<span class="comment">// 复制 str1 到 str3</span></span><br></pre></td></tr></table></figure></div>
+
+<h4 id="6-排序sort"><a href="#6-排序sort" class="headerlink" title="6.排序sort()"></a>6.排序sort()</h4><p>！！！需要头文件#include <algorithm></algorithm></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string s = <span class="string">&quot;12sklhfsabfskfb,a aghs 1425416 27638&quot;</span>;</span><br><span class="line"><span class="built_in">sort</span>(s.<span class="built_in">begin</span>(), s.<span class="built_in">end</span>());</span><br><span class="line">cout &lt;&lt; s &lt;&lt; endl;</span><br></pre></td></tr></table></figure></div>
+
+<p>&#x2F;&#x2F;输出如下:</p>
+<p>&#x2F;&#x2F;   ,11122234456678aaabbfffghhkklssss</p>
+<h4 id="7-删除erase"><a href="#7-删除erase" class="headerlink" title="7.删除erase()"></a>7.删除erase()</h4><p>使用erase()函数</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">string s=<span class="string">&quot;12345678&quot;</span>;</span><br><span class="line">s.<span class="built_in">erase</span>(s.<span class="built_in">begin</span>()<span class="number">+3</span>);<span class="comment">//使下标3的字符删掉</span></span><br></pre></td></tr></table></figure></div>
+
+<p>&#x2F;&#x2F;输出</p>
+<p>&#x2F;&#x2F;1235678</p>
+<p>删除后变为”1235678”，即把（默认第一个下标为0）下标3的字符删掉。</p>
+<h3 id="kmp"><a href="#kmp" class="headerlink" title="kmp"></a>kmp</h3><p>KMP的精髓所在就是前缀表。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/2301_77160836/article/details/143169087">https://blog.csdn.net/2301_77160836/article/details/143169087 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>关键思路要理顺，比如说到底是先验证能不能加，然后再加；还是先加再看能不能行，不行再回退。</p>
+<h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h3 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3><p>栈和队列不算容器，算容器适配器，他只是提供接口，相当于对底层容器进行包装，但是不规定具体使用那种底层容器，缺省情况下（也就是不指定的情况），栈和队列都是用deque实现的，这是一个双向队列。</p>
+<p>这种数据结构，不提供迭代器，不允许遍历行为，接口只有两端。</p>
+<h3 id="单调队列"><a href="#单调队列" class="headerlink" title="单调队列"></a>单调队列</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/0239.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE">https://www.programmercarl.com/0239.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>因为这题是要弹出最大值，所以只需要维护保持队列中单调。</p>
+<p>我们新建一个队列，然后记录窗口内的最大值和可能成为最大值的数（这一点很重要），因为最大值可能会在后续窗口滑动的时候弹出，所以要记录可能成为最大值的数，但是这样说太玄了，要怎么实现呢：</p>
+<p>就是搞一个单调队列，在一个deque中保持单调，比如说我们确定左边最大，，然后对于新进来的数，就从从左边开始询问最右边的数是否比新数，直到队列为空或者最右边的数大于新数，然后就把新数排在最右边。</p>
+<p>然后，，有数要脱离窗口时，只需要检查最左边（也就是最大的数）是不是要脱离的数，就算不是这个数也没啥，因为里面剩下的都是后面来的更大的数，他们会更晚走，前面进数的时候直接把比新数小的直接删去就是这个目的，在新数进来的时候，他的剩余存活时间一定是最长的，所以他的存活的时候那些被他删去的老数不可能成为最大值。</p>
+<p>优先级队列的使用</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个整型优先队列</span></span><br><span class="line">priority_queue&lt;<span class="type">int</span>&gt; pq;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 声明一个自定义类型的优先队列，需要提供比较函数</span></span><br><span class="line"><span class="comment">//这个可以是struct也可以是class</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">compare</span> &#123;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a &gt; b; <span class="comment">// 这里定义了最小堆</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">priority_queue&lt;<span class="type">int</span>, vector&lt;<span class="type">int</span>&gt;, compare&gt; pq_min;</span><br><span class="line"><span class="comment">//这个定义中，第一个变量是储存类型，</span></span><br><span class="line"><span class="comment">//第二个是储存容器，</span></span><br><span class="line"><span class="comment">//第三个是比较函数，也可以用来定义是最大堆还是最小堆</span></span><br></pre></td></tr></table></figure></div>
+
+<p>栈的使用，栈其实是递归的一种实现结构。</p>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><h3 id="基础知识-1"><a href="#基础知识-1" class="headerlink" title="基础知识"></a>基础知识</h3><p>完全二叉树：按数组顺序排，中间不能有缺口。</p>
+<p>看代码随想录。</p>
+<h4 id="存储方式"><a href="#存储方式" class="headerlink" title="存储方式"></a>存储方式</h4><p>一般是链式存储，就是和链表一样连在一起，顺序存储也可以</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>如果父节点的数组下标是 i，那么它的左孩子就是 i * 2 + 1，右孩子就是 i * 2 + 2。</p>
+<h4 id="二叉树的深度优先和广度优先"><a href="#二叉树的深度优先和广度优先" class="headerlink" title="二叉树的深度优先和广度优先"></a>二叉树的深度优先和广度优先</h4><p>看代码随想录。</p>
+<p>之前我们讲栈与队列的时候，就说过栈其实就是递归的一种实现结构，也就说前中后序遍历的逻辑其实都是可以借助栈使用递归的方式来实现的。</p>
+<p>而广度优先遍历的实现一般使用队列来实现，这也是队列先进先出的特点所决定的，因为需要先进先出的结构，才能一层一层的来遍历二叉树。</p>
+<p>这个也是栈、队列的应用场景。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>一定要会手写!!!每次看到手写一遍，主要是结构体的构造不熟悉</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TreeNode</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    TreeNode* left;</span><br><span class="line">    TreeNode* right;</span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="type">int</span> n):<span class="built_in">val</span>(n),<span class="built_in">left</span>(<span class="literal">nullptr</span>),<span class="built_in">right</span>(<span class="literal">nullptr</span>)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="二叉树统一迭代法"><a href="#二叉树统一迭代法" class="headerlink" title="二叉树统一迭代法"></a>二叉树统一迭代法</h3><p>没到null就是没到底，所以可以继续往下走， 如果碰到null，就是到底了，可以需要返回值了。</p>
+<h3 id="各种遍历的特点"><a href="#各种遍历的特点" class="headerlink" title="各种遍历的特点"></a>各种遍历的特点</h3><h4 id="后续遍历"><a href="#后续遍历" class="headerlink" title="后续遍历"></a>后续遍历</h4><p>服了找不到gif。。</p>
+<p>后续遍历是从最底部往上遍历，因此和回溯关系非常紧密。</p>
+<h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><p>先遍历自身，节点本身好找。</p>
+<h2 id="回溯算法"><a href="#回溯算法" class="headerlink" title="回溯算法"></a>回溯算法</h2><p>本质还是暴力，但是可控暴力，<strong>主要可以自由次数的for循环。</strong></p>
+<p>模板是：</p>
+<div class="highlight-container" data-rel="C#"><figure class="iseeu highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">先搞俩全局变量，储存单次的循环结果，另一个存总的结果</span><br><span class="line">然后的回溯函数</span><br><span class="line"></span><br><span class="line">backtraceing（）&#123;</span><br><span class="line">    <span class="keyword">if</span>（终止条件）</span><br><span class="line">    &#123;</span><br><span class="line">        存入result;</span><br><span class="line">        <span class="keyword">return</span>；</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>（）</span><br><span class="line">    &#123;</span><br><span class="line">        深度</span><br><span class="line">        backtraceing（）；</span><br><span class="line">        回溯</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<ul>
+<li>其遍历过程就是：for循环横向遍历，递归纵向遍历，回溯不断调整结果集。</li>
+<li>可以把他看作是一个树状结构，然后深入再广度</li>
+<li>树状结构其实就是有很多分支，抽象处理其实就是分支。</li>
+<li>先构造完基础框架，在进行剪枝处理。</li>
+</ul>
+<h3 id="回溯法解决的问题"><a href="#回溯法解决的问题" class="headerlink" title="回溯法解决的问题"></a>回溯法解决的问题</h3><p>回溯法，一般可以解决如下几种问题：</p>
+<ul>
+<li>组合问题：N个数里面按一定规则找出k个数的集合</li>
+<li>切割问题：一个字符串按一定规则有几种切割方式</li>
+<li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
+<li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
+<li>棋盘问题：N皇后，解数独等等</li>
+</ul>
+<p>大部分的原因：因为不知道要循环几轮，要循环n-1轮，不可控，所以正常循环不行，得递归来深搜。</p>
+<h3 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h3><p>剪枝精髓是：for循环在寻找起点的时候要有一个范围，如果这个起点到集合终止之间的元素已经不够 题目要求的k个元素了，就没有必要搜索了。</p>
+<p>一开始可以先想想优化的办法，但是如果不能形成完整的解法的话，就老老实实写基础版，然后做剪枝。</p>
+<h3 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/0040.%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE">https://www.programmercarl.com/0040.%E7%BB%84%E5%90%88%E6%80%BB%E5%92%8CII.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>这题去重思路很重要，递归中去重一定得会这个，</p>
+<p>个人理解：感觉有一点点像是高中c几取几和a几取几的区别，只遍历半轮，不让重复。</p>
+<p>但是这题是组合问题，对于组合问题，本题的重点是集合可以有重复，但是组合不能重复，提取出来，也就是使用不能重复，对于不一样的数无所谓，重点在<strong>1</strong>同样的数要怎么处理，以及<strong>2</strong>如何在处理完这些数后，后面不会再碰到相同的数？由此我们可以想到需要排序，相当于我们把相同的数聚在一起了，<strong>问题2</strong>解决了，现在回到<strong>问题1，</strong>如何<strong>处理相同</strong>的数，让他<strong>不重复出现在组合内</strong>，他是组合，不能同时出现两个节点有两个相同元素，一个节点有两个相同元素，往下深是可能可以得到两个不同组合的，但是如果存在另一个节点有两个相同元素就会重复，所以直接断根，不如另一个节点产生。</p>
+<h2 id="贪心算法"><a href="#贪心算法" class="headerlink" title="贪心算法"></a>贪心算法</h2><p>基础逻辑就是每一阶段的局部最优，最后可以达到全局最优。</p>
+<h3 id="贪心一般解题步骤-1"><a href="#贪心一般解题步骤-1" class="headerlink" title="贪心一般解题步骤"></a>贪心一般解题步骤</h3><p>贪心算法一般分为如下四步：</p>
+<ul>
+<li>将问题分解为若干个子问题</li>
+<li>找出适合的贪心策略</li>
+<li>求解每一个子问题的最优解</li>
+<li>将局部最优解堆叠成全局最优解</li>
+</ul>
+<h3 id="一些例题"><a href="#一些例题" class="headerlink" title="一些例题"></a>一些例题</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/0053.%E6%9C%80%E5%A4%A7%E5%AD%90%E5%BA%8F%E5%92%8C.html#%E6%80%9D%E8%B7%AF">代码随想录 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>最经典的贪心逻辑，1每部取最大来得到最优解。</p>
+<h2 id="动态规划dp"><a href="#动态规划dp" class="headerlink" title="动态规划dp"></a>动态规划dp</h2><h3 id="动态规划的解题步骤"><a href="#动态规划的解题步骤" class="headerlink" title="动态规划的解题步骤"></a>动态规划的解题步骤</h3><ol>
+<li>确定dp数组（dp table）以及下标的含义</li>
+<li>确定递推公式</li>
+<li>dp数组如何初始化</li>
+<li>确定遍历顺序 <strong>很重要，可能是从前往后，也可能是从后往前</strong></li>
+<li>举例推导dp数组</li>
+</ol>
+<p>一些同学可能想为什么要先确定递推公式，然后在考虑初始化呢？</p>
+<p><strong>因为一些情况是递推公式决定了dp数组要如何初始化！</strong></p>
+<h3 id="动态规划应该如何debug"><a href="#动态规划应该如何debug" class="headerlink" title="动态规划应该如何debug"></a>动态规划应该如何debug</h3><p>把dp数组打印出来，看看究竟是不是按照自己思路推导，在写完dp数组后一定要模拟一下试试，保证没问题。</p>
+<p><strong>出bug了就问自己：</strong></p>
+<ul>
+<li>这道题目我举例推导状态转移公式了么？</li>
+<li>我打印dp数组的日志了么？</li>
+<li>打印出来了dp数组和我想的一样么？</li>
+</ul>
+<h3 id="模板题"><a href="#模板题" class="headerlink" title="模板题"></a>模板题</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/0070.%E7%88%AC%E6%A5%BC%E6%A2%AF.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE">代码随想录 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 经典爬楼梯，顺便搜一下面试问爬楼梯的。</p>
+<p>面试题：</p>
+<p>此时我就发现一个绝佳的大厂面试题，第一道题就是单纯的爬楼梯，然后看候选人的代码实现，如果把dp[0]的定义成1了，就可以发难了，为什么dp[0]一定要初始化为1，此时可能候选人就要强行给dp[0]应该是1找各种理由。那这就是一个考察点了，对dp[i]的定义理解的不深入。</p>
+<p>然后可以继续发难，如果一步一个台阶，两个台阶，三个台阶，直到 m个台阶，有多少种方法爬到n阶楼顶。这道题目leetcode上并没有原题，绝对是考察候选人算法能力的绝佳好题。</p>
+<p>这一连套问下来，候选人算法能力如何，面试官心里就有数了。</p>
+<p>其实大厂面试最喜欢问题的就是这种简单题，然后慢慢变化，在小细节上考察候选人。</p>
+<p>这道绝佳的面试题我没有用过，如果录友们有面试别人的需求，就把这个套路拿去吧。</p>
+<p>我在<a class="link" target="_blank" rel="noopener" href="https://programmercarl.com/%E5%89%8D%E5%BA%8F/%E9%80%9A%E8%BF%87%E4%B8%80%E9%81%93%E9%9D%A2%E8%AF%95%E9%A2%98%E7%9B%AE%EF%BC%8C%E8%AE%B2%E4%B8%80%E8%AE%B2%E9%80%92%E5%BD%92%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%EF%BC%81.html">通过一道面试题目，讲一讲递归算法的时间复杂度！ (opens new window) <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>中，以我自己面试别人的真实经历，通过求x的n次方 这么简单的题目，就可以考察候选人对算法性能以及递归的理解深度，录友们可以看看，绝对有收获！</p>
+<h3 id="难题"><a href="#难题" class="headerlink" title="难题"></a>难题</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/0096.%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91.html#%E7%AE%97%E6%B3%95%E5%85%AC%E5%BC%80%E8%AF%BE">代码随想录 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>这题算法不难，主要是要如何把求二叉树数量转化为动态规划问题。</p>
+<h3 id="对数组的空间优化方式"><a href="#对数组的空间优化方式" class="headerlink" title="对数组的空间优化方式"></a>对数组的空间优化方式</h3><p><a class="link" target="_blank" rel="noopener" href="https://www.programmercarl.com/0070.%E7%88%AC%E6%A5%BC%E6%A2%AF.html#%E6%80%9D%E8%B7%AF">https://www.programmercarl.com/0070.%E7%88%AC%E6%A5%BC%E6%A2%AF.html#%E6%80%9D%E8%B7%AF <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p>好夸张，个人感觉主要的思路是节约没用的空间，数组前面的部分只是为了算后面的答案，所以就可以一直覆盖的来得到最后的答案。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 算法细节&amp;二刷代码随想录：</li>
+        <li><strong>Author:</strong> 沐云白</li>
+        <li><strong>Created at
+                :</strong> 2024-11-15 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-11-15 21:38:48
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/11/15/algorithm-programmercarl/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/11/15/Read-GameProgrammingPatterns/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/11/12/unity-IEnumerator/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">unity协程的原理和拓展</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">算法细节&amp;二刷代码随想录：</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%99%E9%A2%98%E7%90%86%E5%BF%B5"><span class="nav-text">写题理念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E7%BB%8F%E5%85%B8%E6%A8%A1%E6%9D%BF%EF%BC%88%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%89%EF%BC%9A"><span class="nav-text">一些经典模板（方法论）：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E4%B8%89%E9%83%A8%E6%9B%B2%EF%BC%88%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%EF%BC%89%EF%BC%9A"><span class="nav-text">递归三部曲（深度优先）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%EF%BC%9A"><span class="nav-text">广度优先：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E4%B8%80%E8%88%AC%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4"><span class="nav-text">贪心一般解题步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="nav-text">回溯算法：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%9F%A5%E8%AF%86"><span class="nav-text">小知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#erase-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E6%98%AFO-n"><span class="nav-text">erase 时间复杂度是O(n)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sort"><span class="nav-text">sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%92%8C%E5%BC%95%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="nav-text">指针和引用的区别：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84"><span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%EF%BC%9A"><span class="nav-text">二分查找：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0%EF%BC%9A"><span class="nav-text">移除元素：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E5%B9%B3%E6%96%B9%EF%BC%9A"><span class="nav-text">有序数组的平方：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%BF%E5%BA%A6%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="nav-text">长度最小的子数组：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%9E%BA%E6%97%8B%E7%9F%A9%E9%98%B5II"><span class="nav-text">螺旋矩阵II</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8"><span class="nav-text">链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%A4%B4%E8%8A%82%E7%82%B9"><span class="nav-text">虚拟头节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E9%99%A4%E9%93%BE%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="nav-text">移除链表元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="nav-text">反转链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E8%A1%A8%E7%9B%B8%E4%BA%A4"><span class="nav-text">链表相交</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="nav-text">哈希表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E5%87%BD%E6%95%B0"><span class="nav-text">哈希函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E9%83%A8%E5%88%86"><span class="nav-text">算法部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E4%B8%AA%E6%95%B0%E7%BB%84%E7%9A%84%E4%BA%A4%E9%9B%86"><span class="nav-text">两个数组的交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="nav-text">两数之和</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%BA%93%E5%87%BD%E6%95%B0"><span class="nav-text">字符串的库函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kmp"><span class="nav-text">kmp</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97"><span class="nav-text">栈和队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97"><span class="nav-text">单调队列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-1"><span class="nav-text">基础知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%BB%9F%E4%B8%80%E8%BF%AD%E4%BB%A3%E6%B3%95"><span class="nav-text">二叉树统一迭代法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%84%E7%A7%8D%E9%81%8D%E5%8E%86%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">各种遍历的特点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95"><span class="nav-text">回溯算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E6%B3%95%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">回溯法解决的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AA%E6%9E%9D"><span class="nav-text">剪枝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%87%8D"><span class="nav-text">去重</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95"><span class="nav-text">贪心算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B4%AA%E5%BF%83%E4%B8%80%E8%88%AC%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4-1"><span class="nav-text">贪心一般解题步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%BE%8B%E9%A2%98"><span class="nav-text">一些例题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92dp"><span class="nav-text">动态规划dp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4"><span class="nav-text">动态规划的解题步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95debug"><span class="nav-text">动态规划应该如何debug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="nav-text">模板题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%BE%E9%A2%98"><span class="nav-text">难题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%95%B0%E7%BB%84%E7%9A%84%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96%E6%96%B9%E5%BC%8F"><span class="nav-text">对数组的空间优化方式</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        9 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>

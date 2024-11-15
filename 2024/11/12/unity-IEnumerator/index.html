@@ -13,24 +13,22 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/03/21/how-to-post-your-article/"/>
+    <link rel="canonical" href="http://example.com/2024/11/12/unity-ienumerator/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。 安装Node.js和Git Node.js：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn  Git：https:&#x2F;&#x2F;git-scm.com&#x2F;downloads   基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 node">
+        <meta name="description" content="协程就是一种特殊的函数，它可以主动的请求暂停自身并提交一个唤醒条件，Unity会在唤醒条件满足的时候去重新唤醒协程。 用StartCoroutine()启动协程，在MonoBehaviour生命周期的Update和LateUpdate之间，会检查这个MonoBehaviour下挂载的所有协程，并唤醒其中满足唤醒条件的协程。 只需要以IEnumerator为返回值，并且在函数体里面用yield re">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows搭建个人博客 GitHub page+hexo">
-<meta property="og:url" content="http://example.com/2024/03/21/How-to-post-your-article/index.html">
+<meta property="og:title" content="unity协程的原理和拓展">
+<meta property="og:url" content="http://example.com/2024/11/12/unity-IEnumerator/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。 安装Node.js和Git Node.js：https:&#x2F;&#x2F;nodejs.org&#x2F;zh-cn  Git：https:&#x2F;&#x2F;git-scm.com&#x2F;downloads   基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 node">
+<meta property="og:description" content="协程就是一种特殊的函数，它可以主动的请求暂停自身并提交一个唤醒条件，Unity会在唤醒条件满足的时候去重新唤醒协程。 用StartCoroutine()启动协程，在MonoBehaviour生命周期的Update和LateUpdate之间，会检查这个MonoBehaviour下挂载的所有协程，并唤醒其中满足唤醒条件的协程。 只需要以IEnumerator为返回值，并且在函数体里面用yield re">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/image-20241026151654484-1729927077486.png">
-<meta property="article:published_time" content="2024-03-20T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-10-26T07:18:13.908Z">
+<meta property="article:published_time" content="2024-11-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-15T13:37:14.569Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/image-20241026151654484-1729927077486.png">
     
     
     <!--- Icon Part-->
@@ -42,7 +40,7 @@
     
     <title>
         
-            windows搭建个人博客 GitHub page+hexo | 沐云白的个人主页
+            unity协程的原理和拓展 | 沐云白的个人主页
         
     </title>
 
@@ -274,7 +272,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">windows搭建个人博客 GitHub page+hexo</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">unity协程的原理和拓展</h1>
                 </div>
             
             </div>
@@ -295,15 +293,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-03-21</span>
-        <span class="mobile">2024-03-21</span>
+        <span class="desktop">2024-11-12</span>
+        <span class="mobile">2024-11-12</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-10-26 15:18:13</span>
-            <span class="mobile">2024-10-26 15:18:13</span>
+            <span class="desktop">2024-11-15 21:37:14</span>
+            <span class="mobile">2024-11-15 21:37:14</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -330,93 +328,32 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a><strong>步骤</strong></h2><p>我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。</p>
-<h3 id="安装Node-js和Git"><a href="#安装Node-js和Git" class="headerlink" title="安装Node.js和Git"></a><strong>安装Node.js和Git</strong></h3><ul>
-<li>Node.js：<a class="link" href="https://link.zhihu.com/?target=https://nodejs.org/zh-cn">https://nodejs.org/zh-cn <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-<li>Git：<a class="link" href="https://link.zhihu.com/?target=https://git-scm.com/downloads">https://git-scm.com/downloads <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
-</ul>
-<p>基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 <code>node -v</code>、<code>npm -v</code> 和 <code>git --version</code>，看到类似以下版本号说明安装成功</p>
-<h3 id="连接-Github"><a href="#连接-Github" class="headerlink" title="连接 Github"></a><strong>连接</strong> <strong>Github</strong></h3><p>使用邮箱注册 <a class="link" href="https://link.zhihu.com/?target=https://github.com/">GitHub <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 账户，选择免费账户（Free），并完成邮件验证。</p>
-<p>在Windows桌面右键 -&gt; Git Bash Here，设置用户名和邮箱(此处的“GitHub 用户名”和”GitHub 邮箱”分别替换成个人的GitHub用户名和邮箱，下同）</p>
-<div class="highlight-container" data-rel="Powershell"><figure class="iseeu highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config <span class="literal">--global</span> user.name <span class="string">&quot;GitHub 用户名&quot;</span></span><br><span class="line">git config <span class="literal">--global</span> user.email <span class="string">&quot;GitHub 邮箱&quot;</span></span><br></pre></td></tr></table></figure></div>
+            <p>协程就是一种特殊的函数，它可以主动的请求暂停自身并提交一个唤醒条件，Unity会在唤醒条件满足的时候去重新唤醒协程。</p>
+<p>用StartCoroutine()启动协程，在<code>MonoBehaviour</code>生命周期的<code>Update</code>和<code>LateUpdate</code>之间，会检查这个<code>MonoBehaviour</code>下挂载的所有协程，并唤醒其中满足唤醒条件的协程。</p>
+<p>只需要以<code>IEnumerator</code>为返回值，并且在函数体里面用<code>yield return</code>语句来暂停协程并提交一个唤醒条件。然后使用<code>StartCoroutine</code>来开启协程。</p>
+<p>简单来说，就是StartCoroutine()启动协程，然后调用【以<code>IEnumerator</code>为返回值】的函数，在这个函数里，可以用<code>yield return</code>来暂停协程，用的比较普遍的是</p>
+<div class="highlight-container" data-rel="C#"><figure class="iseeu highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></div>
 
-<p><strong>创建</strong> <strong>SSH</strong> <strong>密匙</strong>：</p>
-<p>输入 <code>ssh-keygen -t rsa -C &quot;GitHub 邮箱&quot;</code>，然后一路回车。</p>
-<p><strong>添加密匙：</strong></p>
-<p>进入 [C:\Users\用户名.ssh] 目录（要勾选显示“隐藏的项目”），用记事本打开公钥 id_rsa.pub 文件并复制里面的内容。</p>
-<p>登陆 GitHub ，进入 Settings 页面，选择左边栏的 SSH and GPG keys，点击 New SSH key。</p>
-<p>Title 随便取个名字，粘贴复制的 id_rsa.pub 内容到 Key 中，点击 Add SSH key 完成添加。</p>
-<p><strong>验证连接：</strong></p>
-<p>打开 Git Bash，输入 <code>ssh -T ``git@github.com</code> 出现 “Are you sure……”，输入 yes 回车确认。显示 “Hi xxx! You’ve successfully……” 即连接成功。如果没有出现“Hi xxx! You’ve successfully……”字样，可以再次输入 <code>ssh -T ``git@github.com</code>尝试。</p>
-<h3 id="创建-Github-Pages-仓库"><a href="#创建-Github-Pages-仓库" class="headerlink" title="创建 Github Pages 仓库"></a><strong>创建</strong> <strong>Github</strong> <strong>Pages 仓库</strong></h3><p>GitHub 主页右上角加号 -&gt; New repository：</p>
-<ul>
-<li>Repository name 中输入 <code>用户名.github.io</code></li>
-<li>勾选 “Initialize this repository with a README”</li>
-<li>Description 选填</li>
-</ul>
-<p>填好后点击 Create repository 创建。</p>
-<p>创建后默认自动启用 HTTPS，博客地址为：<code>https://用户名.github.io</code></p>
-<h3 id="本地安装-Hexo-博客程序"><a href="#本地安装-Hexo-博客程序" class="headerlink" title="本地安装 Hexo 博客程序"></a><strong>本地安装 Hexo 博客程序</strong></h3><p>新建一个文件夹用来存放 Hexo 的程序文件，如 hexoblog。打开该文件夹，右键 -&gt; Git Bash Here。</p>
-<p>使用 npm 一键安装 Hexo 博客程序：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure></div>
+<p>这个使得协程暂停一帧，然后再继续执行。</p>
+<p>这个是一个比较普遍的例子，要用的基本都在这里。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">IEnumerator <span class="title">CoroutineA</span><span class="params">(<span class="type">int</span> arg1, string arg2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.<span class="built_in">Log</span>($<span class="string">&quot;协程A被开启了&quot;</span>);</span><br><span class="line">        yield <span class="keyword">return</span> null;Debug.<span class="built_in">Log</span>(<span class="string">&quot;刚刚协程被暂停了一帧&quot;</span>);</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSeconds</span><span class="params">(<span class="number">1.0f</span>)</span></span>;</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;刚刚协程被暂停了一秒&quot;</span>);</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="title">StartCoroutine</span><span class="params">(CoroutineB(arg1, arg2))</span></span>;</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;CoroutineB运行结束后协程A才被唤醒&quot;</span>);</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForEndOfFrame</span><span class="params">()</span></span>;</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;在这一帧的最后，协程被唤醒&quot;</span>);</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;协程A运行结束&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">IEnumerator <span class="title">CoroutineB</span><span class="params">(<span class="type">int</span> arg1, string arg2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.<span class="built_in">Log</span>($<span class="string">&quot;协程B被开启了，可以传参数，arg1=&#123;arg1&#125;, arg2=&#123;arg2&#125;&quot;</span>);</span><br><span class="line">    <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSeconds</span><span class="params">(<span class="number">3.0f</span>)</span></span>;</span><br><span class="line">    Debug.<span class="built_in">Log</span>(<span class="string">&quot;协程B运行结束&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>初始化并安装所需组件：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init      # 初始化</span><br><span class="line">npm install    # 安装组件</span><br></pre></td></tr></table></figure></div>
+<p>经典的用法是淡入淡出的动画。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正确实现</span></span><br><span class="line"><span class="function">IEnumerator <span class="title">Fade</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> alpha = <span class="number">1.0f</span>;</span><br><span class="line">    <span class="keyword">while</span>(alpha &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        alpha -= Time.deltaTime;</span><br><span class="line">        Color c = renderer.material.color;</span><br><span class="line">        c.a = alpha;</span><br><span class="line">        renderer.material.color = c;</span><br><span class="line">        yield <span class="keyword">return</span> null;<span class="comment">//协程会在这里被暂停，直到下一帧被唤醒。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//Fade不能直接调用，需要使用StartCoroutine(方法名(参数列表))的形式进行调用。</span></span><br><span class="line"><span class="built_in">StartCoroutine</span>(<span class="built_in">Fade</span>());<span class="comment">//正确实现</span></span><br><span class="line"><span class="function">IEnumerator <span class="title">Fade</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> alpha = <span class="number">1.0f</span>;</span><br><span class="line">    <span class="keyword">while</span>(alpha &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        alpha -= Time.deltaTime;</span><br><span class="line">        Color c = renderer.material.color;</span><br><span class="line">        c.a = alpha;</span><br><span class="line">        renderer.material.color = c;</span><br><span class="line">        yield <span class="keyword">return</span> null;<span class="comment">//协程会在这里被暂停，直到下一帧被唤醒。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//Fade不能直接调用，需要使用StartCoroutine(方法名(参数列表))的形式进行调用。</span></span><br><span class="line"><span class="built_in">StartCoroutine</span>(<span class="built_in">Fade</span>());</span><br></pre></td></tr></table></figure></div>
 
-<p>完成后依次输入下面命令，启动本地服务器进行预览：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g   # 生成页面</span><br><span class="line">hexo s   # 启动预览</span><br></pre></td></tr></table></figure></div>
+<p>还有定时器、异步加载。</p>
+<p>异步加载很重要！这个可以做热更新、资源管理等操作。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">IEnumerator <span class="title">ShowImageFromUrl</span><span class="params">(string url)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Image image = null;</span><br><span class="line">    <span class="function">yield <span class="keyword">return</span> <span class="title">LoadImageAsync</span><span class="params">(url, image)</span></span>; <span class="comment">//异步加载图像，加载完成后唤醒协程</span></span><br><span class="line">    <span class="built_in">Show</span>(image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p><strong>访问</strong> <code>http://localhost:4000</code><strong>，出现 Hexo 默认页面，本地博客安装成功！</strong></p>
-<h3 id="部署-Hexo-到-GitHub-Pages"><a href="#部署-Hexo-到-GitHub-Pages" class="headerlink" title="部署 Hexo 到 GitHub Pages"></a><strong>部署 Hexo 到</strong> <strong>GitHub</strong> <strong>Pages</strong></h3><p>本地博客测试成功后就是上传到 GitHub 进行部署，使其能够在网络上访问。</p>
-<p>首先安装 hexo-deployer-git：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></div>
-
-<p>然后修改hexo程序文件夹中的_config.yml文件末尾的 deploy部分(建议使用notepad++打开)，修改成如下（注意替换GitHub用户名）：</p>
-<div class="highlight-container" data-rel="Yaml"><figure class="iseeu highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:type: gitrepository:</span> <span class="string">git@github.com:用户名/用户名.github.io.gitbranch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure></div>
-
-<p>这一步一定要在hexo的那个文件夹中 <strong>右键 -&gt; Git Bash Here</strong> 进行！！</p>
-<p>完成后运行 <code>hexo d</code> 将网站上传部署到 GitHub Pages。</p>
-<p>![img](E:\HexoSource\source_posts\How-to-post-your-article\image (1).png)</p>
-<p>等待GitHub里的action的这个打勾就可以访问域名<code>https://用户名.github.io</code>看网站了。</p>
-<h3 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h3><p>我们的步骤基本都是在<strong>右键 -&gt; Git Bash Here</strong>中进行的</p>
-<p>创建文章的指令是：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure></div>
-
-<p>然后 source 文件夹中会出现一个 My New Post.md 文件，就可以使用vscode在该文件中撰写文章了。</p>
-<p>草稿的指令是 记得要把title替换成自己的标题。</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new draft title</span><br><span class="line">输入下面这个指令就可以把上面这个草稿发布</span><br><span class="line">$ hexo publish title</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
-
-<p>但是我觉得没啥用。。不如在飞书或者typora写好在直接发布。</p>
-<h3 id="编写-发布md文章"><a href="#编写-发布md文章" class="headerlink" title="编写&amp;发布md文章"></a>编写&amp;发布md文章</h3><p>我这里用的是typora，这个可以直接把飞书文档复制变成md格式，非常好用，网上有破解版，但是29块钱就可以终身享用，比一个游戏还便宜，我还是选择支持一下正版。</p>
-<p>在typora中编辑完成后，就可以发布了。</p>
-<p>发布的代码：</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean   # 清除缓存和已生成的静态文件</span><br><span class="line">hexo g   # 生成页面</span><br><span class="line">hexo d   # 部署发布</span><br></pre></td></tr></table></figure></div>
-
-<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;name&quot;       # 新建文章</span><br><span class="line">hexo new page &quot;name&quot;  # 新建页面</span><br><span class="line">hexo g                # 生成页面</span><br><span class="line">hexo d                # 部署</span><br><span class="line">hexo g -d             # 生成页面并部署</span><br><span class="line">hexo s                # 本地预览</span><br></pre></td></tr></table></figure></div>
-
-
-
-
-
-<p>然后hexo也支持更好主题，</p>
-<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p>在 <a class="link" href="https://link.zhihu.com/?target=https://hexo.io/themes/">Themes | Hexo <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a> 选择一个喜欢的主题，并参照主题的文档来安装和配置主题。</p>
-<p>这里我选了Redefine这个主题，真的好看好吧！</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://redefine-docs.ohevan.com/basic/info">基本信息 info - Redefine Docs <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>这个是这个主题的文档，安装方式里面有，</p>
-<ul>
-<li>我遇到的问题是在用npm下载的时候报错</li>
-</ul>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$ npm install hexo-theme-redefine@latest</span><br><span class="line">npm error code ECONNRESET</span><br><span class="line">npm error syscall read</span><br><span class="line">npm error errno ECONNRESET</span><br><span class="line">npm error network request to https://registry.npmjs.org/hexo-theme-redefine/-/hexo-theme-redefine-2.7.2.tgz  failed, reason: read ECONNRESET</span><br><span class="line">npm error network This is a problem related to network connectivity.</span><br><span class="line">npm error network In most cases you are behind a proxy or have bad network settings.</span><br><span class="line">npm error network</span><br><span class="line">npm error network If you are behind a proxy, please make sure that the</span><br><span class="line">npm error network &#x27;proxy&#x27; config is set properly.  See: &#x27;npm help config&#x27;</span><br><span class="line">npm error A complete log of this run can be found in: C:\Users\ASUS\AppData\Local\npm-cache\_logs\2024-10-26T05_47_08_523Z-debug-0.log</span><br></pre></td></tr></table></figure></div>
-
-<p>这个之前也遇到过几次，一般是因为vpn的问题，开着就关掉试试，关着一般没问题，不行的话打开试试；</p>
-<p>但是这次不行，我选择清空一下缓存</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean --force</span><br></pre></td></tr></table></figure></div>
-
-<p>解决了。</p>
-<ul>
-<li>接着就是要注意以下配置文档的语法，要严格缩进，这个文档里给的缩进有问题，要改一下。（感觉是作者为了提醒我们特地搞得bug。。。）</li>
-</ul>
-<h3 id="图片问题"><a href="#图片问题" class="headerlink" title="图片问题"></a>图片问题</h3><p>因为我是从飞书文档复制过来的，所以图片路径是网络上的，但是飞书的这个路径貌似的动态的，过了一段时间我图片就没了，所以要存储在相对路径中。，更改typora的设置：</p>
-<p><img lazyload src="/images/loading.svg" data-src="/image-20241026151654484-1729927077486.png" alt="image-20241026151654484"></p>
+<p><strong>协程能做的Update都能做，那为什么我们需要协程呢？ 答：使用协程，我们可以把一个跨越多帧的操作封装到一个方法内部，代码会更清晰。</strong></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li>协程是挂在MonoBehaviour上的，必须要通过一个MonoBehaviour才能开启协程。</li>
+<li>MonoBehaviour被Disable的时候协程会继续执行，只有MonoBehaviour被销毁的时候协程才会被销毁。</li>
+<li>协程看起来有点像是轻量级线程，但是本质上协程还是运行在主线程上的，协程更类似于<code>Update()</code>方法，Unity会每一帧去检测协程需不需要被唤醒。一旦你在协程中执行了一个耗时操作，很可能会堵塞主线程。这里提供两个解决思路：</li>
+</ol>
+<p>(1) 在耗时算法的循环体中加入<code>yield return null</code>来将算法分到很多帧里面执行；</p>
+<p>(2) 如果耗时操作里面没有使用Unity API，那么可以考虑在异步线程中执行耗时操作，完成后唤醒主线程中的协程。</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/279383752">Unity协程的原理与应用 - 知乎 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
 
         </div>
 
@@ -424,18 +361,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> windows搭建个人博客 GitHub page+hexo</li>
+        <li><strong>Title:</strong> unity协程的原理和拓展</li>
         <li><strong>Author:</strong> 沐云白</li>
         <li><strong>Created at
-                :</strong> 2024-03-21 00:00:00</li>
+                :</strong> 2024-11-12 00:00:00</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-10-26 15:18:13
+                    :</strong> 2024-11-15 21:37:14
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2024/03/21/How-to-post-your-article/
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/11/12/unity-IEnumerator/
         </li>
         <li>
             <strong>
@@ -463,18 +400,33 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/08/29/GAS-learn1/"
+                        href="/2024/11/15/algorithm-programmercarl/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">GAS学习记录第一季</span>
+                                <span class="post-nav-title-item">算法细节&amp;二刷代码随想录：</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
                     </div>
                 
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/11/10/C++-Mark/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">c++基础 个人小记</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
                 
             </div>
         
@@ -531,8 +483,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">windows搭建个人博客 GitHub page+hexo</div>
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Node-js%E5%92%8CGit"><span class="nav-text">安装Node.js和Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5-Github"><span class="nav-text">连接 Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-Github-Pages-%E4%BB%93%E5%BA%93"><span class="nav-text">创建 Github Pages 仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85-Hexo-%E5%8D%9A%E5%AE%A2%E7%A8%8B%E5%BA%8F"><span class="nav-text">本地安装 Hexo 博客程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2-Hexo-%E5%88%B0-GitHub-Pages"><span class="nav-text">部署 Hexo 到 GitHub Pages</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%87%E7%AB%A0"><span class="nav-text">创建文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E5%86%99-%E5%8F%91%E5%B8%83md%E6%96%87%E7%AB%A0"><span class="nav-text">编写&amp;发布md文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="nav-text">更换主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E9%97%AE%E9%A2%98"><span class="nav-text">图片问题</span></a></li></ol></li></ol>
+        <div class="page-title">unity协程的原理和拓展</div>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li></ol>
 
     </div>
 </div>

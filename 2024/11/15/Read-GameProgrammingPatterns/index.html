@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="沐云白">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/11/15/read-gameprogrammingpatterns/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="软件设计原则SOLID：S单一职责：一个类应该只有一个改变的理由，每个模块、类或函数只负责一件事情，并且封装该部分逻辑。  requireComponent（） 可读性：短类更可读，当一个类太大时，要考虑是否要重构成更小的部分。比如设置200-300行的限制来相对判断一下。 可拓展性：更容易地从小类****继承，修改和体会他们二不用担心破坏功能。 可重用性：让类小巧且模块化，更好的在其他地方进行重">
+<meta property="og:type" content="article">
+<meta property="og:title" content="游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》">
+<meta property="og:url" content="http://example.com/2024/11/15/Read-GameProgrammingPatterns/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="软件设计原则SOLID：S单一职责：一个类应该只有一个改变的理由，每个模块、类或函数只负责一件事情，并且封装该部分逻辑。  requireComponent（） 可读性：短类更可读，当一个类太大时，要考虑是否要重构成更小的部分。比如设置200-300行的限制来相对判断一下。 可拓展性：更容易地从小类****继承，修改和体会他们二不用担心破坏功能。 可重用性：让类小巧且模块化，更好的在其他地方进行重">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="og:image" content="http://example.com/asynccode">
+<meta property="article:published_time" content="2024-11-14T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-15T13:37:05.979Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/asynccode">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》 | 沐云白的个人主页
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沐云白的个人主页","subtitle":{"text":["What`s happened`s happened.","Which is an expression of faith in the mechanies of the world.","It`s not an excuse to do nothing."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"GITHUB":{"path":"https://github.com/zhangyuxinn","icon":"fa-brands fa-github"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/10 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                沐云白的个人主页
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">沐云白</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-11-15</span>
+        <span class="mobile">2024-11-15</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-11-15 21:37:05</span>
+            <span class="mobile">2024-11-15 21:37:05</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="软件设计原则SOLID："><a href="#软件设计原则SOLID：" class="headerlink" title="软件设计原则SOLID："></a>软件设计原则SOLID：</h1><h2 id="S单一职责："><a href="#S单一职责：" class="headerlink" title="S单一职责："></a>S单一职责：</h2><p>一个类应该只有一个改变的理由，每个模块、类或函数只负责一件事情，并且封装该部分逻辑。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>requireComponent（）</p>
+<p>可读性：短类更可读，当一个类太大时，要考虑是否要重构成更小的部分。比如设置200-300行的限制来相对判断一下。</p>
+<p>可拓展性：<strong>更容易地从小类****继承</strong>，修改和体会他们二不用担心破坏功能。</p>
+<p>可重用性：让类小巧且模块化，更好的在其他地方<strong>进行重用</strong>。</p>
+<h2 id="OCP开发-封闭原则"><a href="#OCP开发-封闭原则" class="headerlink" title="OCP开发-封闭原则"></a>OCP开发-封闭原则</h2><p>这个原则表示类必须对拓展开放，但对修改封闭，并结构化你的类，以便你在<strong>不修改原始代码</strong>的情况下创建新行为。经典例子是计算面积，一般来说会是这样写：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>但是这样写不遵从OCP原则，会很多余并且难以拓展，如果要加新的形状，就只能在这个旧的代码文件里添加新的内容，这样我修bug之类的时候还得看旧代码，就很烦。</p>
+<p>那我们需要怎么写呢，</p>
+<p>我们应该写一个抽象类，这个类里有计算面积的函数，然后圆形矩形各种继承自这个类，在图形类中实现计算面积的函数，最后在总的计算面积计算器中调用返回。</p>
+<p>这样如果我们需要计算新的图形面积，就可以直接借助接口获得面积，而不用去修改旧的代码了。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>现在的框架：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>在创造新类时，应利用接口和抽象来避免出现笨重的switch或者if语句，这些在后期会很难以拓展。</p>
+<h2 id="里氏替换原则（LSP）-关于如何应用好继承。"><a href="#里氏替换原则（LSP）-关于如何应用好继承。" class="headerlink" title="里氏替换原则（LSP） 关于如何应用好继承。"></a>里氏替换原则（LSP） 关于如何应用好继承。</h2><ul>
+<li>在子类化的时候别移除特性，移除特性很可能违反里氏替换原则。</li>
+<li>保持抽象简单，在基类中放入较少的逻辑，基类应该只表达派生类的共同功能。</li>
+<li>子类需要具有和基类相同的共同成员，也就是在基类中不能有特性，应该都是子类都需要实现的共同功能。</li>
+<li>在建立类的层次结构之前，考虑一下类的api，比如汽车和火车都是车，但是他们应该从不同父类中继承，他们很多性质其实都不相同。</li>
+<li>优先使用接口而非继承，用继承传递功能，不如创建接口或者单独的类来封装好功能，然后将其组合匹配。</li>
+</ul>
+<p>这里的例子是汽车和火车：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>这样就违反了LSP原则，父类中有子类不能实现的特性。</p>
+<p>根据前面所说的做法，我们将功能分成多个接口类，可得这样的设计框架。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>这个思维方式看起来有点反直觉，但是实际上，在设计过程中就不应该以对现实的假设来构建类层次关系，而是用软件设计来驱动构造。</p>
+<h2 id="接口分离原则（ISP）"><a href="#接口分离原则（ISP）" class="headerlink" title="接口分离原则（ISP）"></a>接口分离原则（ISP）</h2><p>任何客户端都不应该被迫依赖期不使用的方法。</p>
+<p>理念和单一职责原则类似，这个原则告诉我们应该保持类和方法简短，有最大的灵活度。</p>
+<p>这部分的例子是炸药桶，</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>对于一个只需要被破坏功能的物体，我们不应强迫其实现这个接口内的其他功能，所以应该将这个接口拆分。</p>
+<p>例如这样：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>然后就可以在其中选几个功能然后组合实现敌方单位，</p>
+<h2 id="依赖倒置原则（DIP）"><a href="#依赖倒置原则（DIP）" class="headerlink" title="依赖倒置原则（DIP）"></a>依赖倒置原则（DIP）</h2><p>高层模块不应直接从低层模块导入任何东西，二者应该都依赖于抽象。</p>
+<p>其原因是，当一个类于另一个类有关系时，他就有了依赖或者耦合，在软件设计中，每个依赖都有一定风险。</p>
+<p>最佳情况下，尽量减少类之间的依赖关系，应该要其内部协同工作。这样这个类就被认为是内聚的。</p>
+<p>例子是开关和门的制作，（这个我做过）</p>
+<p>一般会这么做</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>我们用接口来解决这个问题，创建一个叫可切换接口的接口，实现如下：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>然后开关就成了这样：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>开关变成了依赖于可切换接口，而不是之间依赖于门。</p>
+<p>然后门实现这个接口：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<h2 id="抽象类与接口"><a href="#抽象类与接口" class="headerlink" title="抽象类与接口"></a>抽象类与接口</h2><p>抽象类：（可以理解作 一个东西（派生类）是一个什么（抽象类））</p>
+<p>抽象类的优势在于它们可以拥有字段和常量以及静态成员，它们还可以应用更 严格的访问修饰符，如受保护和私有。与接口不同，抽象类允许你实现逻辑， 从而在具体类之间共享核心功能。</p>
+<p>但是问题是不能从多个抽象类上继承。</p>
+<p>接口：（可以理解作 一个东西 有一个什么功能）</p>
+<p>但是接口只包含成员的声明，实际逻辑实现需要实现接口的类自己来做。</p>
+<p>因此，接口和抽象类的模式应该是：</p>
+<p>用抽象类来定义你共享代码的基本功能，用接口来拓展你需要灵活性的外围能力。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>记住！一个类最多继承一个抽象类，但是可以实现多个接口。</p>
+<p>SOLID的总结：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>但是实际运用过程中，如果不确定如何使用，尽量保持简单，不要为了用原则而去用。</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="工厂模式（可以在现在这个游戏生成怪物时候用）"><a href="#工厂模式（可以在现在这个游戏生成怪物时候用）" class="headerlink" title="工厂模式（可以在现在这个游戏生成怪物时候用）"></a>工厂模式（可以在现在这个游戏生成怪物时候用）</h2><p>用一个特殊的对象来负责创建其他对象，也就是工厂，在这里封装了许多<strong>生成产品</strong>的细节，然后具体每个产品生成的特性在产品中实现即可。</p>
+<p>还可以对子类工厂进行子类化，以创建多个专门针对特定产品的工厂这样做 有助于在运行时生成敌人、障碍物或其他任何东西。</p>
+<p>示例：</p>
+<p>创建IProduct的接口和Factory的抽象类。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p><strong>产品根据模板来定义方法，但是不共享功能。</strong></p>
+<p>而工厂可能会需要一些公共功能，所以用了抽象类。但是要注意里氏替换原则。</p>
+<p>可以形成如下结构：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>但是factory只是抽象类，所以需要派生类，对于不同的派生类生成不同类型的产品。</p>
+<p>具体写法：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><ul>
+<li>在设置许多产品时，你将从工厂模式中受益最多。在你的应用程序中定义新产品类型 不会改变现有产品或要求你修改以前的代码 </li>
+<li>将每个产品的内部逻辑分离到自己的类中，使工厂代码相对简短每个工厂只知道 在每个产品上调用初始化，而不需要了解底层细节 </li>
+<li>缺点是你需要创建多个类和子类来实现这个模式和其他模式一样，这会引入 一些开销，如果你没有大量不同的产品，这可能是多余</li>
+</ul>
+<p>个人理解：将工厂模式抽象一下，</p>
+<p>也就是将出现的逻辑和出现完的具体效果分离，让工厂类来管理出现逻辑，而细节具体逻辑由对应类自己实现描述，工厂类只负责调用那个类。</p>
+<p>也就是说，在ui设置也能这么写，出现ui是都调用初始化函数，但是具体的初始化内容由具体ui实现。</p>
+<p>对于技能释放也能这么写，一个独立的类来控制技能释放，具体效果在技能类中构造。</p>
+<h4 id="改进："><a href="#改进：" class="headerlink" title="改进："></a>改进：</h4><ul>
+<li><strong>使用字典来搜索产品</strong>：你可能想将产品存储为字典中的键值对使用唯一的字 符串标识符（例如，名称或某个ID）作为键，类型作为值。这可以使检索产品 和&#x2F;或其对应的工厂更方便</li>
+<li><strong>使工厂（或工厂管理器）静态</strong>：这使得使用更方便，但需要额外的设置静态类不 会出现在检查器中，因此你需要将产品集合也设为静态。</li>
+<li><strong>将其应用于非游戏对象和非MonoBehaviour</strong>：不要局限于 预制件或其他Unity特定组件工厂 模式可以与任何C#对象一起使用。<strong>这个没懂。</strong></li>
+<li><strong>与对象池模式结合使用</strong>：工厂不一定需要实例化或创建新对象它们也可以在 层次结构中检索现有对象如果你一次实例化多个对象（例如，武器发射的弹药 ），请使用对象池模式以获得更优化的内存管理。</li>
+</ul>
+<h2 id="对象池（生成子弹）"><a href="#对象池（生成子弹）" class="headerlink" title="对象池（生成子弹）"></a>对象池（生成子弹）</h2><p>减轻创建和销毁大量游戏对象时的cpu压力。</p>
+<p>可以在合适的时机先把对象都实例化，例如加载屏幕的时候。</p>
+<p>对象池代码：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>这俩代码替换正常情况下的instantiate和destory。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>对于池所管理的对象，由以下小脚本</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>改进点：</p>
+<ul>
+<li>让他成为单例或者静态：：如果你需要从多个来源生成池中的对象，考虑将对象池 设为静态这使得它在你的应用程序中随处可用，但不允许使用检查器或者 ，将对象池模式与单例模式结合，使其全球可访问以便于使用</li>
+<li>使用字典管理多个池：如果你有多个不同的预制件想要进行池化，将它们 存储在单独的池中，并存储一个键值对，以便你知道查询哪个池（预制件的InstanceID可以作为唯一键）</li>
+<li>创造性地移除未使用的游戏对象：有效利用对象池的一部分是隐藏未使用的对 象并将它们返回到池中利用每一个机会停用一个池中的对象（例如，屏幕外 、被爆炸隐藏等）   该移除的时候就移除，不要等到完全没用了再移除，例如爆炸，中心物体不可视了直接移除。</li>
+<li>动态控制池的大小和上限。</li>
+<li>实际操作过程中，要控制一下在实例化大量对象的时候的量，防止造成游戏卡顿，最好能做到动态生成。</li>
+</ul>
+<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>第一个接触的，但是很可能弊大于利（？）</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>这是最简单的单例模式，但是它由两个较大的问题：</p>
+<p>加载新场景会销毁，需要在使用前设置。</p>
+<p>修改后是这样的：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>DontDestroyLOnload（）防止加载新场景时销毁，还要就是检测场景中是否有这个物体，没有的话就创建一个新的。</p>
+<h3 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h3><p>接着继续拓展，我在场景中肯定不止一个单例，如果我需要一堆单例，我还得把单例的构建代码复制一遍，显然是不合适的，使用用泛型来制作一个通用版本的脚本：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>然后我需要具体创建什么基类就直接这样创建就行：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><p>单例和其他模式不大一样，它很多地方违反了SOLID原则，例如：</p>
+<p>单例需要全局访问，其中就会隐藏很多依赖关系，就会导致测试bug变得更加困难。</p>
+<p>并且他是紧耦合的，修改组件会影响到与之连接的相关组件。</p>
+<p>但是对于不需要太拓展的小游戏，单例有很多好处，例如：</p>
+<p>好学习，简单，性能好，因为都是在全局访问静态单例，而不用去使用getComponent什么的去操作。</p>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><p>主要用于策略游戏或者实现可重玩性、撤销性。</p>
+<p>基础框架：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>游戏操作的接口都有这个ICommand来实现，这样添加指令也不会影响现有指令。</p>
+<p>然后是一个负责执行或者撤销指令的命令块：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>在这里负责执行指令，存储已经执行的指令。</p>
+<p>例子是走迷宫：</p>
+<p>简单的移动。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>然后我们需要创建一个移动指令，继承自指令接口。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>发送命令的总台：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>先检测能不能走，然后new一个指令加入管理器然后执行，管理器中就会自动存储执行过的指令。</p>
+<p>最好用一个额外的方法来运行command，将其独立处理。</p>
+<p>命令调用者和其他外部对象一样，不会看到命令对象的内部操作，只会操作或者撤销操作。</p>
+<h3 id="将命令模式拓展："><a href="#将命令模式拓展：" class="headerlink" title="将命令模式拓展："></a>将命令模式拓展：</h3><p>创建更多命令。</p>
+<p>重做功能，也就是多一个存撤销撤销的栈。</p>
+<p>或者用队列来存储。</p>
+<p>限制栈的大小，保证性能。</p>
+<h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>状态机，可以用来跟踪角色或道具的内部状态。</p>
+<p>最一般的写法是用enum和switch来实现。</p>
+<p>但是这样我们每次就要重新审视旧的脚本。。</p>
+<h3 id="正式的状态模式"><a href="#正式的状态模式" class="headerlink" title="正式的状态模式"></a>正式的状态模式</h3><p>解决了两个问题</p>
+<ol>
+<li>当对象的内部状态改变时，它应该改变其行为。</li>
+<li>状态特定的行为是独立定义的，添加新状态不会影响现有状态的行为。</li>
+</ol>
+<p>这个模式下，直接将状态作为一个对象，在每一个状态实现IState接口：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>然后就是管理状态的状态机：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>在状态机中，使用构造函数来设置每个实例：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>每个状态的逻辑都在状态对象中实现，与其他代码块独立。</p>
+<p>然后需要转换状态时在状态机中调用。</p>
+<h3 id="改进"><a href="#改进" class="headerlink" title="改进"></a>改进</h3><ul>
+<li>与动画相结合。</li>
+<li>添加事件，在状态切换的时候告知监听者。</li>
+<li>实现简单的ai，例如这样：</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><p>该模式松散地解耦了主题，主题并不真正知道观察者或关心它们在接收到信号 后会做什么 虽然观察者依赖于主题，但观察者本身并不知道彼此。</p>
+<p>用事件实现即可。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>简单的主体，使用Action<T> ，T可以是各种参数，在这里面来传递参数。</T></p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>这样来监听事件的发生。</p>
+<p>要记得观察者销毁时要取消订阅，不然就会报错。</p>
+<h3 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h3><p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>优点：</p>
+<p>可以将游戏逻辑代码和UI分开，UI元素可以监听特地的游戏事件和条件，以此来进行反应。</p>
+<p>独立性好。</p>
+<p>缺点：</p>
+<p>更复杂，而且仍然需要依赖于发布事件的类，所以需要使用一个静态eventManager来处理所有事件。</p>
+<p>性能可能会变差。</p>
+<p>改进：</p>
+<ul>
+<li>用ObservableConllection类：：C# 提供了一个动态的 Observ  ableCollection 来跟踪特定的变化它可以在项目被添加、移除或列表 被刷新时通知你的观察者。 一会仔细查一下这个。</li>
+<li>创建一个静态事件管理器：因为事件可以驱动你大部分的游戏玩法，许多Uni  ty应用程序使用静态或单例事件管理器。这样，你的观察者可以引用一个中央的 游戏事件源作为主题，以便简化设置。</li>
+<li>传递ScriptableObject来传递各种参数。</li>
+<li>可以和命令模式相结合，用命令缓冲区来逐个播放事件，并且可以在有需要的时候忽略他们。</li>
+</ul>
+<h2 id="模型视图控制器（MVC）"><a href="#模型视图控制器（MVC）" class="headerlink" title="模型视图控制器（MVC）"></a>模型视图控制器（MVC）</h2><p>基本思想是将软件的逻辑部分与数据和表现分开这有助于减少不必要的依赖， 并可能减少意大利面条代码。</p>
+<p>将应用程序分成三个层次：</p>
+<ul>
+<li>模型储存数据：只进行存值。</li>
+<li>视图可视化数据。</li>
+<li>控制器处理逻辑。</li>
+</ul>
+<p>这种关注点的分离还具体定义了这三部分如何相互作用。</p>
+<p>模型管理应用程序数据， </p>
+<p>而视图将这些数据展示给用户，</p>
+<p>控制器处理输入并对游戏数据进行任何决策或计算，然后将结果发送回模型。</p>
+<h3 id="模型视图呈现者-MVP"><a href="#模型视图呈现者-MVP" class="headerlink" title="模型视图呈现者 (MVP)"></a>模型视图呈现者 (MVP)</h3><p>在unity中，一般选择模型视图呈现者 (MVP) </p>
+<p>这种MVC的变体称为模型视图展示者设计，或MVP。MVP仍然保持三个不同应用层之间的关注点分离。然而，它稍 微改变了每个部分的职责。</p>
+<p>在MVP中，展示着充当其他层的中介，它从模型中获得数据，然后将其格式化，以便在视图中先是切换到了那个层来处理输入，而视图负责处理用户输入。</p>
+<p>其中观察者模式是很重要的一部分，用户可以通过按钮等事件，来和视图层进行交互，将输入发送给展示者，而展示者来操作模型，模型数据发生变化，然后再回传给展示者，展示者传给视图，视图刷新UI。</p>
+<h3 id="示例：血量功能"><a href="#示例：血量功能" class="headerlink" title="示例：血量功能"></a>示例：血量功能</h3><p>模型：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>其中只包含血量数值，函数只涉及数值的改变，然后生命值改变向外广播。</p>
+<p>但实际上大多数对象不会直接操作生命值，需要一个展示者来操作。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/asynccode" alt="img"></p>
+<p>以此来串联数据的修改和视图UI的变化。</p>
+<p>然后其他对象通过健康展示者来造成伤害治疗等效果、</p>
+<p>优点：</p>
+<p>在大型团队协作中很有用，工作分配会变得很平滑，独立性很强。</p>
+<p>但是需要进行提前规划。</p>
+<h1 id="其他较不常用的设计模式"><a href="#其他较不常用的设计模式" class="headerlink" title="其他较不常用的设计模式"></a>其他较不常用的设计模式</h1><p>享元：大量对象，分享基类的公共属性以节约资源。例如设计森林时一些基础数值直接写在tree基类中，不在子类重复。</p>
+<p><strong>双缓冲</strong>:这允许你在计算完成时维护两组数组数据，你可以在处理另一组数据时显示一组数据，这对于过程模拟（例如，细胞自动机）或 仅仅是将内容渲染到屏幕上非常有用。 记一下，下次看看</p>
+<p><strong>解释器&#x2F;字节码</strong>:如果你想添加模组支持或允许非程序员扩展你的游戏，你可以<strong>创建一种简化的语言</strong>，用户可以在外部文本文件中编辑字节码组件可以将该解释语言翻译成C#游戏代码。</p>
+<p><strong>子类沙盒</strong>:如果你有类似的对象但行为各异，你可以在父类中将 这些行为定义为受保护的然后子类可以混合搭配以创建新的组合。</p>
+<p><strong>类型对象</strong>:如果你有许多种类的游戏对象，而不是为每一个创建子类， 可以在一个抽象或父类中定义所有可能的行为。在一个单独的数据文件中（例如ScriptableObject）区分个别对象的特殊特性，该文件可以在不更改代码的情况下进行自定义。例如，这允许你创建一个看似不同的物品库存，这些物品都源自同一个类，游戏设计师可以自定义 数据文件，使每个物品<strong>独特</strong>（例如，角色扮演游戏中的武器），而无需程序员的协助。</p>
+<p>数据局部性:如果你优化数据，使其在内存中高效存储，你可以获得 性能上的回报用结构体替代类可以使你的数据更具缓存友好性，Unit  y 的 ECS 和 DOTS 架构实现了这一模式</p>
+<p>空间划分:对于大型场景和游戏世界，使用特殊结构按位置组织你 的游戏对象，网格、字典树（四叉树、八叉树）和二叉搜索树都 是帮助你更高效地划分和搜索的技术。</p>
+<p>装饰器:这允许你在不改变现有结构的情况下为对象添加职责装饰 器可以赋予特殊能力或修改一个游戏对象，例如，为武器添加特性而 无需更改基础武器类。</p>
+<p><strong>外观</strong>:这为更复杂的系统提供了一个简单、统一的接口如果你有 一个包含独立 AI、动画和声音组件的游戏对象，你可能会在这些 组件周围添加一个包装类（想象一个管理 PlayerInput、PlayerA  udio 等的玩家控制器类）这个外观隐藏了原始组件的细节，简化了使 用</p>
+<p>模板方法:该模式将算法的确切步骤推迟到子类中例如，你可以在 抽象类中定义算法或数据结构的粗略框架，但允许子类覆盖某些部分 ，而不改变算法的整体结构。</p>
+<p>策略:这种行为模式（也称为策略模式）帮助你定义一系列算法，并 将每个算法封装在一个类中这使得每个算法（策略）在运行时可 以互换例如，如果你创建了一个路径finding系统，你可以使用 策略模式定义多个算法（A*、Dijkstra最短路径等），根据上下文在游戏过程中进行切换。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》</li>
+        <li><strong>Author:</strong> 沐云白</li>
+        <li><strong>Created at
+                :</strong> 2024-11-15 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-11-15 21:37:05
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2024/11/15/Read-GameProgrammingPatterns/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/11/15/algorithm-programmercarl/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">算法细节&amp;二刷代码随想录：</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99SOLID%EF%BC%9A"><span class="nav-text">软件设计原则SOLID：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#S%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%EF%BC%9A"><span class="nav-text">S单一职责：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OCP%E5%BC%80%E5%8F%91-%E5%B0%81%E9%97%AD%E5%8E%9F%E5%88%99"><span class="nav-text">OCP开发-封闭原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8C%E6%B0%8F%E6%9B%BF%E6%8D%A2%E5%8E%9F%E5%88%99%EF%BC%88LSP%EF%BC%89-%E5%85%B3%E4%BA%8E%E5%A6%82%E4%BD%95%E5%BA%94%E7%94%A8%E5%A5%BD%E7%BB%A7%E6%89%BF%E3%80%82"><span class="nav-text">里氏替换原则（LSP） 关于如何应用好继承。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%88%86%E7%A6%BB%E5%8E%9F%E5%88%99%EF%BC%88ISP%EF%BC%89"><span class="nav-text">接口分离原则（ISP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%80%92%E7%BD%AE%E5%8E%9F%E5%88%99%EF%BC%88DIP%EF%BC%89"><span class="nav-text">依赖倒置原则（DIP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3"><span class="nav-text">抽象类与接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%88%E5%8F%AF%E4%BB%A5%E5%9C%A8%E7%8E%B0%E5%9C%A8%E8%BF%99%E4%B8%AA%E6%B8%B8%E6%88%8F%E7%94%9F%E6%88%90%E6%80%AA%E7%89%A9%E6%97%B6%E5%80%99%E7%94%A8%EF%BC%89"><span class="nav-text">工厂模式（可以在现在这个游戏生成怪物时候用）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E6%B1%A0%EF%BC%88%E7%94%9F%E6%88%90%E5%AD%90%E5%BC%B9%EF%BC%89"><span class="nav-text">对象池（生成子弹）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="nav-text">单例模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-text">泛型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">命令模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%E6%8B%93%E5%B1%95%EF%BC%9A"><span class="nav-text">将命令模式拓展：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-text">状态模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%BC%8F%E7%9A%84%E7%8A%B6%E6%80%81%E6%A8%A1%E5%BC%8F"><span class="nav-text">正式的状态模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9B"><span class="nav-text">改进</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F"><span class="nav-text">观察者模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%9A"><span class="nav-text">应用场景：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8%EF%BC%88MVC%EF%BC%89"><span class="nav-text">模型视图控制器（MVC）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%A7%86%E5%9B%BE%E5%91%88%E7%8E%B0%E8%80%85-MVP"><span class="nav-text">模型视图呈现者 (MVP)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A%E8%A1%80%E9%87%8F%E5%8A%9F%E8%83%BD"><span class="nav-text">示例：血量功能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%BE%83%E4%B8%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-text">其他较不常用的设计模式</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        9 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
