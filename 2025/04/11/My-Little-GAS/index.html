@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="沐云白">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/04/11/my-little-gas/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="实现功能ASC：统一管理技能，包括Attribute，GameplayAbility，GameplayEffect  AttributeSet 管理数值，有preAttributeChange的效果，可以在数值改变前进行处理，比如夹值&#x2F;归一化等，保证数值正确。 GA GameplayAbility:技能的业务逻辑实现，技能触发仅需在activate GA即可。 GE GameplayEf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制简易GAS">
+<meta property="og:url" content="http://example.com/2025/04/11/My-Little-GAS/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="实现功能ASC：统一管理技能，包括Attribute，GameplayAbility，GameplayEffect  AttributeSet 管理数值，有preAttributeChange的效果，可以在数值改变前进行处理，比如夹值&#x2F;归一化等，保证数值正确。 GA GameplayAbility:技能的业务逻辑实现，技能触发仅需在activate GA即可。 GE GameplayEf">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/My-Little-GAS.assets/image-20250711085407411.png">
+<meta property="article:published_time" content="2025-04-11T00:52:42.000Z">
+<meta property="article:modified_time" content="2025-07-11T00:54:44.289Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/My-Little-GAS.assets/image-20250711085407411.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            自制简易GAS | 沐云白的个人主页
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沐云白的个人主页","subtitle":{"text":["What`s happened`s happened.","Which is an expression of faith in the mechanies of the world.","It`s not an excuse to do nothing."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"GITHUB":{"path":"https://github.com/zhangyuxinn","icon":"fa-brands fa-github"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/10 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                沐云白的个人主页
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">自制简易GAS</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">沐云白</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-04-11 08:52:42</span>
+        <span class="mobile">2025-04-11 08:52:42</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-07-11 08:54:44</span>
+            <span class="mobile">2025-07-11 08:54:44</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="实现功能"><a href="#实现功能" class="headerlink" title="实现功能"></a>实现功能</h1><p>ASC：统一管理技能，包括Attribute，GameplayAbility，GameplayEffect</p>
+<ul>
+<li>AttributeSet 管理数值，有preAttributeChange的效果，可以在数值改变前进行处理，比如夹值&#x2F;归一化等，保证数值正确。</li>
+<li>GA GameplayAbility:技能的业务逻辑实现，技能触发仅需在activate GA即可。</li>
+<li>GE GameplayEffect:一般来说是各种buff，广义的buff，可以是永久的也可以是暂时的，技能伤害、CD实现也通过这个实现</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/My-Little-GAS.assets/image-20250711085407411.png" alt="image-20250711085407411"></p>
+<p>Tag：</p>
+<p>GE能持有tag，ASC激活技能时遍历所拥有的GE，然后以此去看看能否触发，</p>
+<p>持续时间由GE自己管理， 到点就自己销毁？？</p>
+<h1 id="实现细节"><a href="#实现细节" class="headerlink" title="实现细节"></a>实现细节</h1><h2 id="AttributeSet"><a href="#AttributeSet" class="headerlink" title="AttributeSet"></a>AttributeSet</h2><h3 id="核心变量："><a href="#核心变量：" class="headerlink" title="核心变量："></a>核心变量：</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用映射表存储属性，可以更具type去修改对应的数值。</span></span><br><span class="line">std::unordered_map&lt;attributeType,<span class="type">float</span>&gt; attributes;</span><br><span class="line"><span class="comment">//创建委托，可以广播changed</span></span><br><span class="line">MulticastDelegate&lt;<span class="type">float</span>&gt; onHealthChanged;</span><br><span class="line">MulticastDelegate&lt;<span class="type">float</span>&gt; onMaxHealthChanged;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="核心函数："><a href="#核心函数：" class="headerlink" title="核心函数："></a>核心函数：</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">BeAdd</span><span class="params">(std::unordered_map&lt;attributeType, <span class="type">float</span>&gt; modifyAttribute)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; pair : modifyAttribute)</span><br><span class="line">    &#123;</span><br><span class="line">        attributes[pair.first] += pair.second;</span><br><span class="line">    &#125;</span><br><span class="line">    attributes[health] = CPPMath::<span class="built_in">Clamp</span>(attributes[health], <span class="number">0.f</span>, attributes[maxHealth]);</span><br><span class="line">    onHealthChanged.<span class="built_in">Broadcast</span>(attributes[health]);</span><br><span class="line">    onMaxHealthChanged.<span class="built_in">Broadcast</span>(attributes[maxHealth]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在修改属性时广播修改。</p>
+<p>目前还未加上<em>PreAttributeChange等效果，是直接写在里面的。</em></p>
+<h4 id="添加新属性流程："><a href="#添加新属性流程：" class="headerlink" title="添加新属性流程："></a>添加新属性流程：</h4><p>添加attributeType</p>
+<p>添加MulticastDelegate<float> onShieldChanged;</float></p>
+<p>MulticastDelegate<float>* GetOnShieldChangedEvent()</float></p>
+<p>{</p>
+<p>​    return &onShieldChanged;</p>
+<p>}</p>
+<p>在beAdd函数中添加，onShieldChanged.Broadcast(attributes[Shield]);</p>
+<p>attributes[Shield] &#x3D; 0;attributes[Shield] &#x3D; 0;attributes[Shield] &#x3D; 0;</p>
+<h3 id="现存问题："><a href="#现存问题：" class="headerlink" title="现存问题："></a>现存问题：</h3><p>需要一个新属性时需要做的操作比较多，后续可以搞成一个宏，统一创建需要的函数和type。</p>
+<h2 id="GameplayAbility"><a href="#GameplayAbility" class="headerlink" title="GameplayAbility"></a>GameplayAbility</h2><h3 id="核心变量：-1"><a href="#核心变量：-1" class="headerlink" title="核心变量："></a>核心变量：</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">std::vector&lt;GameplayTag&gt; BlockTag;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个存储会阻断这个ability activate的tag。</p>
+<h3 id="核心函数：-1"><a href="#核心函数：-1" class="headerlink" title="核心函数："></a>核心函数：</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">virtual</span> <span class="type">void</span> <span class="title">Activate</span><span class="params">(AbilitySystemComponent* AbilitySystemComponent)</span></span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>新技能继承该类，实现具体的业务逻辑，以此来激活。</p>
+<h2 id="GameplayEffect"><a href="#GameplayEffect" class="headerlink" title="GameplayEffect"></a>GameplayEffect</h2><p>做成public std::enable_shared_from_this<GameplayEffect>，</GameplayEffect></p>
+<p>智能指针，自己管理自己的销毁</p>
+<h3 id="核心变量：-2"><a href="#核心变量：-2" class="headerlink" title="核心变量："></a>核心变量：</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//标记该effect是否该被销毁</span></span><br><span class="line"><span class="type">bool</span> needToDestroy = <span class="literal">false</span>;</span><br><span class="line"><span class="comment">//计时器，计算持续时间</span></span><br><span class="line">Timer* durationTimer = <span class="literal">nullptr</span>;</span><br><span class="line"><span class="comment">//这个effect所带的tag，也就是其挂在ASC上时所用的Tag。</span></span><br><span class="line">GameplayTag owningTag;</span><br><span class="line"><span class="comment">//Effect的类型</span></span><br><span class="line">GameplayEffectType type;</span><br><span class="line"><span class="comment">//每次触发时，应该修改attribute的值</span></span><br><span class="line">std::unordered_map&lt;attributeType, <span class="type">float</span>&gt; modifyNum;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="核心函数：-2"><a href="#核心函数：-2" class="headerlink" title="核心函数："></a>核心函数：</h3><p>构造函数：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">GameplayEffect</span>(GameplayEffectType initType = GameplayEffectType::Instant, GameplayTag tag = GameplayTag::Empty,</span><br><span class="line">               <span class="type">float</span> duration = <span class="number">0</span>)</span><br><span class="line">    : <span class="built_in">type</span>(initType), <span class="built_in">owningTag</span>(tag)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (duration &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        initType=GameplayEffectType::Period;</span><br><span class="line">        durationTimer = <span class="keyword">new</span> <span class="built_in">Timer</span>(duration, <span class="literal">true</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        initType=GameplayEffectType::Instant;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>主要是Effect有很多种类，持续和瞬间作用的，有tag效果和没有的，所以会比较复杂。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//修改这个effect对属性的改变值</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ModifyAttributeMapping</span><span class="params">(<span class="type">const</span> attributeType attributeName, <span class="type">const</span> <span class="type">float</span> attributeValue)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    modifyNum[attributeName] = attributeValue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">GameplayEffect::TickDuration</span><span class="params">(<span class="type">float</span> deltaTime)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    durationTimer-&gt;<span class="built_in">UpdateTimer</span>(deltaTime);</span><br><span class="line">    <span class="keyword">if</span>(durationTimer-&gt;<span class="built_in">CheckFinish</span>())</span><br><span class="line">    &#123;</span><br><span class="line">        needToDestroy=<span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>更新计时器，然后检查计时器是否完成，以此来修改标记。</p>
+<h3 id="现存问题"><a href="#现存问题" class="headerlink" title="现存问题"></a>现存问题</h3><p>还是不能自己销毁自己，需要在ASC遍历计时器时，查询是否可以销毁，然后由ASC进行销毁，主要是是存储在set中的，<strong>而遍历时不能进行销毁，会使得计时器失效，所以只能先标记，然后再销毁。</strong></p>
+<h2 id="AbilitySystemComponent："><a href="#AbilitySystemComponent：" class="headerlink" title="AbilitySystemComponent："></a>AbilitySystemComponent：</h2><p>Init:初始化attributeSet以及这个component拥有的ability。</p>
+<h3 id="核心变量：-3"><a href="#核心变量：-3" class="headerlink" title="核心变量："></a>核心变量：</h3><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">std::unordered_set&lt;GameplayEffect*&gt; activeEffects;</span><br><span class="line">std::vector&lt;GameplayAbility*&gt; owningAbilities;</span><br></pre></td></tr></table></figure></div>
+
+<p>管理拥有的Effect和ability。</p>
+<h3 id="核心函数：-3"><a href="#核心函数：-3" class="headerlink" title="核心函数："></a>核心函数：</h3><h4 id="Ability方面："><a href="#Ability方面：" class="headerlink" title="Ability方面："></a>Ability方面：</h4><div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AbilitySystemComponent::AddGameplayAbility</span><span class="params">(GameplayAbility* ability)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    owningAbilities.<span class="built_in">push_back</span>(ability);</span><br><span class="line">    ability-&gt;<span class="built_in">SetOwningAbilitySystemComponent</span>(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>加入拥有的ability。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">AbilitySystemComponent::TryActivateAbility</span><span class="params">(GameplayAbility* ability)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!ability)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//遍历查询有没有block的tag</span></span><br><span class="line">    std::vector&lt;GameplayTag&gt; blockTagVector = ability-&gt;<span class="built_in">GetBlockTag</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; hadEffect : activeEffects)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">auto</span> it = std::<span class="built_in">find</span>(blockTagVector.<span class="built_in">begin</span>(), blockTagVector.<span class="built_in">end</span>(), hadEffect-&gt;<span class="built_in">getTag</span>());</span><br><span class="line">        <span class="keyword">if</span> (it != blockTagVector.<span class="built_in">end</span>())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ability-&gt;<span class="built_in">Activate</span>(<span class="keyword">this</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>主要是遍历查询有没有要block ability的tag。</p>
+<h4 id="管理effect方面："><a href="#管理effect方面：" class="headerlink" title="管理effect方面："></a>管理effect方面：</h4><p>对于持续effect，比如中毒啥的，用这个实现。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//<span class="doctag">TODO:</span>:接上计时器，间隔触发。</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AbilitySystemComponent::TriggerEffect</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> effect : activeEffects)</span><br><span class="line">    &#123;</span><br><span class="line">        attributeSet-&gt;<span class="built_in">BeAdd</span>(effect-&gt;<span class="built_in">getMapping</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个函数用来管理effect的生命周期，遍历更新effect内部的计时器，然后检查是否可以销毁，之后进行销毁，销毁完就返回是因为销毁完迭代器会失效，所以直接返回，而如果后面还有buff需要销毁，<strong>它晚一帧再销毁也问题不大？</strong></p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AbilitySystemComponent::TickAllActiveEffectsTimer</span><span class="params">(<span class="type">float</span> deltaTime)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (activeEffects.<span class="built_in">size</span>() &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        GameplayEffect* needToDelete = <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> effect : activeEffects)</span><br><span class="line">        &#123;</span><br><span class="line">            effect-&gt;<span class="built_in">TickDuration</span>(deltaTime);</span><br><span class="line">            <span class="keyword">if</span> (effect-&gt;<span class="built_in">IsNeedToDestroy</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                needToDelete = effect;</span><br><span class="line">                <span class="built_in">RemoveActiveEffect</span>(needToDelete);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>目前可能管理effect的生命周期会有问题，需要注意。</p>
+<h1 id="现存问题-1"><a href="#现存问题-1" class="headerlink" title="现存问题"></a>现存问题</h1><h1 id="后续拓展"><a href="#后续拓展" class="headerlink" title="后续拓展"></a>后续拓展</h1><p>添加更多技能（GA），比如按Shift加速、E弹反等。</p>
+<p>添加更多数值，比如护甲，能量值，</p>
+<p>要有更多判断时，加上tag，来解耦，</p>
+<p>不足：还未接入反射、序列化，因为原先是在ue中使用该框架，很多内容可以创建一个bp进行挂载非常方便，然后合表进行配置，用在我们这里现在就缺少了这个部分，所以会和最佳状态比起来比较麻烦，使用时需要手动创建GE进行使用比较难进行统一管理，统一修改。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 自制简易GAS</li>
+        <li><strong>Author:</strong> 沐云白</li>
+        <li><strong>Created at
+                :</strong> 2025-04-11 08:52:42</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-07-11 08:54:44
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/04/11/My-Little-GAS/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/03/12/Read-Effective-C/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Read Effective C++</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">自制简易GAS</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E5%8A%9F%E8%83%BD"><span class="nav-text">实现功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-text">实现细节</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AttributeSet"><span class="nav-text">AttributeSet</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8F%98%E9%87%8F%EF%BC%9A"><span class="nav-text">核心变量：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%EF%BC%9A"><span class="nav-text">核心函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E5%AD%98%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-text">现存问题：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GameplayAbility"><span class="nav-text">GameplayAbility</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8F%98%E9%87%8F%EF%BC%9A-1"><span class="nav-text">核心变量：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%EF%BC%9A-1"><span class="nav-text">核心函数：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GameplayEffect"><span class="nav-text">GameplayEffect</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8F%98%E9%87%8F%EF%BC%9A-2"><span class="nav-text">核心变量：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%EF%BC%9A-2"><span class="nav-text">核心函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%B0%E5%AD%98%E9%97%AE%E9%A2%98"><span class="nav-text">现存问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AbilitySystemComponent%EF%BC%9A"><span class="nav-text">AbilitySystemComponent：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%8F%98%E9%87%8F%EF%BC%9A-3"><span class="nav-text">核心变量：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%87%BD%E6%95%B0%EF%BC%9A-3"><span class="nav-text">核心函数：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-text">问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8E%B0%E5%AD%98%E9%97%AE%E9%A2%98-1"><span class="nav-text">现存问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8E%E7%BB%AD%E6%8B%93%E5%B1%95"><span class="nav-text">后续拓展</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        11 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>

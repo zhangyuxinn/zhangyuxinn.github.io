@@ -13,14 +13,14 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/archives/"/>
+    <link rel="canonical" href="http://example.com/page/2/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
         <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/index.html">
+<meta property="og:url" content="http://example.com/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
@@ -36,7 +36,7 @@
     
     <title>
         
-            Archive | 沐云白的个人主页
+            沐云白的个人主页 - Redefine Your Hexo Journey.
         
     </title>
 
@@ -115,6 +115,41 @@
 <main class="page-container" id="swup">
 
     
+        <style>
+    .home-article-item,
+    .sidebar-links,
+    .sidebar-content,
+    a.page-number,
+    a.extend,
+    .sidebar-links .links:hover,
+    .right-bottom-tools,
+    footer.footer {
+        background-color: var(--background-color-transparent-80) !important;
+    }
+    .right-bottom-tools:hover,
+    a.page-number:hover,
+    a.extend:hover {
+        background-color: var(--primary-color) !important;
+    }
+    .site-info,
+    .home-article-sticky-label {
+        background-color: var(--background-color-transparent-15) !important;
+    }
+    .home-article-sticky-label {
+        backdrop-filter: none !important;
+    }
+    .home-banner-background {
+        filter: blur(15px);
+    }
+</style>
+
+<div class="home-banner-background transition-fade fixed top-0 left-0 w-screen h-screen scale-125 sm:scale-110 box-border will-change-transform bg-cover">
+    <img src="/images/wallhaven-wqery6-light.webp" alt="home-banner-background" class="w-full h-full object-cover dark:hidden">
+    <img src="/images/wallhaven-wqery6-dark.webp" alt="home-banner-background" class="w-full h-full object-cover hidden dark:block">
+</div>
+
+
+    
 
     <div class="main-content-container flex flex-col justify-between min-h-dvh">
 
@@ -125,9 +160,9 @@
         <div class="left">
             
             <a class="logo-title" href="/">
-                
+                <h1>
                 沐云白的个人主页
-                
+                </h1>
             </a>
         </div>
 
@@ -141,7 +176,7 @@
 
                             <li class="navbar-item">
                                 <!-- Menu -->
-                                <a class=""
+                                <a class="active"
                                    href="/"
                                         >
                                     <i class="fa-regular fa-house fa-fw"></i>
@@ -192,7 +227,7 @@
 
                     <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
                         
-                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full active"
                            href="/"
                         >
                             <span>
@@ -258,165 +293,105 @@
         <div class="main-content-body">
 
             
+                <div class="home-sidebar-container">
+    <div class="sticky-container sticky">
+        
+        
+            
+            <div class="sidebar-content" >
+                <div class="avatar flex justify-center">
+    <img src="/images/redefine-avatar.svg">
+</div>
+                <div class="author flex flex-col justify-center my-2.5 mx-0">
+    <div class="name">沐云白</div>
+    
+        <div class="label">Lv2</div>
+    
+</div>
+                <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+            </div>
+        
+
+    </div>
+</div>
+
+            
 
             <div class="main-content">
 
                 
-                    <div class="archive-container shadow-none hover:shadow-none sm:shadow-redefine sm:hover:shadow-redefine-hover">
-    
-<div class="archive-list-container">
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2025</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">2</span>
-            </div>
-            
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
+                    <div class="home-content-container">
+    <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
                 
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='04-11'>
-                    
-                    <a href="/2025/04/11/My-Little-GAS/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">自制简易GAS</span>
-                    </a>
-                    
+
                 
-                    
-                    
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2024/03/21/How-to-post-your-article/">
+                            windows搭建个人博客 GitHub page+hexo
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='03-12'>
-                    
-                    <a href="/2025/03/12/Read-Effective-C/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">Read Effective C++</span>
-                    </a>
-                    
-                
-                </li> <!-- Ensure the last item is properly closed -->
-            </ul>
-        </section>
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2024</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">9</span>
-            </div>
-            
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
-                
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='11-15'>
-                    
-                    <a href="/2024/11/15/algorithm-programmercarl/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">算法细节&amp;二刷代码随想录：</span>
-                    </a>
-                    
-                
-                    
-                    
-                    <a href="/2024/11/15/Read-GameProgrammingPatterns/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》</span>
-                    </a>
-                    
-                
-                    
-                    
+                            
+                            步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。
+安装Node.js和Git
+Node.js：https://nodejs.org/zh-cn 
+Git：https://git-scm.com/downloads 
+
+基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 no...
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='11-12'>
-                    
-                    <a href="/2024/11/12/unity-IEnumerator/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">unity协程的原理和拓展</span>
-                    </a>
-                    
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Thu Mar 21 2024 00:00:00 GMT+0800">
                 
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='11-10'>
-                    
-                    <a href="/2024/11/10/C++-Mark/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">c++基础 个人小记</span>
-                    </a>
-                    
+                    2024-03-21
                 
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-11'>
-                    
-                    <a href="/2024/10/11/Disassemble-the-Joker-Card-effect/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">小丑牌丝滑效果代码拆解</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-01'>
-                    
-                    <a href="/2024/10/01/Extend-Editor/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">编辑器拓展</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='09-12'>
-                    
-                    <a href="/2024/09/12/GAS-learn2/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">GAS学习记录第二季</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='08-29'>
-                    
-                    <a href="/2024/08/29/GAS-learn1/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">GAS学习记录第一季</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='03-21'>
-                    
-                    <a href="/2024/03/21/How-to-post-your-article/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">windows搭建个人博客 GitHub page+hexo</span>
-                    </a>
-                    
-                
-                </li> <!-- Ensure the last item is properly closed -->
-            </ul>
-        </section>
-    
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2024/03/21/How-to-post-your-article/">Read more<span class="seo-reader-text">windows搭建个人博客 GitHub page+hexo</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
 </div>
 
+                </div>
+            </li>
+        
+    </ul>
+
+    <div class="home-paginator px-7 py-5">
+        <div class="paginator">
+    <a class="extend prev" rel="prev" href="/"><i class="fa-regular fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
 </div>
 
+    </div>
+</div>
+
+                    <div class="comment-container pjax"></div>
                 
 
             </div>
@@ -581,6 +556,7 @@
         containers: ["#swup"],
     });
 </script>
+
 
 
 

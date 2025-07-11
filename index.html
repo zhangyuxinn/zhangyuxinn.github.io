@@ -299,7 +299,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -340,7 +340,7 @@
         <div class="label text-third-text-color text-sm">Categories</div>
     </a>
     <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
-        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">9</div>
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
         <div class="label text-third-text-color text-sm">Posts</div>
     </a>
 </div>
@@ -357,6 +357,96 @@
                 
                     <div class="home-content-container">
     <ul class="home-article-list">
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/04/11/My-Little-GAS/">
+                            自制简易GAS
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            实现功能ASC：统一管理技能，包括Attribute，GameplayAbility，GameplayEffect
+
+AttributeSet 管理数值，有preAttributeChange的效果，可以在数值改变前进行处理，比如夹值&#x2F;归一化等，保证数值正确。
+GA GameplayAbility:技能的业务逻辑实现，技能触发仅需在activate GA即可。
+GE Gamepla...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Fri Apr 11 2025 08:52:42 GMT+0800">
+                
+                    2025-04-11
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2025/04/11/My-Little-GAS/">Read more<span class="seo-reader-text">自制简易GAS</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                
+
+                
+                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
+                    <h3 class="home-article-title">
+                        <a href="/2025/03/12/Read-Effective-C/">
+                            Read Effective C++
+                        </a>
+                    </h3>
+
+                    <div class="home-article-content markdown-body">
+                        
+                            
+                            自己习惯C++条款01：把 C++ 看成一个语言联邦C++由几个重要的次语言构成
+C语言：区块，语句，预处理器，数组，指针等等。
+类：class，封装，继承，多态……（动态绑定等等）
+模板：涉及泛型编程，内置数种可供套用的函数或者类。
+STL：STL是个模板库，主要涉及容器，算法和迭代器
+在不同情况下使用适合的部分，可以使 C++ 实现高效编程
+条款02：用const, enum, inli...
+                        
+                    </div>
+
+                    <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fa-solid fa-calendars"></i>&nbsp;
+            <span class="home-article-date" data-date="Wed Mar 12 2025 17:55:44 GMT+0800">
+                
+                    2025-03-12
+                
+            </span>
+        </span>
+        
+        
+    </div>
+
+    <a href="/2025/03/12/Read-Effective-C/">Read more<span class="seo-reader-text">Read Effective C++</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
+</div>
+
+                </div>
+            </li>
         
             <li class="home-article-item">
 
@@ -420,11 +510,13 @@ requireComponent（）
                     <div class="home-article-content markdown-body">
                         
                             
-                            写题理念看到难题别怕，先慢慢拆解，看看难点是什么，然后拿东西去解决，不行再开始天马行空，别直接feeling启动了，一般的题目正常写都是可以解的。
+                            写题理念看到难题别怕，先慢慢拆解，看看难点是什么，然后拿东西去解决，不行再开始天马行空，别直接feeling启动了，一般的题目正常写都是可以解的，要分类好问题，看一下有哪几种情况。
 多注意考虑边界情况，相加和问题，小心零，要多注意一下边界、特殊情况。
-一些经典模板（方法论）：递归三部曲（深度优先）：
-确定递归函数的参数和返回值：确定在函数里要做什么处理。
-确定终止条件：先写终止条件！！操作系统也是用一个栈的结构来保存每一层递...
+
+常用库：#include algorithm以下为常用函数
+①、sort();【具有和快排一样的速度】
+时间复杂度O (n*logn)
+12...
                         
                     </div>
 
@@ -733,56 +825,11 @@ RebindPackages not possible (no packages specified)
                 </div>
             </li>
         
-            <li class="home-article-item">
-
-                
-
-                
-
-                
-                <div class="flex flex-col gap-5 px-7 pb-7 pt-7">
-                    <h3 class="home-article-title">
-                        <a href="/2024/03/21/How-to-post-your-article/">
-                            windows搭建个人博客 GitHub page+hexo
-                        </a>
-                    </h3>
-
-                    <div class="home-article-content markdown-body">
-                        
-                            
-                            步骤我踩到的坑： 除了建立和GitHub连接的部分，其他要在hexo文件夹里进行。
-安装Node.js和Git
-Node.js：https://nodejs.org/zh-cn 
-Git：https://git-scm.com/downloads 
-
-基于上面两个网站下载最新的Node.js和Git安装包，基于默认配置一路点下去安装Node.js和Git。安装完成后，在cmd中依次执行 no...
-                        
-                    </div>
-
-                    <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fa-solid fa-calendars"></i>&nbsp;
-            <span class="home-article-date" data-date="Thu Mar 21 2024 00:00:00 GMT+0800">
-                
-                    2024-03-21
-                
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a href="/2024/03/21/How-to-post-your-article/">Read more<span class="seo-reader-text">windows搭建个人博客 GitHub page+hexo</span>&nbsp;<i class="fa-solid fa-angle-right"></i></a>
-</div>
-
-                </div>
-            </li>
-        
     </ul>
 
     <div class="home-paginator px-7 py-5">
         <div class="paginator">
-    <span class="page-number current">1</span>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa-regular fa-angle-right"></i></a>
 </div>
 
     </div>
@@ -807,12 +854,12 @@ Git：https://git-scm.com/downloads
               <span>2024</span>
               -
             
-            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
             
                 
                 <p class="post-count space-x-0.5">
                     <span>
-                        9 posts in total
+                        11 posts in total
                     </span>
                     
                 </p>
