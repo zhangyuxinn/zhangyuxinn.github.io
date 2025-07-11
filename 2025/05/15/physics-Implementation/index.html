@@ -13,20 +13,20 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/11/12/unity-ienumerator/"/>
+    <link rel="canonical" href="http://example.com/2025/05/15/physics-implementation/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="协程就是一种特殊的函数，它可以主动的请求暂停自身并提交一个唤醒条件，Unity会在唤醒条件满足的时候去重新唤醒协程。 用StartCoroutine()启动协程，在MonoBehaviour生命周期的Update和LateUpdate之间，会检查这个MonoBehaviour下挂载的所有协程，并唤醒其中满足唤醒条件的协程。 只需要以IEnumerator为返回值，并且在函数体里面用yield re">
+        <meta name="description" content="OverviewTeam2完成的honkai-battle-rail是一个基于自定义引擎完成的tank模拟战斗游戏，物理引擎再其中负责模拟游戏中各种需要真实的运动和碰撞行为，本文主要介绍项目中的物理引擎实现，包括游戏引擎需求，最终实现效果，物理引擎遇到问题，以及优化过程。 Requirements2.1. Brief物理引擎的更新包括以下过程： 1、ApplyExternalForce：对物体施加">
 <meta property="og:type" content="article">
-<meta property="og:title" content="unity协程的原理和拓展">
-<meta property="og:url" content="http://example.com/2024/11/12/unity-IEnumerator/index.html">
+<meta property="og:title" content="physics-Implementation">
+<meta property="og:url" content="http://example.com/2025/05/15/physics-Implementation/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="协程就是一种特殊的函数，它可以主动的请求暂停自身并提交一个唤醒条件，Unity会在唤醒条件满足的时候去重新唤醒协程。 用StartCoroutine()启动协程，在MonoBehaviour生命周期的Update和LateUpdate之间，会检查这个MonoBehaviour下挂载的所有协程，并唤醒其中满足唤醒条件的协程。 只需要以IEnumerator为返回值，并且在函数体里面用yield re">
+<meta property="og:description" content="OverviewTeam2完成的honkai-battle-rail是一个基于自定义引擎完成的tank模拟战斗游戏，物理引擎再其中负责模拟游戏中各种需要真实的运动和碰撞行为，本文主要介绍项目中的物理引擎实现，包括游戏引擎需求，最终实现效果，物理引擎遇到问题，以及优化过程。 Requirements2.1. Brief物理引擎的更新包括以下过程： 1、ApplyExternalForce：对物体施加">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-11-11T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-11-15T13:37:14.569Z">
+<meta property="article:published_time" content="2025-05-15T06:41:51.000Z">
+<meta property="article:modified_time" content="2025-07-11T01:42:19.547Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -40,7 +40,7 @@
     
     <title>
         
-            unity协程的原理和拓展 | 沐云白的个人主页
+            physics-Implementation | 沐云白的个人主页
         
     </title>
 
@@ -272,7 +272,7 @@
         <div class="article-title relative w-full">
             
                 <div class="w-full flex items-center pt-6 justify-start">
-                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">unity协程的原理和拓展</h1>
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">physics-Implementation</h1>
                 </div>
             
             </div>
@@ -293,15 +293,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-11-12</span>
-        <span class="mobile">2024-11-12</span>
+        <span class="desktop">2025-05-15 14:41:51</span>
+        <span class="mobile">2025-05-15 14:41:51</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-11-15 21:37:14</span>
-            <span class="mobile">2024-11-15 21:37:14</span>
+            <span class="desktop">2025-07-11 09:42:19</span>
+            <span class="mobile">2025-07-11 09:42:19</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -328,32 +328,74 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>协程就是一种特殊的函数，它可以主动的请求暂停自身并提交一个唤醒条件，Unity会在唤醒条件满足的时候去重新唤醒协程。</p>
-<p>用StartCoroutine()启动协程，在<code>MonoBehaviour</code>生命周期的<code>Update</code>和<code>LateUpdate</code>之间，会检查这个<code>MonoBehaviour</code>下挂载的所有协程，并唤醒其中满足唤醒条件的协程。</p>
-<p>只需要以<code>IEnumerator</code>为返回值，并且在函数体里面用<code>yield return</code>语句来暂停协程并提交一个唤醒条件。然后使用<code>StartCoroutine</code>来开启协程。</p>
-<p>简单来说，就是StartCoroutine()启动协程，然后调用【以<code>IEnumerator</code>为返回值】的函数，在这个函数里，可以用<code>yield return</code>来暂停协程，用的比较普遍的是</p>
-<div class="highlight-container" data-rel="C#"><figure class="iseeu highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">yield</span> <span class="keyword">return</span> <span class="literal">null</span>;</span><br></pre></td></tr></table></figure></div>
+            <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Team2完成的honkai-battle-rail是一个基于自定义引擎完成的tank模拟战斗游戏，物理引擎再其中负责模拟游戏中各种需要真实的运动和碰撞行为，本文主要介绍项目中的物理引擎实现，包括游戏引擎需求，最终实现效果，物理引擎遇到问题，以及优化过程。</p>
+<h1 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h1><h2 id="2-1-Brief"><a href="#2-1-Brief" class="headerlink" title="2.1. Brief"></a>2.1. Brief</h2><p>物理引擎的更新包括以下过程：</p>
+<h3 id="1、ApplyExternalForce："><a href="#1、ApplyExternalForce：" class="headerlink" title="1、ApplyExternalForce："></a>1、ApplyExternalForce：</h3><p>对物体施加外力，并将外力带来的线速度和角速度影响添加到物体的刚体组件上。</p>
+<h3 id="2、UpdateObjsStatus："><a href="#2、UpdateObjsStatus：" class="headerlink" title="2、UpdateObjsStatus："></a>2、UpdateObjsStatus：</h3><p>更新物体的状态，主要是通过物体的角速度和线速度应用积分运动x &#x3D; x0 + vt求出物体的位置。</p>
+<h3 id="3、BroadPhase："><a href="#3、BroadPhase：" class="headerlink" title="3、BroadPhase："></a>3、BroadPhase：</h3><p>宽域碰撞检测，通过SAP算法计算场景中物体的aabb的碰撞，快速筛选出可能的碰撞对。</p>
+<h3 id="4、HandleCollision："><a href="#4、HandleCollision：" class="headerlink" title="4、HandleCollision："></a>4、HandleCollision：</h3><p>碰撞求解过程，将上一步求得的碰撞对进行碰撞求解，主要是计算出碰撞法线和碰撞深度，通过碰撞数据对碰撞的两个物体调整位置，施加冲量。</p>
+<h2 id="2-2-Reference"><a href="#2-2-Reference" class="headerlink" title="2.2. Reference"></a>2.2. Reference</h2><ul>
+<li>AABB碰撞检测</li>
+<li>SAP算法优化原理</li>
+<li>Timpstep相关</li>
+</ul>
+<h1 id="Dependencies"><a href="#Dependencies" class="headerlink" title="Dependencies"></a>Dependencies</h1><ul>
+<li>Math</li>
+<li>Multi-Threads</li>
+<li>AABB</li>
+<li>Grid</li>
+<li>Vector3</li>
+<li>Collider-Component</li>
+<li>RigidBody-Component</li>
+</ul>
+<h1 id="Existing-Technology"><a href="#Existing-Technology" class="headerlink" title="Existing Technology"></a>Existing Technology</h1><ul>
+<li>Sweep And Prune（SAP）算法：从轴上快速筛选可能的aabb碰撞对。</li>
+<li>GridMap：网格地图，AI寻路基于此地图的更新数据，在大量物体的情况可以用来加速射线检测。</li>
+<li>Multi-Threads：多线程加速SAP算法，在大量物体时提升明显。</li>
+<li>RayCast：射线检测，大量用于检测范围和Editor检测鼠标逻辑中。</li>
+<li>AABB&amp;MinMaxAABB：通过两种AABB类型适用于不同情况，两种类型可以相互转化。</li>
+</ul>
+<h1 id="Research"><a href="#Research" class="headerlink" title="Research"></a>Research</h1><h2 id="5-1-Physics-Engine-Design-物理引擎框架设计"><a href="#5-1-Physics-Engine-Design-物理引擎框架设计" class="headerlink" title="5.1 Physics Engine Design 物理引擎框架设计"></a>5.1 Physics Engine Design 物理引擎框架设计</h2><p>在参考了多个主流引擎的的架构后，例如Box2D，PhysX等主流物理引擎，本引擎的框架设计重点在以下方面：</p>
+<ul>
+<li>模块化设计：将物理引擎的各种步骤解耦，方便后续维护和扩展。</li>
+<li>数据驱动：将物理引擎的各种计算放在物体的RigidBody组件中，并将场景中的碰撞体统一管理添加删除和更新。</li>
+<li>单独的时间步进：采用Fixed-Delta-Time来保证引擎的更新稳定性。</li>
+<li>引擎独立计算：只负责管理场景中需要物理引擎模拟的物体，不管理其他物体（即不带Collider和RigidBody的物体）。</li>
+</ul>
+<h2 id="5-2-Physics-Engine-Optimization-物理引擎优化"><a href="#5-2-Physics-Engine-Optimization-物理引擎优化" class="headerlink" title="5.2 Physics Engine Optimization 物理引擎优化"></a>5.2 Physics Engine Optimization 物理引擎优化</h2><ul>
+<li>优化点：本引擎的更新过程的四个步骤都有能存在优化的地方，但BroadPhase步骤提升是最明显的。</li>
+<li>优化概括：主要优化在于空间划分和SAP算法的优化，相比暴力两层循环提升明显。</li>
+</ul>
+<h2 id="5-3-Continues-Collision-Detection-连续碰撞检测"><a href="#5-3-Continues-Collision-Detection-连续碰撞检测" class="headerlink" title="5.3 Continues Collision Detection 连续碰撞检测"></a>5.3 Continues Collision Detection 连续碰撞检测</h2><ul>
+<li>原因：在高速运动场景中，通过连续碰撞检测来保证碰撞的正确性。</li>
+<li>方法：引擎主要是AABB碰撞盒，所以采用扫掠AABB来进行CCD碰撞检测。</li>
+<li>注意：引擎只是实现了CCD的接口，实际应用中并未开启CCD。</li>
+</ul>
+<h1 id="Implementation-details"><a href="#Implementation-details" class="headerlink" title="Implementation details"></a>Implementation details</h1><h2 id="6-1-Data-Structure-Design-数据结构设计"><a href="#6-1-Data-Structure-Design-数据结构设计" class="headerlink" title="6.1 Data Structure Design 数据结构设计"></a>6.1 Data Structure Design 数据结构设计</h2><p>物理引擎主要由PhysicsEngine类统一管理所有物理相关的物体逻辑，计算结果会返回到GameObject内部的组件中，完成更新后，物理引擎通过读取GameObject的数据来检测碰撞和计算碰撞结果。</p>
+<p>需要注意的是，物理引擎是通过刚体来间接控制物体的，如果物体不带刚体或者碰撞体的话是不会收到物理引擎影响的。</p>
+<h2 id="6-2-Main-Tick-Logic-主要更新逻辑"><a href="#6-2-Main-Tick-Logic-主要更新逻辑" class="headerlink" title="6.2 Main Tick Logic 主要更新逻辑"></a>6.2 Main Tick Logic 主要更新逻辑</h2><h3 id="6-2-1-ApplyExternalForce"><a href="#6-2-1-ApplyExternalForce" class="headerlink" title="6.2.1 ApplyExternalForce"></a>6.2.1 ApplyExternalForce</h3><p>遍历物体给所有接受重力的物体添加重力影响，同时将物体上一帧所受的外力&#x2F;冲量应用到物体身上，改变物体的角速度和加速度。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">Apply force for rigidbody</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PhysicsEngine::ApplyExternalForce</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; rb : mCollisionObjs)</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="keyword">if</span> (rb-&gt;<span class="built_in">GetUseGravity</span>())</span><br><span class="line"> &#123;</span><br><span class="line"> rb-&gt;<span class="built_in">AddForce</span>(mGravity * rb-&gt;<span class="built_in">GetMass</span>());</span><br><span class="line"> &#125;</span><br><span class="line"> rb-&gt;<span class="built_in">ApplyForce</span>(FIXED_DELTA_TIME);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">ApplyForce</span><span class="params">(<span class="type">float</span> dt)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">if</span> (<span class="built_in">IsKinematic</span>()) <span class="keyword">return</span>;</span><br><span class="line"> linearVelocity += force * invMass * dt;</span><br><span class="line"> angularVelocity += (torque * dt);</span><br><span class="line"> force = Vector3::ZERO;</span><br><span class="line"> torque = Vector3::ZERO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>这个使得协程暂停一帧，然后再继续执行。</p>
-<p>这个是一个比较普遍的例子，要用的基本都在这里。</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">IEnumerator <span class="title">CoroutineA</span><span class="params">(<span class="type">int</span> arg1, string arg2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.<span class="built_in">Log</span>($<span class="string">&quot;协程A被开启了&quot;</span>);</span><br><span class="line">        yield <span class="keyword">return</span> null;Debug.<span class="built_in">Log</span>(<span class="string">&quot;刚刚协程被暂停了一帧&quot;</span>);</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSeconds</span><span class="params">(<span class="number">1.0f</span>)</span></span>;</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;刚刚协程被暂停了一秒&quot;</span>);</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="title">StartCoroutine</span><span class="params">(CoroutineB(arg1, arg2))</span></span>;</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;CoroutineB运行结束后协程A才被唤醒&quot;</span>);</span><br><span class="line">        <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForEndOfFrame</span><span class="params">()</span></span>;</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;在这一帧的最后，协程被唤醒&quot;</span>);</span><br><span class="line">        Debug.<span class="built_in">Log</span>(<span class="string">&quot;协程A运行结束&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">IEnumerator <span class="title">CoroutineB</span><span class="params">(<span class="type">int</span> arg1, string arg2)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Debug.<span class="built_in">Log</span>($<span class="string">&quot;协程B被开启了，可以传参数，arg1=&#123;arg1&#125;, arg2=&#123;arg2&#125;&quot;</span>);</span><br><span class="line">    <span class="function">yield <span class="keyword">return</span> <span class="keyword">new</span> <span class="title">WaitForSeconds</span><span class="params">(<span class="number">3.0f</span>)</span></span>;</span><br><span class="line">    Debug.<span class="built_in">Log</span>(<span class="string">&quot;协程B运行结束&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="6-2-2-UpdateObjsStatus"><a href="#6-2-2-UpdateObjsStatus" class="headerlink" title="6.2.2 UpdateObjsStatus"></a>6.2.2 UpdateObjsStatus</h3><p>更新物体的状态，主要是通过物体的角速度和线速度应用积分运动x&#x3D;x0+vt求出物体的位置以及应用阻力。该阶段是不会对Kinematic物体进行修改的。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">PhysicsEngine::UpdateObjsStatus</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; mCollisionObjs.<span class="built_in">size</span>(); i++)</span><br><span class="line"> &#123;</span><br><span class="line"> <span class="keyword">auto</span> rb = mCollisionObjs[i];</span><br><span class="line"> <span class="keyword">if</span> (rb-&gt;<span class="built_in">IsKinematic</span>()) <span class="keyword">continue</span>;</span><br><span class="line"> <span class="keyword">if</span> (!rb-&gt;<span class="built_in">IsActive</span>())</span><br><span class="line"> &#123;</span><br><span class="line"> mCollisionObjs.<span class="built_in">erase</span>(mCollisionObjs.<span class="built_in">begin</span>() + i--);</span><br><span class="line"> <span class="keyword">continue</span>;</span><br><span class="line"> &#125;</span><br><span class="line"> rb-&gt;<span class="built_in">OnFixedUpdate</span>();</span><br><span class="line"> rb-&gt;<span class="built_in">ApplyDamping</span>();</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
-<p>经典的用法是淡入淡出的动画。</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正确实现</span></span><br><span class="line"><span class="function">IEnumerator <span class="title">Fade</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> alpha = <span class="number">1.0f</span>;</span><br><span class="line">    <span class="keyword">while</span>(alpha &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        alpha -= Time.deltaTime;</span><br><span class="line">        Color c = renderer.material.color;</span><br><span class="line">        c.a = alpha;</span><br><span class="line">        renderer.material.color = c;</span><br><span class="line">        yield <span class="keyword">return</span> null;<span class="comment">//协程会在这里被暂停，直到下一帧被唤醒。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//Fade不能直接调用，需要使用StartCoroutine(方法名(参数列表))的形式进行调用。</span></span><br><span class="line"><span class="built_in">StartCoroutine</span>(<span class="built_in">Fade</span>());<span class="comment">//正确实现</span></span><br><span class="line"><span class="function">IEnumerator <span class="title">Fade</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">float</span> alpha = <span class="number">1.0f</span>;</span><br><span class="line">    <span class="keyword">while</span>(alpha &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        alpha -= Time.deltaTime;</span><br><span class="line">        Color c = renderer.material.color;</span><br><span class="line">        c.a = alpha;</span><br><span class="line">        renderer.material.color = c;</span><br><span class="line">        yield <span class="keyword">return</span> null;<span class="comment">//协程会在这里被暂停，直到下一帧被唤醒。</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//Fade不能直接调用，需要使用StartCoroutine(方法名(参数列表))的形式进行调用。</span></span><br><span class="line"><span class="built_in">StartCoroutine</span>(<span class="built_in">Fade</span>());</span><br></pre></td></tr></table></figure></div>
-
-<p>还有定时器、异步加载。</p>
-<p>异步加载很重要！这个可以做热更新、资源管理等操作。</p>
-<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">IEnumerator <span class="title">ShowImageFromUrl</span><span class="params">(string url)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Image image = null;</span><br><span class="line">    <span class="function">yield <span class="keyword">return</span> <span class="title">LoadImageAsync</span><span class="params">(url, image)</span></span>; <span class="comment">//异步加载图像，加载完成后唤醒协程</span></span><br><span class="line">    <span class="built_in">Show</span>(image);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
-
-<p><strong>协程能做的Update都能做，那为什么我们需要协程呢？ 答：使用协程，我们可以把一个跨越多帧的操作封装到一个方法内部，代码会更清晰。</strong></p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li>协程是挂在MonoBehaviour上的，必须要通过一个MonoBehaviour才能开启协程。</li>
-<li>MonoBehaviour被Disable的时候协程会继续执行，只有MonoBehaviour被销毁的时候协程才会被销毁。</li>
-<li>协程看起来有点像是轻量级线程，但是本质上协程还是运行在主线程上的，协程更类似于<code>Update()</code>方法，Unity会每一帧去检测协程需不需要被唤醒。一旦你在协程中执行了一个耗时操作，很可能会堵塞主线程。这里提供两个解决思路：</li>
-</ol>
-<p>(1) 在耗时算法的循环体中加入<code>yield return null</code>来将算法分到很多帧里面执行；</p>
-<p>(2) 如果耗时操作里面没有使用Unity API，那么可以考虑在异步线程中执行耗时操作，完成后唤醒主线程中的协程。</p>
-<p><a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/279383752">Unity协程的原理与应用 - 知乎 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="6-2-3-BroadPhase"><a href="#6-2-3-BroadPhase" class="headerlink" title="6.2.3 BroadPhase"></a>6.2.3 BroadPhase</h3><p>宽域碰撞检测，通过SAP算法计算场景中物体的aabb的碰撞，快速筛选出可能的碰撞对。该阶段是后续优化的主要阶段。</p>
+<p><strong>SAP****算法：</strong></p>
+<p>算法的思路是如果两个aabb重叠，那么这两个aabb在x和y上的投影也是重叠的，一个AABB投影在一个轴上就变成了一条直线，那么假如两个 AABB 相交，那么其在 x，y 上的投影出的两条直线必定会重叠。如果不相交，那么起码有一个轴上，两投影直线不重叠，因此，我们只需检测某条轴上投影相交的 AABB 对即可。Sweep and Prune 算法利用这个特性，将二维的 AABB 问题降到一维的直线问题。</p>
+<p>①将所有 AABB 投影至特定轴上</p>
+<p>②对轴上所有区间端点进行升序排序</p>
+<p>③从小到大扫描投影轴</p>
+<p>④遇到一个开始端点 s(i) ，将 s(i) 所属的 AABB(i) 与 L 中的所有 s 所属的 AABB 进行相交检测, 若发生相交就将碰撞添加到碰撞对列表中。</p>
+<p>&#x2F;&#x2F;选取方差较大的轴，意味着分布越分散的轴算法优化越好（更快排除不可能碰撞的物体），此游戏中在y轴上的碰撞和投影并不关键</p>
+<p>&#x2F;&#x2F;如果选取y轴甚至会退化到O（n^2)的复杂度，并且游戏中大部分物体是不移动的，所以在x和z之间选取。</p>
+<p>可优化的过程包括排序，以及计算碰撞对等。</p>
+<h3 id="6-2-4-HandleCollision"><a href="#6-2-4-HandleCollision" class="headerlink" title="6.2.4 HandleCollision"></a>6.2.4 HandleCollision</h3><p>需要注意的是该过程是将传统物理引擎的NarrowPhase和Solver阶段整合在一起，因为引擎现阶段并未扩展其他碰撞盒。</p>
+<p>碰撞求解过程，将上一步求得的碰撞对进行碰撞求解，主要是计算出碰撞法线和碰撞深度，通过碰撞数据对碰撞的两个物体调整位置，施加冲量。</p>
+<p>该阶段主要是调整两物体碰撞后位置，然后根据重量分配给予物体冲量，含有切向摩擦力调整。</p>
+<p><strong>注意点在于：</strong></p>
+<p>1、在调整位置的时候不要一次调整物体，一次性调整物体会导致质量差距较大的两个物体发生瞬移的现象。但也不要每次调整的位移过少，会导致穿透和粘连。</p>
+<p>2、该部分还需要重构来完善，主要是在NarrowPhase的时候直接计算的是AABB的重叠区间，碰撞法线只会出现在三个对称轴，在需要真实模拟的时候无法达到预期效果，取质心连线可以模拟更真实的效果，但是会导致物体的移动不符合碰撞盒效果。</p>
+<p>3、该阶段可以通过迭代多次趋近于最终结果，迭代次数过多会导致物体瞬移以及性能问题，过少又达不到多物体碰撞的真实效果，这里的迭代次数是3。</p>
 
         </div>
 
@@ -361,18 +403,18 @@
             <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
                 <div class="article-copyright-info-container">
     <ul>
-        <li><strong>Title:</strong> unity协程的原理和拓展</li>
+        <li><strong>Title:</strong> physics-Implementation</li>
         <li><strong>Author:</strong> 沐云白</li>
         <li><strong>Created at
-                :</strong> 2024-11-12 00:00:00</li>
+                :</strong> 2025-05-15 14:41:51</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-11-15 21:37:14
+                    :</strong> 2025-07-11 09:42:19
             </li>
         
         <li>
-            <strong>Link:</strong> https://redefine.ohevan.com/2024/11/12/unity-IEnumerator/
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/05/15/physics-Implementation/
         </li>
         <li>
             <strong>
@@ -400,13 +442,13 @@
                     <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="prev"
                         rel="prev"
-                        href="/2024/11/15/algorithm-programmercarl/"
+                        href="/2025/06/26/DesignPartterns-Details/"
                         >
                             <span class="left arrow-icon flex justify-center items-center">
                                 <i class="fa-solid fa-chevron-left"></i>
                             </span>
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">算法细节&amp;二刷代码随想录：</span>
+                                <span class="post-nav-title-item">设计模式细节</span>
                                 <span class="post-nav-item">Prev posts</span>
                             </span>
                         </a>
@@ -416,10 +458,10 @@
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2024/11/10/C++-Mark/"
+                        href="/2025/04/11/My-Little-GAS/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">c++基础 个人小记</span>
+                                <span class="post-nav-title-item">自制简易GAS</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -483,8 +525,8 @@
             <div class="post-toc-wrap">
     <div class="post-toc">
         <div class="toc-title">On this page</div>
-        <div class="page-title">unity协程的原理和拓展</div>
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-text">注意事项</span></a></li></ol>
+        <div class="page-title">physics-Implementation</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Requirements"><span class="nav-text">Requirements</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Brief"><span class="nav-text">2.1. Brief</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81ApplyExternalForce%EF%BC%9A"><span class="nav-text">1、ApplyExternalForce：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81UpdateObjsStatus%EF%BC%9A"><span class="nav-text">2、UpdateObjsStatus：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81BroadPhase%EF%BC%9A"><span class="nav-text">3、BroadPhase：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81HandleCollision%EF%BC%9A"><span class="nav-text">4、HandleCollision：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Reference"><span class="nav-text">2.2. Reference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dependencies"><span class="nav-text">Dependencies</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Existing-Technology"><span class="nav-text">Existing Technology</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Research"><span class="nav-text">Research</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-Physics-Engine-Design-%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1"><span class="nav-text">5.1 Physics Engine Design 物理引擎框架设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-Physics-Engine-Optimization-%E7%89%A9%E7%90%86%E5%BC%95%E6%93%8E%E4%BC%98%E5%8C%96"><span class="nav-text">5.2 Physics Engine Optimization 物理引擎优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-Continues-Collision-Detection-%E8%BF%9E%E7%BB%AD%E7%A2%B0%E6%92%9E%E6%A3%80%E6%B5%8B"><span class="nav-text">5.3 Continues Collision Detection 连续碰撞检测</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation-details"><span class="nav-text">Implementation details</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-Data-Structure-Design-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1"><span class="nav-text">6.1 Data Structure Design 数据结构设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-Main-Tick-Logic-%E4%B8%BB%E8%A6%81%E6%9B%B4%E6%96%B0%E9%80%BB%E8%BE%91"><span class="nav-text">6.2 Main Tick Logic 主要更新逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-1-ApplyExternalForce"><span class="nav-text">6.2.1 ApplyExternalForce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-2-UpdateObjsStatus"><span class="nav-text">6.2.2 UpdateObjsStatus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-3-BroadPhase"><span class="nav-text">6.2.3 BroadPhase</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-2-4-HandleCollision"><span class="nav-text">6.2.4 HandleCollision</span></a></li></ol></li></ol></li></ol>
 
     </div>
 </div>

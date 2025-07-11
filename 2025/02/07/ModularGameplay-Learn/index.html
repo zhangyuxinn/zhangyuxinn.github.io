@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="沐云白">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/02/07/modulargameplay-learn/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="解决的问题 为玩法的模块化提供支持，但是必须和GameFeatures、Experience相配合。 Components初始化时序问题，最经典的例子就是客户端同步创建Character初始化的问题，要知道Character身上的Components调用BeginPlay时PlayerState以及其他Components并不一定准备好了，Components在调用BeginPlay时可能Cont">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ModularGamePlay相关理解">
+<meta property="og:url" content="http://example.com/2025/02/07/ModularGameplay-Learn/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="解决的问题 为玩法的模块化提供支持，但是必须和GameFeatures、Experience相配合。 Components初始化时序问题，最经典的例子就是客户端同步创建Character初始化的问题，要知道Character身上的Components调用BeginPlay时PlayerState以及其他Components并不一定准备好了，Components在调用BeginPlay时可能Cont">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+<meta property="og:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+<meta property="og:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+<meta property="og:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+<meta property="og:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+<meta property="og:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+<meta property="og:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+<meta property="article:published_time" content="2025-02-07T01:32:10.000Z">
+<meta property="article:modified_time" content="2025-07-11T01:33:02.556Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/ModularGameplay-Learn.assets/asynccode">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            ModularGamePlay相关理解 | 沐云白的个人主页
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沐云白的个人主页","subtitle":{"text":["What`s happened`s happened.","Which is an expression of faith in the mechanies of the world.","It`s not an excuse to do nothing."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"GITHUB":{"path":"https://github.com/zhangyuxinn","icon":"fa-brands fa-github"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/10 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                沐云白的个人主页
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">14</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">ModularGamePlay相关理解</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">沐云白</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-02-07 09:32:10</span>
+        <span class="mobile">2025-02-07 09:32:10</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-07-11 09:33:02</span>
+            <span class="mobile">2025-07-11 09:33:02</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h1><ul>
+<li>为玩法的模块化提供支持，但是必须和GameFeatures、Experience相配合。</li>
+<li>Components<strong>初始化时序</strong>问题，最经典的例子就是<strong>客户端同步创建Character初始化</strong>的问题，要知道Character身上的Components调用BeginPlay时PlayerState以及其他Components<strong>并不一定准备好了</strong>，Components在调用BeginPlay时可能<strong>Controller****中的PlayerState为空</strong>，或者PlayerState的Owner还没设置为Controller等等，这跟<strong>Actors属性同步的机制</strong>有关。</li>
+</ul>
+<p>有一种做法是在<strong>Tick中一直<strong><strong>轮询</strong></strong>是否数据已经准备好了</strong>，还有一种做法是<strong>所有相关的地方都去check</strong>，比如OnRep_PlayerState时check。UGameFrameworkComponentManager提供的方案跟第二种方案类似，但框架更清晰，代码做了很好的解耦，Components在处理时只关注<strong>States和Conditions</strong>，只需绑定<strong>少量的<strong><strong>回调</strong></strong>去check</strong>，而且对于GameFeatures动态添加的Components也适用。</p>
+<h1 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h1><h2 id="ModularGameplay"><a href="#ModularGameplay" class="headerlink" title="ModularGameplay"></a>ModularGameplay</h2><p>ActorClass配置了一个<strong>Class信息ClassInfoA</strong>，AddComponents主要做了两件事情：</p>
+<ol>
+<li><strong>查询</strong>当前World的所有Actors, 如果Actor的<strong>类型</strong>是ClassInfoA或者祖先类是ClassInfoA, 并且Actor既要<strong>符合Client&#x2F;Server的过滤条件</strong>又要<strong>保证Actors初始化完成了</strong>(IsActorInitialized)，那么会给这个Actor添加上指定的Components；</li>
+<li>后续动态创建的Actors或者通过StreamingLevel加载进来的Actors默认不会执行检查，即<strong>不会自动添加Components</strong>, 除非手动调用AddGameFrameworkComponentReceiver，这个函数会<strong>强制check</strong>是否这个Actor是否应该添加Components。</li>
+</ol>
+<p>但是这个仅对普通ActorClass而言，后面提到的<em><strong>ModularGameplayActors</strong></em><em>在创建是会自动调用</em><em><strong>AddGameFrameworkComponentReceiver。</strong></em></p>
+<p><img lazyload src="/images/loading.svg" data-src="/ModularGameplay-Learn.assets/asynccode" alt="img"></p>
+<p>以上图为例，当该GameFeature启用时，不管客户端还是服务器都会给GameStateBase添加B_EliminationFeedRelay组件；如果是LyraGameState时，只会在<strong>客户端</strong>的LyraGameState上添加用于<strong>客户端</strong>辅助瞄准的B_AimAssistTargetManager组件。</p>
+<p>当然UE5还自带了另外一些好用的GameFeatureActions, 比如AddCheats, AddWPContent等等，另外也<strong>可以写一些自定义的GameFeatureActions</strong>，比如Lyra中的AddWidget，AddAbilities等。</p>
+<p>当该GameFeature不再激活时，会将本GameFeature<strong>动态添加的所有组件移除掉。</strong></p>
+<h2 id="GameFrameworkComponent"><a href="#GameFrameworkComponent" class="headerlink" title="GameFrameworkComponent"></a>GameFrameworkComponent</h2><p>上面已经提到了<strong>动态添加Components</strong>的能力，那么添加的这些Components选用什么<strong>基类</strong>呢？ModularGameplay同样贴心的提供了好用的<strong>GameFrameworkComponent</strong>系列Components, 这些Components提供了很多好用的<strong>帮助函数</strong>，比如<strong>GetGameInstance</strong>, <strong>GetGameState</strong>等等，而且可以跟<strong>ModularGameplayActors</strong>中的Actors有很多的<strong>互动</strong>，比如<strong>AModularGameState</strong>在<strong>HandleMatchHasStarted</strong>函数会尝试获取身上所有的UGameStateComponent并调用其HandleMatchHasStarted函数。GameFrameworkComponent提供了这些即插即用的Components：</p>
+<ul>
+<li>ControllerComponent: 用于添加到Controller上的组件</li>
+<li>GameStateComponent: 用于添加到GameState上的组件</li>
+<li>PawnComponent: 用于添加到Pawn上的组件</li>
+<li>PlayerStateComponent: 用于添加到PlayerState上的组件</li>
+</ul>
+<p>ModularGameplayActors和GameFrameworkComponent搭配使用效果最佳。</p>
+<h2 id="Initialization-States"><a href="#Initialization-States" class="headerlink" title="Initialization States"></a>Initialization States</h2><p>我们以上面的客户端Character初始化举例，Character有三个组件A，B，C, B在<strong>初始化</strong>时依赖<strong>PlayerController和GameState数据</strong>，B拿到这些数据后会<strong>初始化</strong>自身的一些数据，C的初始化<strong>依赖于</strong>B的数据，而且Character需要一个时机就是所有的Components都初始化完成了，Character给这个时机命名为<strong>CharacterReady</strong>, 这个时机可以执行很多Gameplay相关的逻辑，根据之前的分析Character::BeginPlay显然不满足。使用Initialization States的步骤<a class="link" href="https://link.zhihu.com/?target=https://dev.epicgames.com/documentation/zh-cn/unreal-engine/game-framework-component-manager-in-unreal-engine">官方文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>已经写的很细了，我再写只不过也是重复一遍，不过流程图可以画一下：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/ModularGameplay-Learn.assets/asynccode" alt="img"></p>
+<p>这个流程图很清楚，好好看。</p>
+<h1 id="代码原理"><a href="#代码原理" class="headerlink" title="代码原理"></a>代码原理</h1><h2 id="ModularGameplayActors"><a href="#ModularGameplayActors" class="headerlink" title="ModularGameplayActors"></a>ModularGameplayActors</h2><p>所有希望能够有<strong>动态响应</strong>GameFeatureAction能力(比如AddComponents, AddAbilities等等)的Actors都应该继承ModularGameplayActors。</p>
+<p>以常见的PlayerController和Character为例，开发者肯定希望能够动态地给PlayerController和Character添加各种组件或者Abilities，那么在类定义时应该继承自ModularGameplayActors&#x2F;AModularPlayerController。</p>
+<p>一旦继承了ModularGameplayActors中的Actors,<strong>无论任何时机</strong>(Actors没有创建，Actors已经执行过BeginPlay, Actors正在初始化等等)都可以动态地给这些Actors<strong>执行</strong>各种GameFeatureActions。</p>
+<p>ModularGameplayActors提供了AModularController, AModularCharacter, AModularGameModeBase, AModularGameState, AModularPawn, AModularPlayerController和AModularPlayerState，如果想要使用ModularGameplay功能，ModularGameplayActors几乎是必需的。</p>
+<p>ModularGameplayActors中的Actors是<strong>如何实现</strong>的呢？我们以AModularCharacter举例：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">AModularCharacter::PreInitializeComponents</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Super::<span class="built_in">PreInitializeComponents</span>();</span><br><span class="line">    UGameFrameworkComponentManager::<span class="built_in">AddGameFrameworkComponentReceiver</span>(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AModularCharacter::BeginPlay</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UGameFrameworkComponentManager::<span class="built_in">SendGameFrameworkComponentExtensionEvent</span>(<span class="keyword">this</span>, UGameFrameworkComponentManager::NAME_GameActorReady);</span><br><span class="line">    Super::<span class="built_in">BeginPlay</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">AModularCharacter::EndPlay</span><span class="params">(<span class="type">const</span> EEndPlayReason::Type EndPlayReason)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    UGameFrameworkComponentManager::<span class="built_in">RemoveGameFrameworkComponentReceiver</span>(<span class="keyword">this</span>);</span><br><span class="line">    Super::<span class="built_in">EndPlay</span>(EndPlayReason);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>AddGameFrameworkComponentReceiver，SendGameFrameworkComponentExtensionEvent以及RemoveGameFrameworkComponentReceiver的作用是什么呢？</p>
+<p>我们得先看下UGameFrameworkComponentManager都负责了什么。</p>
+<h2 id="UGameFrameworkComponentManager"><a href="#UGameFrameworkComponentManager" class="headerlink" title="UGameFrameworkComponentManager"></a>UGameFrameworkComponentManager</h2><p>ModularGameplay要处理的一个核心问题是：<strong>GameFeatureAction执行的时候目标类型的Actors还没有生成呢该怎么办？目标类型的Actors正在初始化怎么办？目标类型的Actors已经生成并执行过BeginPlay该怎么办？</strong>，要知道可以在任何时机主动去启用GameFeatures,UGameFrameworkComponentManager做的主要工作就是<strong>不管在什么时机</strong>执行GameFeatureActions，都保证能够运行正常。</p>
+<p>UGameFrameworkComponentManager并不是一个设计很好的Subsystem, 它内部又可以拆分为三个不同的功能块，我们来看下这三个不同的功能块都处理了哪些问题：</p>
+<h3 id="AddComponents"><a href="#AddComponents" class="headerlink" title="AddComponents"></a>AddComponents</h3><p>作用：<strong>为目标类型的Actors添加Components</strong></p>
+<p>讲解这个功能需要搭配GameFeatureAction_AddComponents一起看，GameFeatureAction_AddComponents中的核心代码在于：</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Handles.ComponentRequestHandles.<span class="built_in">Add</span>(GFCM-&gt;<span class="built_in">AddComponentRequest</span>(Entry.ActorClass, ComponentClass));</span><br></pre></td></tr></table></figure></div>
+
+<p>AddComponentRequest函数是专门用于<strong>申请创建Component</strong>s的函数，它主要做了两件事情：</p>
+<ol>
+<li><strong>注册信息</strong>，注册信息<strong>存储</strong>在ReceiverClassToComponentClassMap中，内容为哪个UClass应该添加什么Components</li>
+<li>在当前World中查找该Class的所有Actors, 如果IsActorInitialized为true那么立即创建对应的Components</li>
+</ol>
+<p>AddComponentRequest能给<strong>所有已经初始化完成</strong>的Actor<strong>s添加好</strong>Components，那么对于未来要创建的Actors, 是<strong>如何</strong>保证会给他们添加上Components呢？</p>
+<p>这就要回到上面ModularGameplayActors中提到的<strong>AddGameFrameworkComponentReceiver</strong>调用了，<strong>AddGameFrameworkComponentReceiver</strong>这个函数做的一个工作是查询<strong>ReceiverClassToComponentClassMap</strong>，如果里面有注册自己类的信息，那么会创建对应的Components，通过AddComponentRequest和AddGameFrameworkComponentReceiver，可以做到任何时机创建的Actors都可以正确的创建对应的Components。</p>
+<p>RemoveGameFrameworkComponentReceiver就是移除Components，这里的处理就很简单了，不再多做解释。</p>
+<h3 id="ExtensionHandlerSystem"><a href="#ExtensionHandlerSystem" class="headerlink" title="ExtensionHandlerSystem"></a>ExtensionHandlerSystem</h3><p>相对于其他GameFeatureActions, AddComponents<strong>逻辑特别简单</strong>，它几乎不用依赖其他的业务逻辑或者游戏状态，只要Actors初始化好了直接RegisterComponent等等，</p>
+<p>但是大部分的GameFeatureActions不一样，它需要一个<strong>合理的时机</strong>，不是说BeginPlay后就可以执行了，比如AddInputBinding, AddInputBinding执行的条件是InputComponent已经<strong>初始化好了</strong>，而InputComponent又依赖于PlayerState的PawnData, 因此有时候需要开发者自己定义一些<strong>Event</strong>通知GameFeatureAction现在可以执行逻辑了，而ExtensionHandlerSystem就提供了Event中转功能。</p>
+<p>AddExtensionHandler<strong>内部逻辑</strong>查找当前World中的所有Pawns, 这些Pawns无非两种状态: 已经初始化完毕(IsActorInitialized返回true)或者没有(正在初始化)，跟上面AddComponents面对的问题一样，<strong>处理方式也一样</strong>，AddExtensionHandler做了<strong>两件事情</strong>：</p>
+<ol>
+<li><strong>注册信息</strong>，注册信息存储在ReceiverClassToEventMap中，内容为哪个UClass应该调用哪些回调函数</li>
+<li>对于已经初始化完毕的所有Pawns，<strong>向其GameFeatureAction_AddInputBinding实例发送NAME_ExtensionAdded</strong></li>
+</ol>
+<p>我们之前说过的AddGameFrameworkComponentReceiver函数其实<strong>还有</strong>一个工作就是<strong>查找ReceiverClassToEventMap</strong>然后发送NAME_ReceiverAdded。</p>
+<p>GameFeatureAction收到Event时需要<strong>自行处理逻辑</strong>，比如添加Abilities，添加UI, 修改配置等等。</p>
+<p>ExtensionHandlerSystem本质上处理的还是<strong>时机问题</strong>：GameFeatureAction执行时Actors初始化完成了怎么办？后面新生成的Actors Ready了怎么办？（什么时候该做什么）</p>
+<p>如果<strong>NAME_ExtensionAdded</strong>和<strong>NAME_ReceiverAdded</strong>都不能满足所需，可以自定义一些Event比如<strong>NAME_BindInputsNow</strong>来满足<strong>特殊的需求</strong>，<strong>NAME_ExtensionAdded仅仅意味着调用这个Action时刚好有些Actors初始化完毕了而已</strong>，这些信息并不代表你接下来要执行的逻辑一定能成功。</p>
+<div class="highlight-container" data-rel="C++"><figure class="iseeu highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">UGameFeatureAction_AddInputBinding::HandlePawnExtension</span><span class="params">(AActor* Actor, FName EventName, FGameFeatureStateChangeContext ChangeContext)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    APawn* AsPawn = <span class="built_in">CastChecked</span>&lt;APawn&gt;(Actor);</span><br><span class="line">    FPerContextData&amp; ActiveData = ContextData.<span class="built_in">FindOrAdd</span>(ChangeContext);</span><br><span class="line">    <span class="keyword">if</span> ((EventName == UGameFrameworkComponentManager::NAME_ExtensionRemoved) || (EventName == UGameFrameworkComponentManager::NAME_ReceiverRemoved))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">RemoveInputMapping</span>(AsPawn, ActiveData);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> ((EventName == UGameFrameworkComponentManager::NAME_ExtensionAdded) || (EventName == ULyraHeroComponent::NAME_BindInputsNow))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">AddInputMappingForPlayer</span>(AsPawn, ActiveData);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>因此在AddInputMappingForPlayer内部逻辑<strong>一定要判断</strong>IsReadyToBindInputs，有可能出现NAME_ExtensionAdded而AddInputMappingForPlayer调用失败的情况，因此有必要添加一个自定义时间NAME_BindInputsNow<strong>表示<strong><strong>Input</strong></strong>相关的初始化设置已经<strong><strong>Ready</strong></strong>了</strong>，现在执行GameFeatureAction_AddInputBinding的修改了。</p>
+<p>因为AddInputMappingForPlayer的执行依赖于Input相关的初始化设置，但是actors初始化完成时Input相关的设置不一定已经完成初始化。</p>
+<p>HandlePawnExtension在<strong>处理逻辑代码</strong>时响应函数要满足两点：判断是否已经调用过，如果<strong>调用过</strong>则return,比如UGameFeatureAction_AddAbilities::AddActorAbilities中的ActiveData.ActiveExtensions.Find判断；还有就是调用时不一定会成功，要<strong>做好很细的判断</strong>比如通过NAME_ExtensionAdded进入逻辑但是IsReadyToBindInputs返回false</p>
+<h3 id="Initialization-States-1"><a href="#Initialization-States-1" class="headerlink" title="Initialization States"></a>Initialization States</h3><p>InitStates本质就是一个状态机的更新逻辑，以Lyra为例，一步一步看下执行逻辑。</p>
+<h4 id="Lyra"><a href="#Lyra" class="headerlink" title="Lyra"></a>Lyra</h4><h5 id="LyraHeroComponent"><a href="#LyraHeroComponent" class="headerlink" title="LyraHeroComponent"></a>LyraHeroComponent</h5><p>Lyra的需求是这样的，LyraHeroComponent需要负责初始化输入和镜头处理，LyraHeroComponent需要当<strong>如下数据准备好</strong>时才能正确地初始化：</p>
+<ul>
+<li>PlayerController和Pawn已经Possess上</li>
+<li>PlayerState初始化完成并且Owner已经设置为PlayerController</li>
+<li>PawnData已同步</li>
+<li>Pawn::InputComponent已生成</li>
+</ul>
+<p><strong>LyraHeroComponent</strong>要做如下事情：</p>
+<ol>
+<li>继承IGameFrameworkInitStateInterface，拥有<strong>InitStates</strong>的能力</li>
+<li>重载<strong>GetFeatureName</strong>函数，返回一个代表该组件一个唯一的名字</li>
+<li>在OnRegister中调用<strong>RegisterInitStateFeature</strong>，<strong>RegisterInitStateFeature</strong>的作用就是向<strong>UGameFrameworkComponentManager</strong>注册信息，信息包括哪个Actor，FeatureName是什么，组件地址信息，State状态, 函数代理等。信息存储在一个<strong>以Actor为Key的Map</strong>中，一定要知道UGameFrameworkComponentManager是一个<strong>Subsystem</strong>, 游戏内的所有的Actors都可以使用InitStates的功能。<strong>RegisterInitStateFeature</strong>调用后UGameFrameworkComponentManager<strong>存储的数据</strong>如下：</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="/ModularGameplay-Learn.assets/asynccode" alt="img"></p>
+<p>ActorFeatureMap</p>
+<ol>
+<li>重载CanChangeInitState，当本组件尝试从A状态过渡到下一状态时，这里需要判断<strong>是否可以过渡</strong>，<strong>LyraHeroComponent</strong>在这里可以判断InputComponent和PlayerState是否有效</li>
+<li>重载HandleChangeInitState，当本组件要从A状态过渡到下一状态时需要处理什么，这里可以执行初始化Input和Camera相关的，既然逻辑走到这里，肯定是CanChangeInitState要求的条件已经满足</li>
+<li>重载OnActorInitStateChanged，当需要监听是否另外一个组件达到某一个状态时可以调用BindOnActorInitStateChanged, 当另外一个组件到达指定的状态后会调用OnActorInitStateChanged</li>
+<li>重载CheckDefaultInitialization，一般情况下调用ContinueInitStateChain即可，ContinueInitStateChain会再次执行CanChangeInitState，HandleChangeInitState的检查逻辑，推动本组件的状态机继续状态切换</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="/ModularGameplay-Learn.assets/asynccode" alt="img"></p>
+<h5 id="LyraPawnExtensionComponent"><a href="#LyraPawnExtensionComponent" class="headerlink" title="LyraPawnExtensionComponent"></a>LyraPawnExtensionComponent</h5><p>LyraPawnExtensionComponent它是初始化系统的<strong>总指挥</strong>，它<strong>从来不依赖其他Components的States</strong>, 其他的Components都要直接或者间接<strong>监听</strong>它的状态，比方说很重要的CharacterInited这个时刻，LyraPawnExtensionComponent需要<strong>查询绑定</strong>在本Actor的所有Components是否都GameplayReady了。</p>
+<p>LyraPawnExtensionComponent这个组件特别重要，外部其他Gameplay的系统都<strong>知道</strong>Character身上LyraPawnExtensionComponent这个组件的存在(定义在Character的基类中)，那些动态生成的Components以及需要InitStates功能的Components也<strong>知道</strong>LyraPawnExtensionComponent的存在，而LyraPawnExtensionComponent不知道其他Components的存在，因此可以看到LyraPawnExtensionComponent代码中没有假定某个Component存在的代码，LyraPawnExtensionComponent充当了“<strong>中间人</strong>”的角色。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/ModularGameplay-Learn.assets/asynccode" alt="img"></p>
+<p>LyraPawnExtensionComponent实现的<strong>几个要点</strong>：</p>
+<ol>
+<li>处理PlayerState, PlayerControllerChanged, PawnData, InputComponent等<strong>通用****回调</strong>，处理的这些回调都是游戏内最通用的，跟具体逻辑无关</li>
+<li><strong>CheckDefaultInitialization除了正常调用ContinueInitStateChain以外</strong>，还调用了CheckDefaultInitializationForImplementers，这个函数会调用这个Actors上所有继承IGameFrameworkInitStateInterface的Components的<strong>CheckDefaultInitialization</strong>(自己除外，否则死循环)</li>
+</ol>
+<p><img lazyload src="/images/loading.svg" data-src="/ModularGameplay-Learn.assets/asynccode" alt="img"></p>
+<p>CheckDefaultInitializationForImplementers</p>
+<ol>
+<li>CanChangeInitState中<strong>允许</strong>从InitState_DataAvailable过渡到InitState_DataInitialized的<strong>条件</strong>是所有Components都到达了InitState_DataAvailable，这行代码充分体现了<strong>ULyraPawnExtensionComponent</strong>统筹管理的角色</li>
+<li>调用<strong>BindOnActorInitStateChanged</strong>并且<strong>FeatureName</strong>为空，这样当其他的Components状态更新时都会调用ULyraPawnExtensionComponent::<strong>OnActorInitStateChanged</strong>，这对于ULyraPawnExtensionComponent能够统筹管理来讲特别重要</li>
+<li>定义一些Gameplay所需的代理，比如OnAbilitySystemInitialized，OnPawnGameplayReady等等，原因在于LyraPawnExtensionComponent“中间人”和统筹管理的角色</li>
+</ol>
+<p>其他component状态更新时，initstate一定会改变，比如有个component装载或卸载了，这个component就要重新初始化。</p>
+<p>再次回到Lyra上，我们通过下图看下LyraHeroComponent是如何通过ULyraPawnExtensionComponent完成初始化的：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/ModularGameplay-Learn.assets/asynccode" alt="img"></p>
+<p>PawnExtensionAndHero</p>
+<ol>
+<li>两个组件调用BeginPlay后会尝试进入到Spawned状态</li>
+<li>两个组件都尝试进入到下一个状态DataAvailable, 但是数据没准备好，因此不会切换</li>
+<li>当前很多事件发生时都会调用LyraPawnExtensionComponent的接口，每次都会尝试进入到下一状态</li>
+<li>终于在某一个时刻，数据都准备好了，两个组件都进入到了下一个状态DataAvailable</li>
+<li>因为LyraPawnExtensionComponent调用过BindOnActorInitStateChanged并且FeatureName为空，因此所有Components状态切换时都会监测到，OnActorInitStateChanged函数则会继续尝试状态切换</li>
+<li>LyraPawnExtensionComponent检测到了所有的Components都进入到了DataAvailable, 自己成功切换到了DataInitialized状态</li>
+<li>LyraHeroComponent有LyraPawnExtensionComponent到达DataInitialized的回调，另一方面LyraPawnExtensionComponent进入到了GameplayReady</li>
+<li>LyraPawnExtensionComponent到达DataInitialized的回调函数会继续尝试状态切换，LyraHeroComponent成功切换到DataInitialized, 这时候所有的数据都OK了，包括PawnData(LyraPawnExtensionComponent在DataAvailable状态就意味着PawnData已经可以去获取了)，这个时刻可以去初始化各种系统了</li>
+<li>继续尝试状态切换，成功切换到GameplayReady</li>
+</ol>
+<blockquote>
+<p><em>PawnExtendionComponent不适合什么回调都往里放，不仅仅越来越臃肿，而且回调发生后会通知所有实现者都check, 一些完全不在乎这个数据的实现者也不得不check,PawnExtensionComponent适合一些基础数据的check,比如PlayerController和PlayerState, 相关Components可以通过事件系统，全局回调等去检测自己所需的</em> <em>警告: 多个Components调用CheckDefaultInitializationForImplementers会进入死循环,只有LyraPawnExtensionComponent调用就可以了</em></p>
+</blockquote>
+<h3 id="状态机更新经典代码"><a href="#状态机更新经典代码" class="headerlink" title="状态机更新经典代码"></a>状态机更新经典代码</h3><p>利用栈做代理函数的调用，避免递归调用</p>
+<p>UGameFrameworkComponentManager::ProcessFeatureStateChange</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>GameFeatures, Experience，GameFeatureAction, ModularGameplay都是为模块化玩法设计的</li>
+<li>如果想使用ModularGameplay, ModularGameplayActors和GameFrameworkComponent也应该默认开启使用的</li>
+<li>LyraPawnExtensionComponent可以直接用于项目</li>
+<li>即使不用模块化玩法，InitStates的功能也可以使用</li>
+<li>想要自定义GameFeatureAction的话，必须得依靠ExtensionHandlerSystem</li>
+<li>自定义GameFeatureAction实现添加逻辑时，一定要保证函数重复调用不报错并且只生效一次，比如AddWidget, 不应该出现显示两个UI</li>
+<li>DataAvailable表示自己所需的数据都有效了，DataInitialized表示利用现有的数据完成了自己内部数据的初始化</li>
+</ul>
+<p>原文：<a class="link" target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/692606168">zhuanlan.zhihu.com <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> ModularGamePlay相关理解</li>
+        <li><strong>Author:</strong> 沐云白</li>
+        <li><strong>Created at
+                :</strong> 2025-02-07 09:32:10</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-07-11 09:33:02
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/02/07/ModularGameplay-Learn/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/03/12/Read-Effective-C/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Read Effective C++</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/11/15/Read-GameProgrammingPatterns/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">ModularGamePlay相关理解</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%8E%E4%B9%88%E7%94%A8"><span class="nav-text">怎么用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ModularGameplay"><span class="nav-text">ModularGameplay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GameFrameworkComponent"><span class="nav-text">GameFrameworkComponent</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Initialization-States"><span class="nav-text">Initialization States</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%8E%9F%E7%90%86"><span class="nav-text">代码原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ModularGameplayActors"><span class="nav-text">ModularGameplayActors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UGameFrameworkComponentManager"><span class="nav-text">UGameFrameworkComponentManager</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AddComponents"><span class="nav-text">AddComponents</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ExtensionHandlerSystem"><span class="nav-text">ExtensionHandlerSystem</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Initialization-States-1"><span class="nav-text">Initialization States</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E6%9B%B4%E6%96%B0%E7%BB%8F%E5%85%B8%E4%BB%A3%E7%A0%81"><span class="nav-text">状态机更新经典代码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        14 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
