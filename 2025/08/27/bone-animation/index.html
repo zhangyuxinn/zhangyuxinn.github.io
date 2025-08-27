@@ -13,18 +13,27 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/archives/2024/03/"/>
+    <link rel="canonical" href="http://example.com/2025/08/27/bone-animation/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2024/03/index.html">
+        <meta name="description" content="骨骼动画原理还有一种理解，如果没有骨骼，我们要形成动画，就需要对几万个mesh的顶点transform进行操作存储，所以可以把变换相同的顶点压缩成一个点，压缩完的这一个点就可以理解为骨骼。 纯原理正文主要是解决3个问题：  如何插值？ 如何让骨骼动起来？（正向运动学，逆向运动学） 骨骼如何带动皮肤？（线性混合蒙皮）  骨骼动画主要分为骨骼和皮肤，操作控制骨骼，然后骨骼和蒙皮绑定，控制蒙皮。 ***">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bone animation">
+<meta property="og:url" content="http://example.com/2025/08/27/bone-animation/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="骨骼动画原理还有一种理解，如果没有骨骼，我们要形成动画，就需要对几万个mesh的顶点transform进行操作存储，所以可以把变换相同的顶点压缩成一个点，压缩完的这一个点就可以理解为骨骼。 纯原理正文主要是解决3个问题：  如何插值？ 如何让骨骼动起来？（正向运动学，逆向运动学） 骨骼如何带动皮肤？（线性混合蒙皮）  骨骼动画主要分为骨骼和皮肤，操作控制骨骼，然后骨骼和蒙皮绑定，控制蒙皮。 ***">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/bone-animation.assets/XUJRHZRBADAGM">
+<meta property="og:image" content="http://example.com/bone-animation.assets/HC6RZZRBACACC">
+<meta property="og:image" content="http://example.com/bone-animation.assets/QLQR7ZRBACQC2">
+<meta property="og:image" content="http://example.com/bone-animation.assets/ZJVD3ZRBACABU">
+<meta property="article:published_time" content="2025-08-27T05:13:06.000Z">
+<meta property="article:modified_time" content="2025-08-27T05:27:06.933Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/bone-animation.assets/XUJRHZRBADAGM">
     
     
     <!--- Icon Part-->
@@ -36,7 +45,7 @@
     
     <title>
         
-            Archive: 2024/3 | 沐云白的个人主页
+            bone animation | 沐云白的个人主页
         
     </title>
 
@@ -262,234 +271,260 @@
             <div class="main-content">
 
                 
-                    <div class="archive-container shadow-none hover:shadow-none sm:shadow-redefine sm:hover:shadow-redefine-hover">
-    
-<div class="archive-list-container">
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2025</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">9</span>
-            </div>
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
             
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
-                
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='08-27'>
-                    
-                    <a href="/2025/08/27/Anim-Notify-State/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">Anim Notify State</span>
-                    </a>
-                    
-                
-                    
-                    
-                    <a href="/2025/08/27/bone-animation/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">bone animation</span>
-                    </a>
-                    
-                
-                    
-                    
-                    <a href="/2025/08/27/UE-Control-Rig/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">UE Control Rig</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='07-27'>
-                    
-                    <a href="/2025/07/27/UE-Garbage-Collection/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">UE Garbage Collection</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='06-26'>
-                    
-                    <a href="/2025/06/26/DesignPartterns-Details/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">设计模式细节</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='05-15'>
-                    
-                    <a href="/2025/05/15/physics-Implementation/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">physics-Implementation</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='04-11'>
-                    
-                    <a href="/2025/04/11/My-Little-GAS/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">自制简易GAS</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='03-12'>
-                    
-                    <a href="/2025/03/12/Read-Effective-C/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">Read Effective C++</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='02-07'>
-                    
-                    <a href="/2025/02/07/ModularGameplay-Learn/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">ModularGamePlay相关理解</span>
-                    </a>
-                    
-                
-                </li> <!-- Ensure the last item is properly closed -->
-            </ul>
-        </section>
-    
-        <section class="archive-item mb-spacing-unit last:mb-0">
-            <div class="archive-item-header flex flex-row items-center mb-2">
-                <span class="archive-year font-semibold text-3xl mr-2">2024</span>
-                <span class="archive-year-post-count text-xs md:text-sm font-bold rounded-small bg-third-background-color py-[2px] px-[10px] border border-border-color">9</span>
-            </div>
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">bone animation</h1>
+                </div>
             
-            <ul class="article-list pl-0 md:pl-8 text-lg leading-[1.5]">
-                
-                    
-                    
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='11-15'>
-                    
-                    <a href="/2024/11/15/algorithm-programmercarl/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">算法细节&amp;二刷代码随想录：</span>
-                    </a>
-                    
-                
-                    
-                    
-                    <a href="/2024/11/15/Read-GameProgrammingPatterns/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">游戏设计模式示例，读《通过游戏编程模式提升你的代码水平(中文版)》</span>
-                    </a>
-                    
-                
-                    
-                    
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">沐云白</span>
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='11-12'>
-                    
-                    <a href="/2024/11/12/unity-IEnumerator/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">unity协程的原理和拓展</span>
-                    </a>
-                    
-                
-                    
-                    
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
                         
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='11-10'>
-                    
-                    <a href="/2024/11/10/C++-Mark/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">c++基础 个人小记</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-11'>
-                    
-                    <a href="/2024/10/11/Disassemble-the-Joker-Card-effect/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">小丑牌丝滑效果代码拆解</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='10-01'>
-                    
-                    <a href="/2024/10/01/Extend-Editor/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">编辑器拓展</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='09-12'>
-                    
-                    <a href="/2024/09/12/GAS-learn2/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">GAS学习记录第二季</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='08-29'>
-                    
-                    <a href="/2024/08/29/GAS-learn1/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">GAS学习记录第一季</span>
-                    </a>
-                    
-                
-                    
-                    
-                        
-                            </li>
-                         <!-- Close the previous LI if not the first item -->
-                        <li class="article-item space-y-2 px-6 pt-10 pb-2 text-xl relative border-l-2 border-border-color" date-is='03-21'>
-                    
-                    <a href="/2024/03/21/How-to-post-your-article/" class="block w-fit">
-                        <span class="article-title my-0.5 text-2xl">windows搭建个人博客 GitHub page+hexo</span>
-                    </a>
-                    
-                
-                </li> <!-- Ensure the last item is properly closed -->
-            </ul>
-        </section>
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-08-27 13:13:06</span>
+        <span class="mobile">2025-08-27 13:13:06</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-08-27 13:27:06</span>
+            <span class="mobile">2025-08-27 13:27:06</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="骨骼动画原理"><a href="#骨骼动画原理" class="headerlink" title="骨骼动画原理"></a>骨骼动画原理</h1><p>还有一种理解，如果没有骨骼，我们要形成动画，就需要对几万个mesh的顶点transform进行操作存储，所以可以把变换相同的顶点压缩成一个点，压缩完的这一个点就可以理解为骨骼。</p>
+<h2 id="纯原理"><a href="#纯原理" class="headerlink" title="纯原理"></a>纯原理</h2><h3 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h3><p>主要是解决3个问题：</p>
+<ol>
+<li>如何插值？</li>
+<li>如何让骨骼动起来？（正向运动学，逆向运动学）</li>
+<li>骨骼如何带动皮肤？（线性混合蒙皮）</li>
+</ol>
+<p>骨骼动画主要分为骨骼和皮肤，操作控制骨骼，然后骨骼和蒙皮绑定，控制蒙皮。</p>
+<p>****骨骼动画的制作流程****为：</p>
+<p>先把骨骼跟T-Pose绑定，然后附上蒙皮（skinning）。</p>
+<p>动画师操作骨骼，制作关键帧</p>
+<p>然后在关键帧间进行插值，以此来形成动画。</p>
+<p>****在关键帧编辑骨骼姿态，在非关键帧插值骨骼姿态，在所有帧上进行蒙皮****。</p>
+<h4 id="如何让骨骼动起来？"><a href="#如何让骨骼动起来？" class="headerlink" title="如何让骨骼动起来？"></a>如何让骨骼动起来？</h4><p>首先是关节模型：</p>
+<p>关节之间通过线段相连，可以形成一个树状结构，我们称之为<em><strong>*关节模型。*</strong></em></p>
+<p><img lazyload src="/images/loading.svg" data-src="/bone-animation.assets/XUJRHZRBADAGM" alt="img"></p>
+<p>我们可以控制每个关节的坐标，这样也就控制了整个骨架的姿态，进而控制的角色模型。</p>
+<p>这里的细节是每个关节中存储的是相对父坐标的坐标变换矩阵</p>
+<p>**<em>*</em>*相对变换可以带来这些便利性******：</p>
+<ol>
+<li>更加符合直觉。一个关节的移动，可以带动整个子树。比如我们运动胳膊肘的时候，整个小臂也跟着动了。</li>
+<li>可以简化动画的表示。通过这种依赖关系，如果需要确定整个角色的坐标，只需要确定根节点的坐标即可。另外，跟上一条类似，做手臂运动的动画不需要操作所有手臂关节，只需要操作肘关节。</li>
+<li>可以更容易的进行动画数据压缩、动作融合等。这也是得益于上述优点，此处不详细论述。</li>
+</ol>
+<p>但是由于存储的东西变少，所以我们在算的时候就需要计算更多，计算的逻辑主要依托于****正向运动学*<em><strong>，可以</strong></em>*一级一级传递****。</p>
+<p>我们先定义一下整个关节模型的数据结构：</p>
+<p>****关节****：</p>
+<ol>
+<li><p>每个关节所在骨骼的长度。</p>
+</li>
+<li><p>每个关节所在骨骼相对上一关节的旋转角度。</p>
+</li>
+</ol>
+<p>然后就是根节点的坐标，这些数据就足够组成我们的骨骼。</p>
+<p>接着就是动态计算的环节：</p>
+<h5 id="正向运动学"><a href="#正向运动学" class="headerlink" title="正向运动学"></a>正向运动学</h5><p>****正向运动学就是求解关节坐标系到世界坐标系的变换****。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/bone-animation.assets/HC6RZZRBACACC" alt="img"></p>
+<p>对于这个模型，如果我们需要计算最末端的需要怎么做？</p>
+<p>其实就是×一堆前面的变换矩阵</p>
+<p><img lazyload src="/images/loading.svg" data-src="/bone-animation.assets/QLQR7ZRBACQC2" alt="img"></p>
+<p>一般情况下我们会一起计算一整个关节模型中每个关节的坐标，也就是树中每个节点的坐标，对于这种我们遍历一轮就可以全部得出结果了。</p>
+<h5 id="逆向运动学"><a href="#逆向运动学" class="headerlink" title="逆向运动学"></a>逆向运动学</h5><p>这一步是反向求解，给定末端关节的坐标，反向求解前面的旋转角度。</p>
+<p>逆向运动学的需求十分常见，例如需要手去抓取物品。如果通过不断调节旋转角度来达成，那么会非常麻烦。（主要是让美术省力）</p>
+<p>具体的求解方法看链接里的文章把，写的挺清晰的。</p>
+<h4 id="骨骼如何带动皮肤？"><a href="#骨骼如何带动皮肤？" class="headerlink" title="骨骼如何带动皮肤？"></a>骨骼如何带动皮肤？</h4><p>首先是骨骼与皮肤要进行绑定，一般来说会对T-Pose进行绑定，****选择这种姿势是因为大部分姿势不会偏离它太大****。</p>
+<p>然后在对应骨骼移动的时候，带动被绑定在这个骨骼上的皮肤，这里要处理的难点主要是关节处的顶点，这些顶点会被起码两个骨骼所影响，所以要进行混合，一般是采用<em><strong>*线性混合蒙皮。*</strong></em></p>
+<p>说白了就是****对绑定的骨骼的变换矩阵进行线性插值****，具体的插值系数由美术调整。</p>
+<p>接着就是蒙皮变换的实现</p>
+<p>因为在变换姿态时，不会考虑世界坐标，只会考虑骨架坐标。</p>
+<p>每根骨骼的变换矩阵的求解是：</p>
+<p><img lazyload src="/images/loading.svg" data-src="/bone-animation.assets/ZJVD3ZRBACABU" alt="img"></p>
+<p>然后把这个矩阵丢尽GPU，使用顶点着色器改变mesh（蒙皮）的顶点到指定位置</p>
+<p>因为要放到 GPU 里，为了让数据传递的开销别那么大，一般一个顶点只会被至多 4 根骨骼影响，这也很够用了。如果是用 CPU 去做变换，那就没必要遵循这个限制。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> bone animation</li>
+        <li><strong>Author:</strong> 沐云白</li>
+        <li><strong>Created at
+                :</strong> 2025-08-27 13:13:06</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-08-27 13:27:06
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/08/27/bone-animation/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
 </div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2025/08/27/Anim-Notify-State/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Anim Notify State</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/08/27/UE-Control-Rig/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">UE Control Rig</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">bone animation</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AA%A8%E9%AA%BC%E5%8A%A8%E7%94%BB%E5%8E%9F%E7%90%86"><span class="nav-text">骨骼动画原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%AF%E5%8E%9F%E7%90%86"><span class="nav-text">纯原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E6%96%87"><span class="nav-text">正文</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
 
                 
 
@@ -571,6 +606,27 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-side-tools-container">

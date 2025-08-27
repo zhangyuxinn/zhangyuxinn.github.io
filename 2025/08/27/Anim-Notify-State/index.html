@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="沐云白">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2025/08/27/anim-notify-state/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="我想知道什么内容？ 为什么用AnimNotifyState来写材质的后处理 AnimNotify底层是怎么实现的？ 为什么用AnimNotifyState来实现后处理的写法？ 在AnimInstance和AnimMontage中，二者的流程有什么区别?    比较重要的类AnimNotify这个类是编辑处理的资产，对于业务层来说，这个类只关心notify本身，也就是调用时要执行的逻辑。 AnimN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Anim Notify State">
+<meta property="og:url" content="http://example.com/2025/08/27/Anim-Notify-State/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="我想知道什么内容？ 为什么用AnimNotifyState来写材质的后处理 AnimNotify底层是怎么实现的？ 为什么用AnimNotifyState来实现后处理的写法？ 在AnimInstance和AnimMontage中，二者的流程有什么区别?    比较重要的类AnimNotify这个类是编辑处理的资产，对于业务层来说，这个类只关心notify本身，也就是调用时要执行的逻辑。 AnimN">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/Anim-Notify-State.assets/BQFTEBZCABAFK">
+<meta property="og:image" content="http://example.com/Anim-Notify-State.assets/FWEDKBZCAAAH6">
+<meta property="og:image" content="http://example.com/Anim-Notify-State.assets/ZA7NICRCACQAW">
+<meta property="og:image" content="http://example.com/Anim-Notify-State.assets/QKA54CRCACQA4">
+<meta property="article:published_time" content="2025-08-27T05:13:27.000Z">
+<meta property="article:modified_time" content="2025-08-27T05:24:06.998Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/Anim-Notify-State.assets/BQFTEBZCABAFK">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Anim Notify State | 沐云白的个人主页
+        
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+    
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","highlight_theme":{"light":"github","dark":"vs2015"},"font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null},"title":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":{"enable":false,"custom_message":null},"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"沐云白的个人主页","subtitle":{"text":["What`s happened`s happened.","Which is an expression of faith in the mechanies of the world.","It`s not an excuse to do nothing."],"hitokoto":{"enable":false,"show_author":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.7.2","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"},"GITHUB":{"path":"https://github.com/zhangyuxinn","icon":"fa-brands fa-github"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","excerpt_length":200,"categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2024/8/10 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container flex flex-col justify-between min-h-dvh">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+    <div class="navbar-content transition-navbar ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                沐云白的个人主页
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                                        >
+                                    <i class="fa-brands fa-github fa-fw"></i>
+                                    GITHUB
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-dvh w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           target="_blank" rel="noopener" href="https://github.com/zhangyuxinn"
+                        >
+                            <span>
+                                GITHUB
+                            </span>
+                            
+                                <i class="fa-brands fa-github fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">18</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Anim Notify State</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/redefine-avatar.svg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">沐云白</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv3</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2025-08-27 13:13:27</span>
+        <span class="mobile">2025-08-27 13:13:27</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2025-08-27 13:24:06</span>
+            <span class="mobile">2025-08-27 13:24:06</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h2 id="我想知道什么内容？"><a href="#我想知道什么内容？" class="headerlink" title="我想知道什么内容？"></a>我想知道什么内容？</h2><ul>
+<li>为什么用AnimNotifyState来写材质的后处理</li>
+<li>AnimNotify底层是怎么实现的？</li>
+<li>为什么用AnimNotifyState来实现后处理的写法？</li>
+<li>在AnimInstance和AnimMontage中，二者的流程有什么区别?</li>
+</ul>
+<p><img lazyload src="/images/loading.svg" data-src="/Anim-Notify-State.assets/BQFTEBZCABAFK" alt="img"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/Anim-Notify-State.assets/FWEDKBZCAAAH6" alt="img"></p>
+<h2 id="比较重要的类"><a href="#比较重要的类" class="headerlink" title="比较重要的类"></a>比较重要的类</h2><h3 id="AnimNotify"><a href="#AnimNotify" class="headerlink" title="AnimNotify"></a>AnimNotify</h3><p>这个类是编辑处理的资产，对于业务层来说，这个类只关心notify本身，也就是调用时要执行的逻辑。</p>
+<h3 id="AnimNotifyEvent"><a href="#AnimNotifyEvent" class="headerlink" title="AnimNotifyEvent"></a>AnimNotifyEvent</h3><p>这个类像是AnimNotify的实例化？他维护着AnimNotify，附在动画导轨上，负责管理Notify的触发时机和触发方式，存储例如<em><strong>*DisplayTime_DEPRECATED*<em><strong>，Duration，NotifyTriggerChance，</strong></em>*MontageTickType*</strong></em></p>
+<h3 id="AnimNotifyEventReference"><a href="#AnimNotifyEventReference" class="headerlink" title="AnimNotifyEventReference"></a>AnimNotifyEventReference</h3><p>是对AnimNotify&#x2F;AnimNotifyState的一层封装，这样外层的UAnimInstance就可以对这个进行统一处理，然后到了里面在分开处理。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const FAnimNotifyEvent* Notify;</span><br><span class="line"></span><br><span class="line">UPROPERTY(transient)//瞬时存储，临时变量</span><br><span class="line">const UObject* NotifySource;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="AnimNotify的触发机制"><a href="#AnimNotify的触发机制" class="headerlink" title="AnimNotify的触发机制"></a>AnimNotify的触发机制</h2><p>Tick方式要看是****Montage TickType****，</p>
+<p>****Montage TickType****分为Queue（队列）和Branching Point（分支点），下面流程中会提到，这个要注意，</p>
+<p>AnimNotify和AnimNotifyState的逻辑基本相同，就是只是直接通知，没分成Begin&#x2F;tick&#x2F;end而已</p>
+<h3 id="首先要收集本帧内的AnimNotify"><a href="#首先要收集本帧内的AnimNotify" class="headerlink" title="首先要收集本帧内的AnimNotify"></a>首先要收集本帧内的AnimNotify</h3><h4 id="Queued"><a href="#Queued" class="headerlink" title="Queued"></a>Queued</h4><p>对于编辑器（也就是preview world）下的AnimSeq，是直接走的UAnimSingleNodeInstance::SetPositionWithPreviousTime，在这里面手动查找AnimNotify并Trigger。</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">void UAnimSingleNodeInstance::SetPositionWithPreviousTime(float InPosition, float InPreviousTime, bool bFireNotifies)</span><br><span class="line">&#123;</span><br><span class="line">    FAnimSingleNodeInstanceProxy&amp; Proxy = GetProxyOnGameThread&lt;FAnimSingleNodeInstanceProxy&gt;();</span><br><span class="line"></span><br><span class="line">    Proxy.SetCurrentTime(FMath::Clamp&lt;float&gt;(InPosition, 0.f, GetLength()));</span><br><span class="line"></span><br><span class="line">    if (FAnimMontageInstance* CurMontageInstance = GetActiveMontageInstance())</span><br><span class="line">    &#123;</span><br><span class="line">        CurMontageInstance-&gt;SetPosition(Proxy.GetCurrentTime());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Handle notifies</span><br><span class="line">    // the way AnimInstance handles notifies doesn&#x27;t work for single node because this does not tick or anything</span><br><span class="line">    // this will need to handle manually, emptying, it and collect it, and trigger them at once. </span><br><span class="line">    if (bFireNotifies)</span><br><span class="line">    &#123;</span><br><span class="line">        UAnimSequenceBase * SequenceBase = Cast&lt;UAnimSequenceBase&gt; (CurrentAsset);</span><br><span class="line">        if (SequenceBase)</span><br><span class="line">        &#123;</span><br><span class="line">            NotifyQueue.Reset(GetSkelMeshComponent());</span><br><span class="line"></span><br><span class="line">            TArray&lt;FAnimNotifyEventReference&gt; Notifies;</span><br><span class="line">            SequenceBase-&gt;GetAnimNotifiesFromDeltaPositions(InPreviousTime, Proxy.GetCurrentTime(), Notifies);</span><br><span class="line">            if ( Notifies.Num() &gt; 0 )</span><br><span class="line">            &#123;</span><br><span class="line">                // single node instance only has 1 asset at a time</span><br><span class="line">                NotifyQueue.AddAnimNotifies(Notifies, 1.0f);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            TriggerAnimNotifies(0.f);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>UAnimSingleNodeInstance是一种直接播放AnimSequence的选项，</p>
+<p><img lazyload src="/images/loading.svg" data-src="/Anim-Notify-State.assets/ZA7NICRCACQAW" alt="img"></p>
+<p>而对于一般的动画蓝图，其中都是通过montage来进行播放的，包括不主动使用playMontage的接口，但是在动画蓝图中，有使用了Slot节点就会转为Montage处理。</p>
+<p>所以，走的堆栈是</p>
+<p>UpdateMontage(DeltaSeconds)</p>
+<p>Montage_Advance(DeltaSeconds)</p>
+<p>Advance(DeltaSeconds, RootMotionParams, bUsingBlendedRootMotion)</p>
+<p>HandleEvents(float PreviousTrackPos, float CurrentTrackPos, const FBranchingPointMarker* BranchingPointMarker)</p>
+<p>在handleEvent中，由</p>
+<p>Montage-&gt;GetAnimNotifiesFromDeltaPositions(PreviousTrackPos, CurrentTrackPos, NotitfyRefs);</p>
+<p>这个函数来获取当前这个帧内的AnimNotifies。</p>
+<p>这里解释一下DeltaPosition，这个是指Montage时间轴上的DeltaPosition，也就是这个一帧的长度，获取这个一帧内所拥有的AnimNotifies。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/Anim-Notify-State.assets/QKA54CRCACQA4" alt="img"></p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">// now get active Notifies based on how it advanced</span><br><span class="line">if (AnimInstance.IsValid())</span><br><span class="line">&#123;</span><br><span class="line">    TArray&lt;FAnimNotifyEventReference&gt; NotitfyRefs;</span><br><span class="line">    TMap&lt;FName, TArray&lt;FAnimNotifyEventReference&gt;&gt; NotifyMap;</span><br><span class="line"></span><br><span class="line">    // We already break up AnimMontage update to handle looping, so we guarantee that PreviousPos and CurrentPos are contiguous.</span><br><span class="line">    Montage-&gt;GetAnimNotifiesFromDeltaPositions(PreviousTrackPos, CurrentTrackPos, NotitfyRefs);</span><br><span class="line"></span><br><span class="line">    // For Montage only, remove notifies marked as &#x27;branching points&#x27;. They are not queued and are handled separately.</span><br><span class="line">    Montage-&gt;FilterOutNotifyBranchingPoints(NotitfyRefs);</span><br><span class="line"></span><br><span class="line">    // now trigger notifies for all animations within montage</span><br><span class="line">    // we&#x27;ll do this for all slots for now</span><br><span class="line">    for (auto SlotTrack = Montage-&gt;SlotAnimTracks.CreateIterator(); SlotTrack; ++SlotTrack)</span><br><span class="line">    &#123;</span><br><span class="line">        TArray&lt;FAnimNotifyEventReference&gt;&amp; MapNotifies = NotifyMap.FindOrAdd(SlotTrack-&gt;SlotName);</span><br><span class="line"></span><br><span class="line">        SlotTrack-&gt;AnimTrack.GetAnimNotifiesFromTrackPositions(PreviousTrackPos, CurrentTrackPos, MapNotifies);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Queue all these notifies.</span><br><span class="line">    AnimInstance-&gt;NotifyQueue.AddAnimNotifies(NotitfyRefs, NotifyWeight);</span><br><span class="line">    AnimInstance-&gt;NotifyQueue.AddAnimNotifies(NotifyMap, NotifyWeight);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在上段代码中，先收集Montage全局的Notify，收集完会过滤掉****Montage TickType****为Branching Point（分支点）的，Branching Point的会走另外的途径触发。</p>
+<p>然后收集所有本帧激活的Slot中的Notify（****目前这里没有剔除Branching Point的，是直接把所有都塞进去了****）</p>
+<p>收集进AnimInstance的NotifyQueue后，在TickAnimation的末尾，在进行TriggerNotify，具体堆栈是：</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">USkeletalMeshComponent::ConditionallyDispatchQueuedAnimEvents()</span><br><span class="line">UAnimInstance::DispatchQueuedAnimEvents()</span><br><span class="line">TriggerAnimNotifies(GetProxyOnGameThread&lt;FAnimInstanceProxy&gt;().GetDeltaSeconds());</span><br></pre></td></tr></table></figure></div>
+
+<p>在最后这个函数里进行比对触发，</p>
+<p>如果这一帧里有的AnimNotifyState，也就是在NotifyQueue中但是不在ActiveAnimNotifyState中的，把这些放入NotifyStateBeginEvent，这里是为了这一帧里的Begin比End晚触发。</p>
+<p>然后查找ActiveAnimNotifyState中有但是这一帧的NotifyQueue中没有的Notify，然后值执行这些Notify的end函数，</p>
+<p>在此之后在遍历NotifyStateBeginEvent，调用begin</p>
+<p>然后再遍历新的ActiveAnimNotifyState，调用tick</p>
+<p><em><strong>*所以：这里的顺序是end-&gt;begin-&gt;tick。*</strong></em></p>
+<h5 id="问题点"><a href="#问题点" class="headerlink" title="问题点"></a>问题点</h5><p>值得注意的是，这里的逻辑上，end是会晚一帧触发的，因为他是要等到这一帧里没有这个notify的时候才会触发，所以如果有两个notifyState，前面A的notifyState的end和后面B的begin在同一帧，触发顺序会是：A-begin <em><strong>*-&gt;*</strong></em> B-begin <em><strong>*-&gt;*</strong></em> A-end <em><strong>*-&gt;*</strong></em> B-end。</p>
+<h4 id="Branching-Point"><a href="#Branching-Point" class="headerlink" title="Branching Point"></a>Branching Point</h4><div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">void UAnimMontage::RefreshBranchingPointMarkers()</span><br><span class="line">&#123;</span><br><span class="line">    BranchingPointMarkers.Empty();</span><br><span class="line">    BranchingPointStateNotifyIndices.Empty();</span><br><span class="line"></span><br><span class="line">    // Verify that we have no overlapping trigger times, this is not supported, and markers would not be triggered then.</span><br><span class="line">    TMap&lt;float, FAnimNotifyEvent*&gt; TriggerTimes;</span><br><span class="line"></span><br><span class="line">    int32 NumNotifies = Notifies.Num();</span><br><span class="line">    for (int32 NotifyIndex = 0; NotifyIndex &lt; NumNotifies; NotifyIndex++)</span><br><span class="line">    &#123;</span><br><span class="line">        FAnimNotifyEvent&amp; NotifyEvent = Notifies[NotifyIndex];</span><br><span class="line"></span><br><span class="line">        if (NotifyEvent.IsBranchingPoint())</span><br><span class="line">        &#123;</span><br><span class="line">            AddBranchingPointMarker(FBranchingPointMarker(NotifyIndex, NotifyEvent.GetTriggerTime(), EAnimNotifyEventType::Begin), TriggerTimes);</span><br><span class="line"></span><br><span class="line">            if (NotifyEvent.NotifyStateClass)</span><br><span class="line">            &#123;</span><br><span class="line">                // Track end point of AnimNotifyStates.</span><br><span class="line">                AddBranchingPointMarker(FBranchingPointMarker(NotifyIndex, NotifyEvent.GetEndTriggerTime(), EAnimNotifyEventType::End), TriggerTimes);</span><br><span class="line"></span><br><span class="line">                // Also track AnimNotifyStates separately, so we can tick them between their Begin and End points.</span><br><span class="line">                BranchingPointStateNotifyIndices.Add(NotifyIndex);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (BranchingPointMarkers.Num() &gt; 0)</span><br><span class="line">    &#123;</span><br><span class="line">        // Sort markers</span><br><span class="line">        struct FCompareNotifyTickMarkersTime</span><br><span class="line">        &#123;</span><br><span class="line">            FORCEINLINE bool operator()(const FBranchingPointMarker &amp;A, const FBranchingPointMarker &amp;B) const</span><br><span class="line">            &#123;</span><br><span class="line">                return A.TriggerTime &lt; B.TriggerTime;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        BranchingPointMarkers.Sort(FCompareNotifyTickMarkersTime());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个函数中，会收集StateNotify中的是BranchingPoint的索引，存到BranchingPointStateNotifyIndices，这个是加载时处理的。</p>
+<p>然后每帧tick时，在HandleEvents中的UpdateActiveStateBranchingPoints(CurrentTrackPos)直接触发BranchingPointNotifyEnd和begin，这里的触发会更准确，他是计算完直接触发，少了一个存到queue中再一起触发的步骤，是同步进行，会更准确一点。</p>
+<p>例如NotifyEnd的触发：</p>
+<p>NotifyEvent-&gt;NotifyStateClass-&gt;BranchingPointNotifyEnd(BranchingPointNotifyPayload);</p>
+<h2 id="使用AnimNotifyState来管理后处理效果，以脸红效果为例"><a href="#使用AnimNotifyState来管理后处理效果，以脸红效果为例" class="headerlink" title="使用AnimNotifyState来管理后处理效果，以脸红效果为例"></a>使用AnimNotifyState来管理后处理效果，以脸红效果为例</h2><p>将效果的实现与AnimMontage绑定，方便策划美术进行配置。</p>
+<p>将数值的管理写在Character中，这样给出接口方便其他位置使用脸红效果，</p>
+<p>主要分为两部分，</p>
+<ul>
+<li>在AnimNotifyState部分控制脸红效果，将其与动画&#x2F;曲线相关联。</li>
+<li>在Character部分实现脸红效果。</li>
+</ul>
+<p>大致流程：</p>
+<p>在AnimNotifyState的tick中，传入曲线此时的数值到Character中</p>
+<p>在Character中，为了实现混合&#x2F;渐变效果，先将传入的数值放到pending中，然后在每帧Tick中进行更新</p>
+<p>在tick中，把pending中的值设给Target，然后将cur值往Target插值，以此来实现渐变效果，</p>
+<p>最后把cur值设给材质即可。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Anim Notify State</li>
+        <li><strong>Author:</strong> 沐云白</li>
+        <li><strong>Created at
+                :</strong> 2025-08-27 13:13:27</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2025-08-27 13:24:06
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://redefine.ohevan.com/2025/08/27/Anim-Notify-State/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2025/08/27/bone-animation/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">bone animation</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Anim Notify State</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%91%E6%83%B3%E7%9F%A5%E9%81%93%E4%BB%80%E4%B9%88%E5%86%85%E5%AE%B9%EF%BC%9F"><span class="nav-text">我想知道什么内容？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E9%87%8D%E8%A6%81%E7%9A%84%E7%B1%BB"><span class="nav-text">比较重要的类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AnimNotify"><span class="nav-text">AnimNotify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AnimNotifyEvent"><span class="nav-text">AnimNotifyEvent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AnimNotifyEventReference"><span class="nav-text">AnimNotifyEventReference</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AnimNotify%E7%9A%84%E8%A7%A6%E5%8F%91%E6%9C%BA%E5%88%B6"><span class="nav-text">AnimNotify的触发机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A6%96%E5%85%88%E8%A6%81%E6%94%B6%E9%9B%86%E6%9C%AC%E5%B8%A7%E5%86%85%E7%9A%84AnimNotify"><span class="nav-text">首先要收集本帧内的AnimNotify</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8AnimNotifyState%E6%9D%A5%E7%AE%A1%E7%90%86%E5%90%8E%E5%A4%84%E7%90%86%E6%95%88%E6%9E%9C%EF%BC%8C%E4%BB%A5%E8%84%B8%E7%BA%A2%E6%95%88%E6%9E%9C%E4%B8%BA%E4%BE%8B"><span class="nav-text">使用AnimNotifyState来管理后处理效果，以脸红效果为例</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2024</span>
+              -
+            
+            2025&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">沐云白</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        18 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.7.2</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+    
+<script src="/js/libs/anime.min.js"></script>
+
+
+
+
+
+    
+<script src="/js/tools/tocToggle.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/layouts/toc.js" type="module" data-swup-reload-script=""></script>
+
+<script src="/js/plugins/tabs.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+<script src="/js/libs/moment-with-locales.min.js" data-swup-reload-script=""></script>
+
+
+<script src="/js/layouts/essays.js" type="module" data-swup-reload-script=""></script>
+
+
+
+
+</body>
+</html>
